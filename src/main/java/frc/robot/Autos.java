@@ -1,9 +1,10 @@
 package frc.robot;
 
+import frc.robot.Constants.AutonomousConstants;
 import frc.robot.auto.AutoPoint;
 
 public enum Autos {
-    BUMP(Constants.AutonomousConstants.bump), CLIMB(Constants.AutonomousConstants.bump), BLUE(Constants.AutonomousConstants.bumpBlue);
+    DONT_MOVE(AutonomousConstants.dontMove);
 
    private AutoPoint[] points;
 

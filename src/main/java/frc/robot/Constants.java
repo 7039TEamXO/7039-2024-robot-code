@@ -38,41 +38,12 @@ public final class Constants {
 
     public static final double distanceToletrance = 0.15f;
     public static final double angleToletrance = 0.25f;  
-    public static AutoPoint[] bump = {
+    //AUTO code
+    public static AutoPoint[] dontMove = {
       new AutoPoint(new Pose2d(new Translation2d(0, 0), new Rotation2d(0)), RobotState.TRAVEL),
-      /*new AutoPoint(new Pose2d(new Translation2d(4.5, 0), new Rotation2d(0)), RobotState.INTAKE_CUBE),*/
-      new AutoPoint(new Pose2d(new Translation2d(5, -0.3), new Rotation2d(0)), RobotState.INTAKE_CUBE),
-      new AutoPoint(new Pose2d(new Translation2d(5.5, -0.6), new Rotation2d(0)), RobotState.INTAKE_CUBE),
-      new AutoPoint(new Pose2d(new Translation2d(7, -1), new Rotation2d(Math.toRadians(0))), RobotState.INTAKE_CUBE),
-      new AutoPoint(new Pose2d(new Translation2d(7, -1), new Rotation2d(Math.toRadians(30))), RobotState.INTAKE_CUBE),
-      new AutoPoint(new Pose2d(new Translation2d(4.5, -0.4), new Rotation2d(Math.toRadians(0))),
-          RobotState.INTAKE_CUBE),
-          new AutoPoint(new Pose2d(new Translation2d(2.5, -0.1), new Rotation2d(Math.toRadians(0))),
-          RobotState.TRAVEL),
-      new AutoPoint(new Pose2d(new Translation2d(0.2, 0), new Rotation2d(Math.toRadians(0))), RobotState.TRAVEL),
-      new AutoPoint(new Pose2d(new Translation2d(-0.5, -0.7), new Rotation2d(Math.toRadians(0))), RobotState.MID_PLACE),
       
   };
-  public static AutoPoint[] bumpBlue = {
-    new AutoPoint(new Pose2d(new Translation2d(0, 0), new Rotation2d(0)), RobotState.TRAVEL),
-    /*new AutoPoint(new Pose2d(new Translation2d(4.5, 0), new Rotation2d(0)), RobotState.INTAKE_CUBE),*/
-    new AutoPoint(new Pose2d(new Translation2d(5, 0.3), new Rotation2d(0)), RobotState.INTAKE_CUBE),
-    new AutoPoint(new Pose2d(new Translation2d(5.5, 0.4), new Rotation2d(0)), RobotState.INTAKE_CUBE),
-    new AutoPoint(new Pose2d(new Translation2d(7, 0.4), new Rotation2d(Math.toRadians(0))), RobotState.INTAKE_CUBE),
-    new AutoPoint(new Pose2d(new Translation2d(7, 0.4), new Rotation2d(Math.toRadians(-30))), RobotState.INTAKE_CUBE),
-    new AutoPoint(new Pose2d(new Translation2d(4.5, 0.3), new Rotation2d(Math.toRadians(0))),
-        RobotState.INTAKE_CUBE),
-        new AutoPoint(new Pose2d(new Translation2d(2.5, 0.1), new Rotation2d(Math.toRadians(0))),
-        RobotState.TRAVEL),
-    new AutoPoint(new Pose2d(new Translation2d(0.2, 0), new Rotation2d(Math.toRadians(0))), RobotState.TRAVEL),
-    new AutoPoint(new Pose2d(new Translation2d(-0.5, 0.7), new Rotation2d(Math.toRadians(0))), RobotState.MID_PLACE),
-    
-};
-  public static AutoPoint[] climb = {
-    new AutoPoint(new Pose2d(new Translation2d(0, 0), new Rotation2d(0)), RobotState.TRAVEL),
-    new AutoPoint(new Pose2d(new Translation2d(7, 0), new Rotation2d(0)), RobotState.INTAKE_CUBE),
-    
-};
+  
 
   }
 

@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
   public static RobotState robotState = RobotState.TRAVEL;
   Alliance alliance = Alliance.Red;
 
-  public static Autos currentAuto = Autos.BUMP;
+  public static Autos currentAuto = Autos.DONT_MOVE;
   // This will load the file "Example Path.path" and generate it with a max
   // velocity of 4 m/s and a max acceleration of 3 m/s^2
 
@@ -141,7 +141,7 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     double armTime = 0;
     double placeTime = 0;
-    robotState = RobotState.MID_PLACE;
+    robotState = RobotState.TRAVEL;
    //here goes first time logic
     firstTime = false;
 

@@ -29,7 +29,7 @@ public class DashBoard {
         if(m_chooser.getSelected() != null){
             m_autoSelected = m_chooser.getSelected();
         }
-        switch (m_autoSelected) {
+        /*  switch (m_autoSelected) {
             case kCustomAuto:
             return Autos.BUMP;
             case kDefaultAuto:
@@ -38,7 +38,7 @@ public class DashBoard {
             return Autos.BLUE;
             default:
 
-          }
+          }*/
         return null;
     }
 

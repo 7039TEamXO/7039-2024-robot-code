@@ -15,33 +15,10 @@ public class SubSystemManager {
     public static double placeTime = 0;
 
     public static RobotState getRobotStateFromWantedAndActual() {
-        final RobotState wantedState = joyPs4Controller.getSquareButtonPressed() ? RobotState.INTAKE_CUBE
-                : joyPs4Controller.getCrossButtonPressed() ? RobotState.INTAKE_CONE
-                        : joyPs4Controller.getCircleButtonPressed() ? RobotState.TRAVEL
-                                : joyPs4Controller.getTriangleButtonPressed() ? RobotState.SINGLE_PLACE
-                                        : joyPs4Controller.getL1ButtonPressed() ? RobotState.LOW_PLACE
-                                                : joyPs4Controller.getR1ButtonPressed() ? RobotState.MID_PLACE
-                                                        : lastState;
+        final RobotState wantedState = joyPs4Controller.getCircleButtonPressed() ? RobotState.TRAVEL
+                :  lastState;
 
         switch (wantedState) {
-            case FEEDER_INTAKE:
-                return RobotState.FEEDER_INTAKE;
-
-            case INTAKE_CONE:
-                return RobotState.INTAKE_CONE;
-
-            case INTAKE_CUBE:
-                return RobotState.INTAKE_CUBE;
-
-            case LOW_PLACE:
-                return RobotState.LOW_PLACE;
-
-            case MID_PLACE:
-                return RobotState.MID_PLACE;
-
-            case SINGLE_PLACE:
-                return RobotState.SINGLE_PLACE;
-
             case TRAVEL:
             default:
                 return RobotState.TRAVEL;
