@@ -5,7 +5,4 @@
 package frc.robot.subsystems.Shooters;
 
 /** Add your docs here. */
-public enum LowShooter {
-
-STOP , AMP_SHOOTING , DEPLETE, SHOOT 
-}
+public class LowShooter {}

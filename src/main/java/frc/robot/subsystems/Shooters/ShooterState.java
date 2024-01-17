@@ -2,10 +2,10 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.Intake;
+package frc.robot.subsystems.Shooters;
 
 /** Add your docs here. */
-public class IntakeSubsystem {
+public enum ShooterState {
 
-    
+STOP , AMP_SHOOTING , DEPLETE, SHOOT 
 }

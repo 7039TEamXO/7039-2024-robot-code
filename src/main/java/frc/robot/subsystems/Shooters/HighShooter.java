@@ -5,7 +5,4 @@
 package frc.robot.subsystems.Shooters;
 
 /** Add your docs here. */
-public enum HighShooter {
-
-    STOP , SHOOT , DEPLETE 
-}
+public class HighShooter {}

@@ -5,6 +5,7 @@
 package frc.robot.subsystems.Intake;
 
 /** Add your docs here. */
-public enum Intake {
-STOP , COLLECT, DEPLETE
+public class Intake {
+
+    
 }
