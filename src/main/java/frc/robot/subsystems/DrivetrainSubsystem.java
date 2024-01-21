@@ -88,21 +88,21 @@ public class DrivetrainSubsystem extends SubsystemBase {
                                 DriveConstants.FRONT_RIGHT_MODULE_STEER_ENCODER,
                                 DriveConstants.FRONT_RIGHT_MODULE_STEER_OFFSET);
                 System.out.println("---------------DrivetrainSubsystem - STARTING backLeftModule---------------");
-                backLeftModule = Mk4iSwerveModuleHelper.createFalcon500(
+                backLeftModule = Mk4SwerveModuleHelper.createFalcon500(
                                 driveTrainShuffleboardTab.getLayout("Back Left Module", BuiltInLayouts.kList)
                                                 .withSize(2, 4)
                                                 .withPosition(4, 0),
-                                Mk4iSwerveModuleHelper.GearRatio.L2,
+                                Mk4SwerveModuleHelper.GearRatio.L2,
                                 DriveConstants.BACK_LEFT_MODULE_DRIVE_MOTOR,
                                 DriveConstants.BACK_LEFT_MODULE_STEER_MOTOR,
                                 DriveConstants.BACK_LEFT_MODULE_STEER_ENCODER,
                                 DriveConstants.BACK_LEFT_MODULE_STEER_OFFSET);
                 System.out.println("---------------DrivetrainSubsystem - STARTING backRightModule---------------");
-                backRightModule = Mk4iSwerveModuleHelper.createFalcon500(
+                backRightModule = Mk4SwerveModuleHelper.createFalcon500(
                                 driveTrainShuffleboardTab.getLayout("Back Right Module", BuiltInLayouts.kList)
                                                 .withSize(2, 4)
                                                 .withPosition(6, 0),
-                                Mk4iSwerveModuleHelper.GearRatio.L2,
+                                Mk4SwerveModuleHelper.GearRatio.L2,
                                 DriveConstants.BACK_RIGHT_MODULE_DRIVE_MOTOR,
                                 DriveConstants.BACK_RIGHT_MODULE_STEER_MOTOR,
                                 DriveConstants.BACK_RIGHT_MODULE_STEER_ENCODER,

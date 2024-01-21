@@ -27,6 +27,9 @@ import frc.robot.auto.AutoPoint;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.RobotState;
 import frc.robot.subsystems.SubSystemManager;
+import frc.robot.subsystems.Conveyor.Conveyor;
+import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.Shooter.Shooter;
 
 
 /**
@@ -79,6 +82,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     DashBoard.init();
+    Shooter.init();
+    Intake.init();
+    Conveyor.init();
   }
   
   /**
