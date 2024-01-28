@@ -7,42 +7,45 @@ package frc.robot.subsystems.Shooter;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import frc.robot.Constants;
+
 /** Add your docs here. */
 public class Shooter {
-    private static TalonFX shooterMaster = new TalonFX(11);
-    private static TalonFX shooterSlave = new TalonFX(12);
-    private static double vel_w = 0;
 
-    public static void init(){
-        shooterMaster.setInverted(false);
-        shooterSlave.setInverted(true);
-        shooterSlave.follow(shooterMaster);
+    private static double sVel_w = Constants.Shooter.vel_w;
+
+    public static void init() {
+        Constants.Shooter.shooterMaster.setInverted(false);
+        Constants.Shooter.shooterSlave.setInverted(true);
+        Constants.Shooter.shooterSlave.follow(Constants.Shooter.shooterMaster);
     }
 
-    //TODO TUNE
+    // TODO TUNE
 
     public static void operate(ShooterState state) {
         switch (state) {
             case AMP_SHOOTING:
-                vel_w = 0.1;
+                sVel_w = 0.1;
                 break;
             case DEPLETE:
-                vel_w = 0.1;
+                sVel_w = 0.1;
                 break;
             case PODIUM_SHOOTING:
-                vel_w = 0.1;
+                sVel_w = 0.1;
                 break;
             case STOP:
-                vel_w = 0.1;
+                sVel_w = 0.1;
                 break;
             case SUBWOOFER_SHOOTING:
-                vel_w = 0.1;
+                sVel_w = 0.1;
                 break;
+
+               
         }
-        shooterMaster.set(ControlMode.Velocity, vel_w);
+        Constants.Shooter.shooterMaster.set(ControlMode.Velocity, sVel_w);
     }
 
-    public static boolean readyToShoot(){
-        return Math.abs(vel_w - shooterMaster.getSelectedSensorVelocity()) < 0.1;
+    public static boolean readyToShoot() {
+        return Math.abs(sVel_w - Constants.Shooter.shooterMaster.getSelectedSensorVelocity()) < 0.1;
     }
 }
