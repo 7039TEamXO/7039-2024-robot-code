@@ -5,26 +5,27 @@
 package frc.robot.subsystems.Intake;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
+import frc.robot.Constants;
 /** Add your docs here. */
 public class Intake {
-    private static TalonFX intake = new TalonFX(10);
 
-    private static double power = 0;
+    private static double s_power = Constants.Intake.power;
 
     public static void init() {
-        intake.setInverted(false);
+        Constants.Intake.intake.setInverted(false);
     }
 
     public static void operate(IntakeState state) {
         switch (state) {
             case DEPLETE:
-                power = -0.5;
+                s_power = -0.5;
                 break;
             case COLLECT:
-                power = 0.5;
+                s_power = 0.5;
                 break;
             case STOP:
-                power = 0;
+                s_power = 0;
                 break;
 
         }
