@@ -4,15 +4,16 @@
 
 package frc.robot.subsystems.Intake;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 /** Add your docs here. */
 public class Intake {
-    private static TalonFX intake = new TalonFX(10);
+    private static TalonFX intake = new TalonFX(4);
 
     private static double power = 0;
 
     public static void init() {
-        intake.setInverted(false);
+        intake.setInverted(true);
     }
 
     public static void operate(IntakeState state) {
@@ -28,5 +29,6 @@ public class Intake {
                 break;
 
         }
+        intake.set(ControlMode.PercentOutput, power);
     }
 }

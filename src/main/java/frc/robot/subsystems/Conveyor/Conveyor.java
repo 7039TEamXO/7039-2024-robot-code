@@ -4,19 +4,19 @@
 
 package frc.robot.subsystems.Conveyor;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 /** Add your docs here. */
 public class Conveyor {
-    private static TalonFX conveyorMaster = new TalonFX(9);
-    private static TalonFX conveyorSlave = new TalonFX(8);
+    private static TalonFX conveyor = new TalonFX(15);
+    private static TalonFX conveyorLower = new TalonFX(20);
 
     private static double power = 0;
 
     public static void init() {
-        conveyorMaster.setInverted(false);
-        conveyorSlave.setInverted(true);
-        conveyorSlave.follow(conveyorMaster);
+        conveyor.setInverted(false);
+        conveyorLower.setInverted(true);
     }
 
     public static void operate(ConveyorState state) {
@@ -30,6 +30,9 @@ public class Conveyor {
             case STOP:
                 power = 0;
                 break;
-        }
+        };
+        conveyor.set(ControlMode.PercentOutput, power);
+        conveyorLower.set(ControlMode.PercentOutput, power);
+
     }
 }

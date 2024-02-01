@@ -72,25 +72,25 @@ public final class Constants {
     public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 6;
     public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 7;
     public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 11;
-    public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(24.334716796875);// 207.9437255859375-180 
+    public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(179.901123046875);// 207.9437255859375-180 
 
     // Front Right
-    public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 0;
-    public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 1;
+    public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 62;
+    public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 61;
     public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 9;
-    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(29.786682128906246);// 207.32574462890625-180 
+    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(27.06756591796875 + 90);// 207.32574462890625-180 
 
     // Back Left
-    public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 4;
-    public static final int BACK_LEFT_MODULE_STEER_MOTOR = 5;
-    public static final int BACK_LEFT_MODULE_STEER_ENCODER = 10;
-    public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(236.15976562500003);//119.7+180
+    public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 55;
+    public static final int BACK_LEFT_MODULE_STEER_MOTOR = 18;
+    public static final int BACK_LEFT_MODULE_STEER_ENCODER = 29;
+    public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(236.15112304687503);//119.7+180
 
     // Back Right
-    public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 2;
-    public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 3;
+    public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 57;
+    public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 1;
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 8;
-    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(128.49375);// 328.6171875
+    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(134.912109375);// 328.6171875
 
 
     private static final double driveGearRatio = (6.75 / 1.0);

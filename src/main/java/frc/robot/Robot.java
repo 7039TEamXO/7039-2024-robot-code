@@ -203,7 +203,6 @@ public class Robot extends TimedRobot {
       m_robotContainer.m_drivetrainSubsystem.zeroGyroscope();
     }
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
-
     SubSystemManager.operate();
     LimeLight.update();
   }

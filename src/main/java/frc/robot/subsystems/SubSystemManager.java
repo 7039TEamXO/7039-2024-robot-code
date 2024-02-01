@@ -31,12 +31,7 @@ public class SubSystemManager {
                                         : joyPs4Controller.getL1ButtonPressed() ? RobotState.AMP
                                                 : lastState;
 
-        switch (wantedState) {
-            case TRAVEL:
-            default:
-                return RobotState.TRAVEL;
-
-        }
+     return wantedState;
     }
 
     public static void operate() {
@@ -69,6 +64,7 @@ public class SubSystemManager {
         }
         Intake.operate(intakeState);
         Shooter.operate(shooterState);
+        System.out.println(conveyorState);
         Conveyor.operate(conveyorState);
         lastState = Robot.robotState;
     }

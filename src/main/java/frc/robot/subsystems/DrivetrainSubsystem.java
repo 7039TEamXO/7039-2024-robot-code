@@ -5,7 +5,6 @@ import com.kauailabs.navx.frc.AHRS;
 import frc.robot.Constants.DriveConstants;
 
 import com.swervedrivespecialties.swervelib.Mk4SwerveModuleHelper;
-import com.swervedrivespecialties.swervelib.Mk4iSwerveModuleHelper;
 import com.swervedrivespecialties.swervelib.SwerveModule;
 
 import edu.wpi.first.math.controller.PIDController;

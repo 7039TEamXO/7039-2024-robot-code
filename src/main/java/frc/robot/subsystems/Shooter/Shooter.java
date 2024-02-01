@@ -9,13 +9,13 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 /** Add your docs here. */
 public class Shooter {
-    private static TalonFX shooterMaster = new TalonFX(11);
-    private static TalonFX shooterSlave = new TalonFX(12);
+    private static TalonFX shooterMaster = new TalonFX(54);
+    private static TalonFX shooterSlave = new TalonFX(5);
     private static double vel_w = 0;
 
     public static void init(){
         shooterMaster.setInverted(false);
-        shooterSlave.setInverted(true);
+        shooterSlave.setInverted(false);
         shooterSlave.follow(shooterMaster);
     }
 
@@ -24,25 +24,26 @@ public class Shooter {
     public static void operate(ShooterState state) {
         switch (state) {
             case AMP_SHOOTING:
-                vel_w = 0.1;
+                vel_w = -0.4;
                 break;
             case DEPLETE:
-                vel_w = 0.1;
+                vel_w = 0.4;
                 break;
             case PODIUM_SHOOTING:
-                vel_w = 0.1;
+                vel_w = 0.8;
                 break;
             case STOP:
-                vel_w = 0.1;
+                vel_w = 0;
                 break;
             case SUBWOOFER_SHOOTING:
-                vel_w = 0.1;
+                vel_w = -0.7;
                 break;
         }
-        shooterMaster.set(ControlMode.Velocity, vel_w);
+        shooterMaster.set(ControlMode.PercentOutput, vel_w);
+        System.out.println(shooterMaster.getSelectedSensorVelocity());
     }
 
     public static boolean readyToShoot(){
-        return Math.abs(vel_w - shooterMaster.getSelectedSensorVelocity()) < 0.1;
+        return true;// Math.abs(vel_w - shooterMaster.getSelectedSensorVelocity()) < 0.1;
     }
 }
