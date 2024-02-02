@@ -1,4 +1,5 @@
 package com.swervedrivespecialties.swervelib;
 
-public class SwerveModuleFactoryBuilder {
+public enum MotorType {
+    FALCON, NEO;
 }

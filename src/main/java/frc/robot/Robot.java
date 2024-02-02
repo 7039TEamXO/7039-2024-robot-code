@@ -134,7 +134,7 @@ public class Robot extends TimedRobot {
     m_timer.start();
     // * points = realAutoPoints
     // Reset the drivetrain's odometry to the starting pose of the trajectory.
-    m_robotContainer.m_drivetrainSubsystem.resetOdometry(points[0].getWantedPose());
+    // m_robotContainer.m_drivetrainSubsystem.resetOdometry(points[0].getWantedPose());
   }
   
   boolean firstTime = true;
@@ -144,38 +144,38 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     // Update odometry.
-    m_robotContainer.m_drivetrainSubsystem.updateOdometry();
+    // m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     double armTime = 0;
     double placeTime = 0;
     robotState = RobotState.TRAVEL;
    //here goes first time logic
     firstTime = false;
 
-    if (currentPointIndex < points.length) {
+    // if (currentPointIndex < points.length) {
 
-      // Get the reference chassis speeds from the Ramsete controller.
-      var error = points[currentPointIndex].getWantedPose().getTranslation()
-          .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
-      var angleError = points[currentPointIndex].getWantedPose().getRotation()
-          .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getRotation());
-      var refChassisSpeeds = new ChassisSpeeds();
-      refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
-      refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
-      refChassisSpeeds.omegaRadiansPerSecond = (angleError.getRadians() * headingKp);
-      // Set the linear and angular speeds.
-      m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
-      if (!points[currentPointIndex].getAction().equals(null)) {
-        robotState = points[currentPointIndex].getAction();
-      }
-      if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
-          && error.getAngle().getRadians() < Constants.AutonomousConstants.angleToletrance) {
-            currentPointIndex++;
-      }
-    } else {
-      // when finished path stop
-      m_robotContainer.m_drivetrainSubsystem.stopModules();
-    }
-    SubSystemManager.operate();
+    //   // Get the reference chassis speeds from the Ramsete controller.
+    //   var error = points[currentPointIndex].getWantedPose().getTranslation()
+    //       .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
+    //   var angleError = points[currentPointIndex].getWantedPose().getRotation()
+    //       .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getRotation());
+    //   var refChassisSpeeds = new ChassisSpeeds();
+    //   refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
+    //   refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
+    //   refChassisSpeeds.omegaRadiansPerSecond = (angleError.getRadians() * headingKp);
+    //   // Set the linear and angular speeds.
+    //   m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
+    //   if (!points[currentPointIndex].getAction().equals(null)) {
+    //     robotState = points[currentPointIndex].getAction();
+    //   }
+    //   if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
+    //       && error.getAngle().getRadians() < Constants.AutonomousConstants.angleToletrance) {
+    //         currentPointIndex++;
+    //   }
+    // } else {
+    //   // when finished path stop
+    //   m_robotContainer.m_drivetrainSubsystem.stopModules();
+    // }
+    // SubSystemManager.operate();
   }
 
   @Override
@@ -202,7 +202,7 @@ public class Robot extends TimedRobot {
     if (SubSystemManager.joyPs4Controller.getPSButtonPressed()) {
       m_robotContainer.m_drivetrainSubsystem.zeroGyroscope();
     }
-    m_robotContainer.m_drivetrainSubsystem.updateOdometry();
+    // m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     SubSystemManager.operate();
     LimeLight.update();
   }

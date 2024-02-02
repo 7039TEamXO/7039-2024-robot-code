@@ -22,6 +22,7 @@ public class SubSystemManager {
     private static ShooterState shooterState = ShooterState.STOP;
     private static IntakeState intakeState = IntakeState.STOP;
     private static ConveyorState conveyorState = ConveyorState.STOP;
+    private static boolean isGamePiece = false;
 
     public static RobotState getRobotStateFromWantedAndActual() {
         final RobotState wantedState = joyPs4Controller.getCircleButtonPressed() ? RobotState.TRAVEL
@@ -31,7 +32,7 @@ public class SubSystemManager {
                                         : joyPs4Controller.getL1ButtonPressed() ? RobotState.AMP
                                                 : lastState;
 
-     return wantedState;
+        return wantedState;
     }
 
     public static void operate() {
@@ -48,8 +49,10 @@ public class SubSystemManager {
                 break;
             case INTAKE:
                 shooterState = ShooterState.STOP;
-                intakeState = IntakeState.COLLECT;
+                intakeState = isGamePiece ? IntakeState.STOP : IntakeState.COLLECT;
                 conveyorState = ConveyorState.STOP;
+                // intakeState = Shooter.readyToShoot() ?IntakeState.STOP : IntakeState.COLLECT;
+
                 break;
             case PODIUM:
                 shooterState = ShooterState.PODIUM_SHOOTING;
@@ -62,9 +65,13 @@ public class SubSystemManager {
                 conveyorState = Shooter.readyToShoot() ? ConveyorState.HIGH_SHOOTER : ConveyorState.STOP;
                 break;
         }
+        if(Robot.robotState.equals(RobotState.INTAKE)){
+            isGamePiece |= Intake.isGamePieceIn();
+        }else{
+            isGamePiece = false;
+        }
         Intake.operate(intakeState);
         Shooter.operate(shooterState);
-        System.out.println(conveyorState);
         Conveyor.operate(conveyorState);
         lastState = Robot.robotState;
     }

@@ -1,15 +1,15 @@
 package com.swervedrivespecialties.swervelib.ctre;
 
-import com.ctre.phoenix.ErrorCode;
+import com.ctre.phoenix6.StatusCode;
 import edu.wpi.first.wpilibj.DriverStation;
-public final class CtreUtils {
-    private CtreUtils() {
-    }
+import edu.wpi.first.wpilibj.RobotBase;
 
-    public static void checkCtreError(ErrorCode errorCode, String message) {
-        if (errorCode != ErrorCode.OK) {
-            // throw new RuntimeException(String.format("%s: %s", message, errorCode.toString()));
-            DriverStation.reportError(String.format("%s: %s", message, errorCode.toString()), false);
+public final class CtreUtils {
+    private CtreUtils() {}
+
+    public static void checkCtreError(StatusCode code, String message) {
+        if (RobotBase.isReal() && code != StatusCode.OK) {
+            DriverStation.reportError(String.format("%s: %s", message, code.toString()), false);
         }
     }
 }

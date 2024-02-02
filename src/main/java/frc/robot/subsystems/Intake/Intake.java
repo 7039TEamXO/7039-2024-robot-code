@@ -6,9 +6,13 @@ package frc.robot.subsystems.Intake;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 /** Add your docs here. */
 public class Intake {
     private static TalonFX intake = new TalonFX(4);
+    private static  AnalogInput ir_input = new AnalogInput(0);
 
     private static double power = 0;
 
@@ -29,6 +33,14 @@ public class Intake {
                 break;
 
         }
+
         intake.set(ControlMode.PercentOutput, power);
     }
+    public static double getCurrent() {
+        return intake.getStatorCurrent() ;
+    }
+    public static boolean isGamePieceIn() {
+        return ir_input.getValue() >= 2000;}
+      
+
 }

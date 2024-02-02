@@ -3,7 +3,7 @@ package com.swervedrivespecialties.swervelib;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 
 @FunctionalInterface
-public interface SteerControllerFactory<Controller extends SteerController, SteerConfiguration> {
+public interface SteerControllerFactory<Controller extends SteerController, SC> {
     default void addDashboardEntries(
             ShuffleboardContainer container,
             Controller controller
@@ -14,14 +14,33 @@ public interface SteerControllerFactory<Controller extends SteerController, Stee
 
     default Controller create(
             ShuffleboardContainer dashboardContainer,
-            SteerConfiguration steerConfiguration,
-            ModuleConfiguration moduleConfiguration
+            SC steerConfiguration,
+            String canbus,
+            MechanicalConfiguration mechConfiguration
     ) {
-        var controller = create(steerConfiguration, moduleConfiguration);
+        var controller = create(steerConfiguration, canbus, mechConfiguration);
         addDashboardEntries(dashboardContainer, controller);
 
         return controller;
     }
 
-    Controller create(SteerConfiguration steerConfiguration, ModuleConfiguration moduleConfiguration);
+    default Controller create(
+            ShuffleboardContainer dashboardContainer,
+            SC steerConfiguration,
+            MechanicalConfiguration mechConfiguration
+    ) {
+        var controller = create(steerConfiguration, mechConfiguration);
+        addDashboardEntries(dashboardContainer, controller);
+
+        return controller;
+    }
+
+    default Controller create(
+            SC steerConfiguration, 
+            MechanicalConfiguration mechConfiguration
+    ) {
+        return create(steerConfiguration, "", mechConfiguration);
+    }
+
+    Controller create(SC steerConfiguration, String canbus, MechanicalConfiguration mechConfiguration);
 }
