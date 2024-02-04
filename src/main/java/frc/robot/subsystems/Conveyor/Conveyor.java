@@ -7,6 +7,8 @@ package frc.robot.subsystems.Conveyor;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import frc.robot.DashBoard;
+
 /** Add your docs here. */
 public class Conveyor {
     private static TalonFX conveyor = new TalonFX(15);
@@ -17,15 +19,21 @@ public class Conveyor {
     public static void init() {
         conveyor.setInverted(false);
         conveyorLower.setInverted(true);
+        //  DashBoard.data.addNumber("conveyor Vel", () -> conveyor.getSelectedSensorVelocity());
+        // DashBoard.data.addNumber("conveyorLower Vel", () -> conveyorLower.getSelectedSensorVelocity());
+        // DashBoard.data.addNumber("conveyorLower Stator", () -> conveyorLower.getStatorCurrent());
+        // DashBoard.data.addNumber("conveyorLower Supplier", () -> conveyorLower.getSupplyCurrent());
+        // DashBoard.data.addNumber("conveyor Stator", () -> conveyor.getStatorCurrent());
+        // DashBoard.data.addNumber("conveyor Supplier", () -> conveyor.getSupplyCurrent());
     }
 
     public static void operate(ConveyorState state) {
         switch (state) {
             case HIGH_SHOOTER:
-                power = 0.5;
+                power = 0.4;
                 break;
             case LOW_SHOOTER:
-                power = -0.5;
+                power = -0.4;
                 break;
             case STOP:
                 power = 0;

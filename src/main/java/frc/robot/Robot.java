@@ -205,6 +205,7 @@ public class Robot extends TimedRobot {
     // m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     SubSystemManager.operate();
     LimeLight.update();
+    System.out.println(Intake.getIr_input());
   }
 
   @Override

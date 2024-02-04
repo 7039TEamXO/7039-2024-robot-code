@@ -8,16 +8,21 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.DashBoard;
+
 /** Add your docs here. */
 public class Intake {
     private static TalonFX intake = new TalonFX(4);
-    private static  AnalogInput ir_input = new AnalogInput(0);
+    private static AnalogInput ir_input = new AnalogInput(0);
 
     private static double power = 0;
 
     public static void init() {
         intake.setInverted(true);
+        // DashBoard.data.addNumber("Intake Vel", () -> intake.getSelectedSensorVelocity());
+        // DashBoard.data.addNumber("Intake Stator", () -> intake.getStatorCurrent());
+        // DashBoard.data.addNumber("Intake Supplier", () -> intake.getSupplyCurrent());
+
     }
 
     public static void operate(IntakeState state) {
@@ -36,11 +41,17 @@ public class Intake {
 
         intake.set(ControlMode.PercentOutput, power);
     }
+
     public static double getCurrent() {
-        return intake.getStatorCurrent() ;
+        return intake.getStatorCurrent();
     }
+
     public static boolean isGamePieceIn() {
-        return ir_input.getValue() >= 2000;}
-      
+        return ir_input.getValue() >= 1700;
+    }
+    public static int getIr_input() {
+        return ir_input.getValue();
+    }
+
 
 }

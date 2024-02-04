@@ -70,6 +70,7 @@ public class SubSystemManager {
         }else{
             isGamePiece = false;
         }
+        // System.out.println(Shooter.readyToShoot());
         Intake.operate(intakeState);
         Shooter.operate(shooterState);
         Conveyor.operate(conveyorState);

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DashBoard {
     private static ShuffleboardTab driver = Shuffleboard.getTab("Driver");
+    public static ShuffleboardTab data = Shuffleboard.getTab("Data");
     private static final String kDefaultAuto = "Default";
     private static final String kCustomAuto = "My Auto";
     private static final String kBlue = "Blue";
