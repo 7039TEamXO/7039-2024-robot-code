@@ -44,7 +44,7 @@ public class SubSystemManager {
                 break;
             case AMP:
                 shooterState = ShooterState.AMP_SHOOTING;
-                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.STOP;
+                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.DEPLETE;
                 conveyorState = Shooter.readyToShoot() ? ConveyorState.HIGH_SHOOTER : ConveyorState.STOP;
                 break;
             case INTAKE:
@@ -56,12 +56,12 @@ public class SubSystemManager {
                 break;
             case PODIUM:
                 shooterState = ShooterState.PODIUM_SHOOTING;
-                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.STOP;
+                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.DEPLETE;
                 conveyorState = Shooter.readyToShoot() ? ConveyorState.LOW_SHOOTER : ConveyorState.STOP;
                 break;
             case SUBWOOFER:
                 shooterState = ShooterState.SUBWOOFER_SHOOTING;
-                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.STOP;
+                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.DEPLETE;
                 conveyorState = Shooter.readyToShoot() ? ConveyorState.HIGH_SHOOTER : ConveyorState.STOP;
                 break;
         }

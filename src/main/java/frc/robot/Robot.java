@@ -198,14 +198,16 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    GlobalData.currentTime = m_timer.get();
     robotState = SubSystemManager.getRobotStateFromWantedAndActual();
     if (SubSystemManager.joyPs4Controller.getPSButtonPressed()) {
       m_robotContainer.m_drivetrainSubsystem.zeroGyroscope();
     }
+    System.out.println(Intake.getIr_input());
     // m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     SubSystemManager.operate();
     LimeLight.update();
-    System.out.println(Intake.getIr_input());
+    
   }
 
   @Override

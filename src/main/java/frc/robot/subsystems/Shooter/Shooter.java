@@ -28,7 +28,7 @@ public class Shooter {
         shooterMaster.configNeutralDeadband(0);
         shooterSlave.configNeutralDeadband(0);
         shooterSlave.follow(shooterMaster);
-        shooterMaster.config_kP(0, 0.1);
+        shooterMaster.config_kP(0, 0.15);
         shooterMaster.config_kF(0, 0.063);
         DashBoard.data.addNumber("Sh M V", () -> shooterMaster.getSelectedSensorVelocity());
         DashBoard.data.addNumber("Sh S V", () -> shooterSlave.getSelectedSensorVelocity());
@@ -55,7 +55,7 @@ public class Shooter {
                 vel_w = 0;
                 break;
             case SUBWOOFER_SHOOTING:
-                vel_w = -11000;
+                vel_w = -10000;
                 break;
         }
        shooterMaster.set(ControlMode.Velocity, vel_w);

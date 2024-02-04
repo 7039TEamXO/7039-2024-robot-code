@@ -28,7 +28,7 @@ public class Intake {
     public static void operate(IntakeState state) {
         switch (state) {
             case DEPLETE:
-                power = -0.5;
+                power = -0.2;
                 break;
             case COLLECT:
                 power = 0.5;
@@ -52,6 +52,7 @@ public class Intake {
     public static int getIr_input() {
         return ir_input.getValue();
     }
+    
 
 
 }

@@ -32,7 +32,8 @@ public class DefaultDriveCommand extends Command {
     public void execute() {
         double translationXPercent = translationXSupplier.getAsDouble();
         double translationYPercent = translationYSupplier.getAsDouble();
-        double rotationPercent = rotationSupplier.getAsDouble() + (SubSystemManager.joyPs4Controller.getR2Button() ? (-LimeLight.getTx() * 0.01) : 0);
+        double rotationPercent = (rotationSupplier.getAsDouble() + (SubSystemManager.joyPs4Controller.getR2Button() ? (-LimeLight.getTx() * 0.01) : 0)) * -0.4
+        ;
         drivetrain.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
                         translationXPercent * DriveConstants.MAX_VELOCITY_METERS_PER_SECOND,
