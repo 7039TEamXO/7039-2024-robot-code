@@ -7,7 +7,6 @@ package frc.robot;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import edu.wpi.first.hal.AllianceStationID;
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.filter.SlewRateLimiter;
@@ -31,7 +30,6 @@ import frc.robot.subsystems.Conveyor.Conveyor;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.Shooter.Shooter;
 
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to
@@ -45,11 +43,11 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
   private float driveKp = 1.95f;
-  private float headingKp = 1.7f;
+  private float headingKp = -1.5f;
   public static RobotState robotState = RobotState.TRAVEL;
   Alliance alliance = Alliance.Red;
 
-  public static Autos currentAuto = Autos.DONT_MOVE;
+  public static Autos currentAuto = Autos.MIDDLE_ONE;
   // This will load the file "Example Path.path" and generate it with a max
   // velocity of 4 m/s and a max acceleration of 3 m/s^2
 
@@ -69,6 +67,7 @@ public class Robot extends TimedRobot {
 
   // The timer to use during the autonomous period.
   public static Timer m_timer;
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any
@@ -86,7 +85,7 @@ public class Robot extends TimedRobot {
     Intake.init();
     Conveyor.init();
   }
-  
+
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items
    * like diagnostics
@@ -117,7 +116,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    currentAuto = DashBoard.getAuto(); 
+    // currentAuto = DashBoard.getAuto();
   }
 
   /**
@@ -134,56 +133,67 @@ public class Robot extends TimedRobot {
     m_timer.start();
     // * points = realAutoPoints
     // Reset the drivetrain's odometry to the starting pose of the trajectory.
-    // m_robotContainer.m_drivetrainSubsystem.resetOdometry(points[0].getWantedPose());
+    m_robotContainer.m_drivetrainSubsystem.resetOdometry(points[0].getWantedPose());
+    System.out.println(points[0].getWantedPose());
   }
-  
+
   boolean firstTime = true;
   private int currentPointIndex = 1;
+  boolean shootDelay = true;
+  double shootTime = 0;
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
     // Update odometry.
-    // m_robotContainer.m_drivetrainSubsystem.updateOdometry();
-    double armTime = 0;
-    double placeTime = 0;
+    m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     robotState = RobotState.TRAVEL;
-   //here goes first time logic
+    // here goes first time logic
     firstTime = false;
 
-    // if (currentPointIndex < points.length) {
+    if (currentPointIndex < points.length) {
 
-    //   // Get the reference chassis speeds from the Ramsete controller.
-    //   var error = points[currentPointIndex].getWantedPose().getTranslation()
-    //       .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
-    //   var angleError = points[currentPointIndex].getWantedPose().getRotation()
-    //       .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getRotation());
-    //   var refChassisSpeeds = new ChassisSpeeds();
-    //   refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
-    //   refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
-    //   refChassisSpeeds.omegaRadiansPerSecond = (angleError.getRadians() * headingKp);
-    //   // Set the linear and angular speeds.
-    //   m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
-    //   if (!points[currentPointIndex].getAction().equals(null)) {
-    //     robotState = points[currentPointIndex].getAction();
-    //   }
-    //   if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
-    //       && error.getAngle().getRadians() < Constants.AutonomousConstants.angleToletrance) {
-    //         currentPointIndex++;
-    //   }
-    // } else {
-    //   // when finished path stop
-    //   m_robotContainer.m_drivetrainSubsystem.stopModules();
-    // }
-    // SubSystemManager.operate();
+      // Get the reference chassis speeds from the Ramsete controller.
+      var error = points[currentPointIndex].getWantedPose().getTranslation()
+          .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
+      var angleError = points[currentPointIndex].getWantedPose().getRotation()
+          .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getRotation());
+      var refChassisSpeeds = new ChassisSpeeds();
+      refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
+      refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
+      refChassisSpeeds.omegaRadiansPerSecond = (angleError.getRadians() * headingKp);
+      // Set the linear and angular speeds.
+      m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
+      if (!points[currentPointIndex].getAction().equals(null)) {
+        robotState = points[currentPointIndex].getAction();
+      }
+
+      if (points[currentPointIndex].getAction().isScoring()) {
+        shootTime = m_timer.get();
+      }
+      while (m_timer.get() - shootTime < 1.5) {
+        SubSystemManager.operate();
+        m_robotContainer.m_drivetrainSubsystem.stopModules();
+      }
+
+      if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
+          && error.getAngle().getRadians() < Constants.AutonomousConstants.angleToletrance) {
+        currentPointIndex++;
+      }
+    } else {
+      // when finished path stop
+      m_robotContainer.m_drivetrainSubsystem.stopModules();
+    }
+    SubSystemManager.operate();
+
   }
 
   @Override
   public void teleopInit() {
-    if(GlobalData.auto){
+    if (GlobalData.auto) {
       m_timer.reset();
       GlobalData.auto = false;
-    }else{
+    } else {
       m_timer.start();
     }
     // This makes sure that the autonomous stops running when
@@ -203,11 +213,11 @@ public class Robot extends TimedRobot {
     if (SubSystemManager.joyPs4Controller.getPSButtonPressed()) {
       m_robotContainer.m_drivetrainSubsystem.zeroGyroscope();
     }
-    System.out.println(Intake.getIr_input());
-    // m_robotContainer.m_drivetrainSubsystem.updateOdometry();
+    // System.out.println(Intake.getIr_input());
+    m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     SubSystemManager.operate();
     LimeLight.update();
-    
+    // System.out.println(m_robotContainer.m_drivetrainSubsystem.getPose());
   }
 
   @Override

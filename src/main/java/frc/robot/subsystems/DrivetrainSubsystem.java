@@ -132,7 +132,28 @@ public class DrivetrainSubsystem extends SubsystemBase {
         @Override
         public void periodic() {
 
-                odometry.update(
+            updateOdometry();
+        }
+
+        public void resetOdometry(Pose2d pose) {
+                odometry.resetPosition(
+                                Rotation2d.fromDegrees(-gyroscope.getFusedHeading()),
+                                new SwerveModulePosition[] { frontLeftModule.getPosition(),
+                                                frontRightModule.getPosition(), backLeftModule.getPosition(),
+                                                backRightModule.getPosition() },
+                                pose);
+        }
+
+        public void stopModules() {
+                // also guess do something to stop modules
+                frontLeftModule.set(0, 0);
+                frontRightModule.set(0, 0);
+                backLeftModule.set(0, 0);
+                backRightModule.set(0, 0);
+        }
+
+        public void updateOdometry(){
+                                odometry.update(
                                 Rotation2d.fromDegrees(-gyroscope.getAngle()),
                                 new SwerveModulePosition[] { frontLeftModule.getPosition(),
                                                 frontRightModule.getPosition(), backLeftModule.getPosition(),
@@ -148,5 +169,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
                                 states[2].angle.getRadians());
                 backRightModule.set(states[3].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE,
                                 states[3].angle.getRadians());
+        }
+
+        public Pose2d getPose() {
+                return odometry.getPoseMeters();
         }
 }

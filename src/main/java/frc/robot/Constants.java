@@ -36,14 +36,40 @@ public final class Constants {
     public static final double AUTO_EJECT_CUBE_FLOOR_MOTOR_OUTPUT = -0.80;
     public static final double AUTO_INTAKE_CUBE_FLOOR_MOTOR_OUTPUT = 0.5;
 
-    public static final double distanceToletrance = 0.15f;
-    public static final double angleToletrance = 0.25f;  
-    //AUTO code
+    public static final double distanceToletrance = 0.2f;
+    public static final double angleToletrance = 0.2f;
+
+    // Auto field constants
+    public static final double notesX = 2.87;
+    public static final double yBetweenNotes = 1.44;
+    // AUTO code
     public static AutoPoint[] dontMove = {
-      new AutoPoint(new Pose2d(new Translation2d(0, 0), new Rotation2d(0)), RobotState.TRAVEL),
-      
-  };
-  
+        new AutoPoint(new Pose2d(new Translation2d(0, 0), new Rotation2d(0)), RobotState.TRAVEL),
+    };
+    public static AutoPoint[] oneMeter = {
+        new AutoPoint(new Pose2d(new Translation2d(0, 0), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)), RobotState.TRAVEL),
+    };
+
+    public static AutoPoint[] middle_one = {
+        new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)), RobotState.SUBWOOFER),
+        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.2, 0), new Rotation2d(0)), RobotState.INTAKE),
+        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.2, 0), new Rotation2d(0)), RobotState.PODIUM),
+        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.2, 0), new Rotation2d(0)), RobotState.TRAVEL),
+    };
+    public static AutoPoint[] middle_three = {
+        new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)), RobotState.SUBWOOFER),
+        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.2, 0), new Rotation2d(0)), RobotState.INTAKE),
+        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.2, 0), new Rotation2d(0)), RobotState.PODIUM),
+        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.2, 0), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(1, yBetweenNotes), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(notesX, yBetweenNotes), new Rotation2d(0)), RobotState.INTAKE),
+
+      //TODO continue
+    };
 
   }
 
@@ -55,11 +81,11 @@ public final class Constants {
 
     // The left-to-right distance between the drivetrain wheels
     // Should be measured from center to center.
-    public static final double DRIVETRAIN_TRACKWIDTH_METERS = 0.61;
+    public static final double DRIVETRAIN_TRACKWIDTH_METERS = 0.57;
 
     // The front-to-back distance between the drivetrain wheels.
     // Should be measured from center to center.
-    public static final double DRIVETRAIN_WHEELBASE_METERS = 0.61;
+    public static final double DRIVETRAIN_WHEELBASE_METERS = 0.57;
     public static final SPI.Port DRIVETRAIN_NAVX_ID = SPI.Port.kMXP;
 
     public static final int CurrentLimtDrive = 45;
@@ -90,7 +116,6 @@ public final class Constants {
     public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 1;
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 8;
     public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(241.52069091796875);
-
 
     private static final double driveGearRatio = (6.75 / 1.0);
     private static final double wheelCircumference = 0.116 * Math.PI;
