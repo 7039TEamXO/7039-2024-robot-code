@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 public enum RobotState {
-    TRAVEL(false), INTAKE(false), AMP(true), SUBWOOFER(true), PODIUM(true);
+    TRAVEL(false), INTAKE(false), AMP(true), SUBWOOFER(true), PODIUM(true), CLIMB(false);
 
     private boolean score;
 
