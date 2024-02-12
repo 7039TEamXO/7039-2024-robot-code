@@ -27,16 +27,16 @@ public class Climb {
     public static void operate(ClimbState state) {
         switch (state) {
             case DOWN:
-                wantedPower = -0.2;
+                wantedPower = -0.5;
                 break;
             case UP:
-                wantedPower = 0.2;
+                wantedPower = 0.5;
                 break;
             case STOP:
                 wantedPower = 0;
                 break;
         }
         climbMotor.set(ControlMode.PercentOutput, wantedPower);
-        climbServo.setAngle(Robot.robotState.equals(RobotState.CLIMB) ? 90 : 0);
+        climbServo.set(Robot.robotState.equals(RobotState.CLIMB) ? 1 : 0);
     }
 }

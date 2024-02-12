@@ -4,26 +4,14 @@
 
 package frc.robot;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import edu.wpi.first.hal.AllianceStationID;
 import edu.wpi.first.math.controller.RamseteController;
-import edu.wpi.first.math.filter.SlewRateLimiter;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.auto.AutoPoint;
-import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.RobotState;
 import frc.robot.subsystems.SubSystemManager;
 import frc.robot.subsystems.Climb.Climb;
@@ -43,12 +31,11 @@ import frc.robot.subsystems.Shooter.Shooter;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-  private float driveKp = 1.95f;
-  private float headingKp = -1.5f;
+  private float driveKp = 2.2f;
+  private float headingKp = -3f;
   public static RobotState robotState = RobotState.TRAVEL;
-  Alliance alliance = Alliance.Red;
 
-  public static Autos currentAuto = Autos.MIDDLE_ONE;
+  public static Autos currentAuto = Autos.MIDDLE_THREE;
   // This will load the file "Example Path.path" and generate it with a max
   // velocity of 4 m/s and a max acceleration of 3 m/s^2
 
@@ -62,9 +49,6 @@ public class Robot extends TimedRobot {
   // new DrivetrainSubsystem();
 
   // Slew rate limiters to make joystick inputs more gentle; 1/3 sec from 0 to 1.
-
-  // The Ramsete Controller to follow the trajectory.
-  private final RamseteController m_ramseteController = new RamseteController();
 
   // The timer to use during the autonomous period.
   public static Timer m_timer;
@@ -136,20 +120,20 @@ public class Robot extends TimedRobot {
     // * points = realAutoPoints
     // Reset the drivetrain's odometry to the starting pose of the trajectory.
     m_robotContainer.m_drivetrainSubsystem.resetOdometry(points[0].getWantedPose());
-    System.out.println(points[0].getWantedPose());
+    // System.out.println(points[0].getWantedPose());
+    robotState = RobotState.TRAVEL;
   }
-
+  
   boolean firstTime = true;
   private int currentPointIndex = 1;
   boolean shootDelay = true;
   double shootTime = 0;
-
+  
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
     // Update odometry.
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
-    robotState = RobotState.TRAVEL;
     // here goes first time logic
     firstTime = false;
 
@@ -158,28 +142,28 @@ public class Robot extends TimedRobot {
       // Get the reference chassis speeds from the Ramsete controller.
       var error = points[currentPointIndex].getWantedPose().getTranslation()
           .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
-      var angleError = points[currentPointIndex].getWantedPose().getRotation()
-          .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getRotation());
+      double angleError = points[currentPointIndex].getWantedPose().getRotation().getRadians()
+          - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
       var refChassisSpeeds = new ChassisSpeeds();
       refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
       refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
-      refChassisSpeeds.omegaRadiansPerSecond = (angleError.getRadians() * headingKp);
+      refChassisSpeeds.omegaRadiansPerSecond = (angleError * headingKp);
       // Set the linear and angular speeds.
       m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
-      if (!points[currentPointIndex].getAction().equals(null)) {
-        robotState = points[currentPointIndex].getAction();
-      }
+      // if (!points[currentPointIndex].getAction().equals(null)) {
+      //   robotState = points[currentPointIndex].getAction();
+      // }
 
       if (points[currentPointIndex].getAction().isScoring()) {
         shootTime = m_timer.get();
       }
-      while (m_timer.get() - shootTime < 1.5) {
+      while (m_timer.get() - shootTime < 1.2) {
         SubSystemManager.operate();
         m_robotContainer.m_drivetrainSubsystem.stopModules();
       }
 
       if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
-          && error.getAngle().getRadians() < Constants.AutonomousConstants.angleToletrance) {
+          && Math.abs(angleError) < Constants.AutonomousConstants.angleToletrance) {
         currentPointIndex++;
       }
     } else {
@@ -187,7 +171,6 @@ public class Robot extends TimedRobot {
       m_robotContainer.m_drivetrainSubsystem.stopModules();
     }
     SubSystemManager.operate();
-
   }
 
   @Override
@@ -219,7 +202,7 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     SubSystemManager.operate();
     LimeLight.update();
-    // System.out.println(m_robotContainer.m_drivetrainSubsystem.getPose());
+    System.out.println(m_robotContainer.m_drivetrainSubsystem.getPose());
   }
 
   @Override

@@ -34,7 +34,7 @@ public class SubSystemManager {
                                 : joyPs4Controller.getTriangleButtonPressed() ? RobotState.SUBWOOFER
                                         : joyPs4Controller.getL1ButtonPressed() ? RobotState.AMP
                                                 : joyPs4Controller.getShareButtonPressed() ? RobotState.CLIMB
-                                                        : lastState;
+                                                        : joyPs4Controller.getR1ButtonPressed() ? RobotState.DEPLETE : lastState;
 
         return wantedState;
     }
@@ -49,7 +49,7 @@ public class SubSystemManager {
                 break;
             case AMP:
                 shooterState = ShooterState.AMP_SHOOTING;
-                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.DEPLETE;
+                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.LOADING;
                 conveyorState = Shooter.readyToShoot() ? ConveyorState.HIGH_SHOOTER : ConveyorState.STOP;
                 climbState = ClimbState.STOP;
                 break;
@@ -61,13 +61,13 @@ public class SubSystemManager {
                 break;
             case PODIUM:
                 shooterState = ShooterState.PODIUM_SHOOTING;
-                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.DEPLETE;
+                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.LOADING;
                 conveyorState = Shooter.readyToShoot() ? ConveyorState.LOW_SHOOTER : ConveyorState.STOP;
                 climbState = ClimbState.STOP;
                 break;
             case SUBWOOFER:
                 shooterState = ShooterState.SUBWOOFER_SHOOTING;
-                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.DEPLETE;
+                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.LOADING;
                 conveyorState = Shooter.readyToShoot() ? ConveyorState.HIGH_SHOOTER : ConveyorState.STOP;
                 climbState = ClimbState.STOP;
                 break;
@@ -82,6 +82,12 @@ public class SubSystemManager {
                 } else {
                     climbState = ClimbState.STOP;
                 }
+                break;
+            case DEPLETE:
+                intakeState = IntakeState.DEPLETE;
+                conveyorState = ConveyorState.STOP;
+                shooterState = ShooterState.STOP;
+                climbState = ClimbState.STOP;
                 break;
         }
         if (Robot.robotState.equals(RobotState.INTAKE)) {

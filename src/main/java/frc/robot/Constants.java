@@ -36,8 +36,8 @@ public final class Constants {
     public static final double AUTO_EJECT_CUBE_FLOOR_MOTOR_OUTPUT = -0.80;
     public static final double AUTO_INTAKE_CUBE_FLOOR_MOTOR_OUTPUT = 0.5;
 
-    public static final double distanceToletrance = 0.2f;
-    public static final double angleToletrance = 0.2f;
+    public static final double distanceToletrance = 0.25f;
+    public static final double angleToletrance = 0.3f;
 
     // Auto field constants
     public static final double notesX = 2.87;
@@ -61,16 +61,39 @@ public final class Constants {
     public static AutoPoint[] middle_three = {
         new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)), RobotState.TRAVEL),
         new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)), RobotState.SUBWOOFER),
-        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.2, 0), new Rotation2d(0)), RobotState.INTAKE),
-        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.2, 0), new Rotation2d(0)), RobotState.PODIUM),
-        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.2, 0), new Rotation2d(0)), RobotState.TRAVEL),
-        new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)), RobotState.TRAVEL),
-        new AutoPoint(new Pose2d(new Translation2d(1, yBetweenNotes), new Rotation2d(0)), RobotState.TRAVEL),
-        new AutoPoint(new Pose2d(new Translation2d(notesX, yBetweenNotes), new Rotation2d(0)), RobotState.INTAKE),
+        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.3, 0), new Rotation2d(0)), RobotState.INTAKE),
+        new AutoPoint(new Pose2d(new Translation2d(notesX + 0.3, 0), new Rotation2d(0)), RobotState.PODIUM),
+        // 2ND
+        new AutoPoint(new Pose2d(new Translation2d(2, 0), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(1.6, yBetweenNotes), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(2.2, yBetweenNotes), new Rotation2d(0)), RobotState.INTAKE),
+        new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)), RobotState.INTAKE),
+        new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)), RobotState.SUBWOOFER),
+        // 3RD
+        new AutoPoint(new Pose2d(new Translation2d(1.6, -yBetweenNotes), new Rotation2d(0)), RobotState.INTAKE),
+        new AutoPoint(new Pose2d(new Translation2d(2.5, -yBetweenNotes), new Rotation2d(0)), RobotState.INTAKE),
+        new AutoPoint(new Pose2d(new Translation2d(0.8, 0.2), new Rotation2d(0)), RobotState.INTAKE),
+        new AutoPoint(new Pose2d(new Translation2d(0.8, 0.2), new Rotation2d(0)), RobotState.SUBWOOFER),
 
-      //TODO continue
+        // TODO continue
     };
 
+    public static AutoPoint[] right_one = {
+        new AutoPoint(new Pose2d(new Translation2d(0.92, -1), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(0.92, -1), new Rotation2d(Math.toRadians(-45))), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(0.92, -1), new Rotation2d(Math.toRadians(-45))), RobotState.SUBWOOFER),
+                new AutoPoint(new Pose2d(new Translation2d(3, -1.75), new Rotation2d(0)), RobotState.TRAVEL),
+
+
+    };
+public static AutoPoint[] left_one = {
+        new AutoPoint(new Pose2d(new Translation2d(0.92, 1), new Rotation2d(0)), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(0.92, 1), new Rotation2d(Math.toRadians(45))), RobotState.TRAVEL),
+        new AutoPoint(new Pose2d(new Translation2d(0.92, 1), new Rotation2d(Math.toRadians(45))), RobotState.SUBWOOFER),
+                new AutoPoint(new Pose2d(new Translation2d(3, 1.75), new Rotation2d(0)), RobotState.TRAVEL),
+
+
+    };
   }
 
   public static final class DriveConstants {

@@ -7,7 +7,9 @@ public enum Autos {
     DONT_MOVE(AutonomousConstants.dontMove),
     ONE_METER(AutonomousConstants.oneMeter),
     MIDDLE_ONE(AutonomousConstants.middle_one),
-    MIDDLE_THREE(AutonomousConstants.middle_three);
+    MIDDLE_THREE(AutonomousConstants.middle_three),
+    RIGHT_ONE(AutonomousConstants.right_one),
+    LEFT_ONE(AutonomousConstants.left_one);
 
    private AutoPoint[] points;
 

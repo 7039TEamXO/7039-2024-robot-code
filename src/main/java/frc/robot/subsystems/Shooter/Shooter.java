@@ -49,13 +49,13 @@ public class Shooter {
                 vel_w = 0.4;
                 break;
             case PODIUM_SHOOTING:
-                vel_w = 11000;
+                vel_w = 10750;
                 break;
             case STOP:
                 vel_w = 0;
                 break;
             case SUBWOOFER_SHOOTING:
-                vel_w = -10000;
+                vel_w = -11000;
                 break;
         }
        shooterMaster.set(ControlMode.Velocity, vel_w);
@@ -63,7 +63,7 @@ public class Shooter {
     }
 
     public static boolean readyToShoot() {
-        if (vel_w != 0 && Math.abs(Math.abs(vel_w) - Math.abs(shooterMaster.getSelectedSensorVelocity())) < 800) {
+        if (vel_w != 0 && Math.abs(Math.abs(vel_w) - Math.abs(shooterMaster.getSelectedSensorVelocity())) < 600) {
             counter++;
         } else {
             counter = 0;

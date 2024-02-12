@@ -6,9 +6,11 @@ package frc.robot.subsystems.Intake;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import frc.robot.subsystems.RobotState;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.DashBoard;
+import frc.robot.Robot;
 
 /** Add your docs here. */
 public class Intake {
@@ -19,7 +21,8 @@ public class Intake {
 
     public static void init() {
         intake.setInverted(true);
-        // DashBoard.data.addNumber("Intake Vel", () -> intake.getSelectedSensorVelocity());
+        // DashBoard.data.addNumber("Intake Vel", () ->
+        // intake.getSelectedSensorVelocity());
         // DashBoard.data.addNumber("Intake Stator", () -> intake.getStatorCurrent());
         // DashBoard.data.addNumber("Intake Supplier", () -> intake.getSupplyCurrent());
 
@@ -28,13 +31,20 @@ public class Intake {
     public static void operate(IntakeState state) {
         switch (state) {
             case DEPLETE:
-                power = -0.2;
+                power = -0.5;
                 break;
             case COLLECT:
                 power = 0.5;
                 break;
             case STOP:
                 power = 0;
+                break;
+            case LOADING:
+                if (Robot.robotState.equals(RobotState.AMP)) {
+                    power = -0.4;
+                } else {
+                    power = -0.1;
+                }
                 break;
 
         }
@@ -49,10 +59,9 @@ public class Intake {
     public static boolean isGamePieceIn() {
         return ir_input.getValue() >= 1700;
     }
+
     public static int getIr_input() {
         return ir_input.getValue();
     }
-    
-
 
 }
