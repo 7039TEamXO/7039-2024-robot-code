@@ -49,7 +49,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
         public DrivetrainSubsystem() {
                 ShuffleboardTab shuffleboardTab = Shuffleboard.getTab("Drivetrain");
-                ShuffleboardTab gyroShuffleboardTab = Shuffleboard.getTab("Gyro");
+                ShuffleboardTab gyroShuffleboardTab = Shuffleboard.getTab("Data");
                 frontLeftModule = new MkSwerveModuleBuilder()
                                 .withLayout(shuffleboardTab.getLayout("Front Left Module", BuiltInLayouts.kList)
                                                 .withSize(2, 4)
@@ -132,7 +132,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
         @Override
         public void periodic() {
 
-            updateOdometry();
+                updateOdometry();
         }
 
         public void resetOdometry(Pose2d pose) {
@@ -152,8 +152,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
                 backRightModule.set(0, 0);
         }
 
-        public void updateOdometry(){
-                                odometry.update(
+        public void updateOdometry() {
+                odometry.update(
                                 Rotation2d.fromDegrees(-gyroscope.getAngle()),
                                 new SwerveModulePosition[] { frontLeftModule.getPosition(),
                                                 frontRightModule.getPosition(), backLeftModule.getPosition(),

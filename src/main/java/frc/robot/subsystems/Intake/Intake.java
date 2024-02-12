@@ -16,6 +16,7 @@ import frc.robot.Robot;
 public class Intake {
     private static TalonFX intake = new TalonFX(4);
     private static AnalogInput ir_input = new AnalogInput(0);
+    private static int ir_value = ir_input.getValue();
 
     private static double power = 0;
 
@@ -29,6 +30,7 @@ public class Intake {
     }
 
     public static void operate(IntakeState state) {
+       ir_value =  ir_input.getValue();
         switch (state) {
             case DEPLETE:
                 power = -0.5;
@@ -57,11 +59,11 @@ public class Intake {
     }
 
     public static boolean isGamePieceIn() {
-        return ir_input.getValue() >= 1700;
+        return ir_value >= 1700;
     }
 
     public static int getIr_input() {
-        return ir_input.getValue();
+        return ir_value;
     }
 
 }

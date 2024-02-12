@@ -30,12 +30,7 @@ public class Shooter {
         shooterSlave.follow(shooterMaster);
         shooterMaster.config_kP(0, 0.15);
         shooterMaster.config_kF(0, 0.063);
-        DashBoard.data.addNumber("Sh M V", () -> shooterMaster.getSelectedSensorVelocity());
-        DashBoard.data.addNumber("Sh S V", () -> shooterSlave.getSelectedSensorVelocity());
-        DashBoard.data.addNumber("Sh S Stat", () -> shooterSlave.getStatorCurrent());
-        DashBoard.data.addNumber("Sh S Sup", () -> shooterSlave.getSupplyCurrent());
-        DashBoard.data.addNumber("Sh M Stat", () -> shooterMaster.getStatorCurrent());
-        DashBoard.data.addNumber("Sh M Sup", () -> shooterMaster.getSupplyCurrent());
+
     }
 
     // TODO TUNE
@@ -58,8 +53,8 @@ public class Shooter {
                 vel_w = -11000;
                 break;
         }
-       shooterMaster.set(ControlMode.Velocity, vel_w);
-   
+        shooterMaster.set(ControlMode.Velocity, vel_w);
+
     }
 
     public static boolean readyToShoot() {
@@ -68,8 +63,25 @@ public class Shooter {
         } else {
             counter = 0;
         }
-        // System.out.println(" vel not 0: " + (vel_w != 0) + " error: " + (Math.abs(Math.abs(vel_w) - Math.abs(shooterMaster.getSelectedSensorVelocity())) < 300));
+        // System.out.println(" vel not 0: " + (vel_w != 0) + " error: " +
+        // (Math.abs(Math.abs(vel_w) -
+        // Math.abs(shooterMaster.getSelectedSensorVelocity())) < 300));
         return counter > 10;
     }
+
+    public static double getShooterMasterVelocity() {
+        return shooterMaster.getSelectedSensorVelocity();
+    }
+
+    public static double getShooterMasterCurrent() {
+        return shooterMaster.getStatorCurrent();
+    }
+
+    public static double getShooterSlaveVelocity() {
+        return shooterSlave.getSelectedSensorVelocity();
+    }
+
+    public static double getShooterSlaveCurrent() {
+        return shooterSlave.getStatorCurrent();
+    }
 }
-  

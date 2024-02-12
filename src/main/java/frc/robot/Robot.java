@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -84,6 +83,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
     // commands, running already-scheduled commands, removing finished or
@@ -113,7 +113,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    points = currentAuto.getPoints();
+    Autos selected_autos = DashBoard.getSelected();
+    points = selected_autos.getPoints();
     GlobalData.auto = true;
     // Initialize the timer.
     m_timer.start();
@@ -123,52 +124,49 @@ public class Robot extends TimedRobot {
     // System.out.println(points[0].getWantedPose());
     robotState = RobotState.TRAVEL;
   }
-  
-  boolean firstTime = true;
+
   private int currentPointIndex = 1;
   boolean shootDelay = true;
   double shootTime = 0;
-  
+
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
     // Update odometry.
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
-    // here goes first time logic
-    firstTime = false;
+    if (m_timer.get() >= DashBoard.getAutoTimeDelay()) {
+      if (currentPointIndex < points.length) {
+        // Get the reference chassis speeds from the Ramsete controller.
+        var error = points[currentPointIndex].getWantedPose().getTranslation()
+            .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
+        double angleError = points[currentPointIndex].getWantedPose().getRotation().getRadians()
+            - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
+        var refChassisSpeeds = new ChassisSpeeds();
+        refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
+        refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
+        refChassisSpeeds.omegaRadiansPerSecond = (angleError * headingKp);
+        // Set the linear and angular speeds.
+        m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
+        // if (!points[currentPointIndex].getAction().equals(null)) {
+        // robotState = points[currentPointIndex].getAction();
+        // }
 
-    if (currentPointIndex < points.length) {
+        if (points[currentPointIndex].getAction().isScoring()) {
+          shootTime = m_timer.get();
+        }
+        while (m_timer.get() - shootTime < 1.2) {
+          SubSystemManager.operate();
+          m_robotContainer.m_drivetrainSubsystem.stopModules();
+        }
 
-      // Get the reference chassis speeds from the Ramsete controller.
-      var error = points[currentPointIndex].getWantedPose().getTranslation()
-          .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
-      double angleError = points[currentPointIndex].getWantedPose().getRotation().getRadians()
-          - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
-      var refChassisSpeeds = new ChassisSpeeds();
-      refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
-      refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
-      refChassisSpeeds.omegaRadiansPerSecond = (angleError * headingKp);
-      // Set the linear and angular speeds.
-      m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
-      // if (!points[currentPointIndex].getAction().equals(null)) {
-      //   robotState = points[currentPointIndex].getAction();
-      // }
-
-      if (points[currentPointIndex].getAction().isScoring()) {
-        shootTime = m_timer.get();
-      }
-      while (m_timer.get() - shootTime < 1.2) {
-        SubSystemManager.operate();
+        if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
+            && Math.abs(angleError) < Constants.AutonomousConstants.angleToletrance) {
+          currentPointIndex++;
+        }
+      } else {
+        // when finished path stop
         m_robotContainer.m_drivetrainSubsystem.stopModules();
       }
-
-      if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
-          && Math.abs(angleError) < Constants.AutonomousConstants.angleToletrance) {
-        currentPointIndex++;
-      }
-    } else {
-      // when finished path stop
-      m_robotContainer.m_drivetrainSubsystem.stopModules();
     }
     SubSystemManager.operate();
   }

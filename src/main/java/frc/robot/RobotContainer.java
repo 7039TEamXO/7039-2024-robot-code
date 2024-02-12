@@ -24,10 +24,6 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
 
-  // The robot's subsystems and commands are defined here...
-  // private UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
-  // private MjpegServer mjpegServer = new MjpegServer("serve_USB Camera 0",
-  // 1181);
   private SendableChooser<Command> m_autonomous_chooser = new SendableChooser<>();
 
   // SUBSYSTEMS
