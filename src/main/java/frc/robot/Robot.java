@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.auto.AutoPoint;
+import frc.robot.auto.Autos;
 import frc.robot.subsystems.RobotState;
 import frc.robot.subsystems.SubSystemManager;
 import frc.robot.subsystems.Climb.Climb;
@@ -102,7 +103,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    // currentAuto = DashBoard.getAuto();
+    currentAuto = DashBoard.getSelected();
   }
 
   /**
@@ -147,9 +148,8 @@ public class Robot extends TimedRobot {
         refChassisSpeeds.omegaRadiansPerSecond = (angleError * headingKp);
         // Set the linear and angular speeds.
         m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
-        // if (!points[currentPointIndex].getAction().equals(null)) {
-        // robotState = points[currentPointIndex].getAction();
-        // }
+
+          robotState = points[currentPointIndex].getAction();
 
         if (points[currentPointIndex].getAction().isScoring()) {
           shootTime = m_timer.get();
@@ -200,6 +200,8 @@ public class Robot extends TimedRobot {
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     SubSystemManager.operate();
     LimeLight.update();
+    System.out.println(Intake.getIrInput());
+  
   }
 
   @Override

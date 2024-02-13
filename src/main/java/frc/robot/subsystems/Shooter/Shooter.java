@@ -50,7 +50,7 @@ public class Shooter {
                 vel_w = 0;
                 break;
             case SUBWOOFER_SHOOTING:
-                vel_w = -11000;
+                vel_w = -11500;
                 break;
         }
         shooterMaster.set(ControlMode.Velocity, vel_w);
