@@ -43,7 +43,9 @@ public class Intake {
                 break;
             case LOADING:
                 if (Robot.robotState.equals(RobotState.AMP)) {
-                    power = -0.4;
+                    //original power = -0.4;
+                    
+                    power = -0.2;
                 } else {
                     power = -0.1;
                 }

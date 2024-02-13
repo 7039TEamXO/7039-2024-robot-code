@@ -15,9 +15,10 @@ import frc.robot.subsystems.RobotState;
 /** Add your docs here. */
 public class Climb {
     private static TalonFX climbMotor = new TalonFX(21);
-    private static Servo climbServo = new Servo(0);
+    private static Servo climbServo = new Servo(9);
 
     private static double wantedPower = 0;
+    private static double servoPos = 0;
 
     public static void init() {
         climbMotor.setInverted(true);
@@ -27,16 +28,18 @@ public class Climb {
     public static void operate(ClimbState state) {
         switch (state) {
             case DOWN:
-                wantedPower = -0.5;
+                wantedPower = -0.2;
                 break;
             case UP:
-                wantedPower = 0.5;
+                wantedPower = 0.2;
                 break;
             case STOP:
                 wantedPower = 0;
                 break;
         }
         climbMotor.set(ControlMode.PercentOutput, wantedPower);
-        climbServo.set(Robot.robotState.equals(RobotState.CLIMB) ? 1 : 0);
+        servoPos = Robot.robotState.equals(RobotState.CLIMB) ? 1 : 0;
+        System.out.println(servoPos);
+        climbServo.set(servoPos);
     }
 }
