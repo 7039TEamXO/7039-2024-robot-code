@@ -39,7 +39,6 @@ public class Climb {
         }
         climbMotor.set(ControlMode.PercentOutput, wantedPower);
         servoPos = Robot.robotState.equals(RobotState.CLIMB) ? 1 : 0;
-        System.out.println(servoPos);
         climbServo.set(servoPos);
     }
 }

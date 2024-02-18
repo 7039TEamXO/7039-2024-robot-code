@@ -1,23 +1,24 @@
 package frc.robot.LED;
 
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 public class LED {
-    private static LedState ledState = LedState.ORANGE;
-    private static Spark m_blinkin;
-    private static int pwmPort = 0;
+    private static LedState ledState = LedState.GREEN;
+    private static PWM channel = new PWM(7);
 
     public static void init() {
-        m_blinkin = new Spark(pwmPort);
+
     }
 
     public static void setLedState() {
-        if(false){
+        // if(false){
 
-        }else{
-            ledState = LedState.ORANGE;
-        }
-        m_blinkin.set(ledState.getPower());
+        // }else{
+            ledState = LedState.GREEN;
+        // }
+        channel.setSpeed(-1);
+
     }
 
 }

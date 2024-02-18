@@ -8,6 +8,8 @@ import frc.robot.GlobalData;
 import frc.robot.Robot;
 import frc.robot.subsystems.RobotState;
 import frc.robot.subsystems.SubSystemManager;
+import frc.robot.subsystems.Arm.Arm;
+import frc.robot.subsystems.Arm.ArmState;
 import frc.robot.subsystems.Climb.Climb;
 import frc.robot.subsystems.Climb.ClimbState;
 import frc.robot.subsystems.Conveyor.Conveyor;
@@ -25,6 +27,7 @@ public class SubSystemManager {
     private static IntakeState intakeState = IntakeState.STOP;
     private static ConveyorState conveyorState = ConveyorState.STOP;
     private static ClimbState climbState = ClimbState.STOP;
+    private static ArmState armState = ArmState.CLOSE;
     private static boolean isGamePiece = false;
 
     public static RobotState getRobotStateFromWantedAndActual() {
@@ -34,7 +37,8 @@ public class SubSystemManager {
                                 : joyPs4Controller.getTriangleButtonPressed() ? RobotState.SUBWOOFER
                                         : joyPs4Controller.getL1ButtonPressed() ? RobotState.AMP
                                                 : joyPs4Controller.getShareButtonPressed() ? RobotState.CLIMB
-                                                        : joyPs4Controller.getR1ButtonPressed() ? RobotState.DEPLETE : lastState;
+                                                        : joyPs4Controller.getR1ButtonPressed() ? RobotState.DEPLETE
+                                                                : lastState;
 
         return wantedState;
     }
@@ -46,35 +50,41 @@ public class SubSystemManager {
                 intakeState = IntakeState.STOP;
                 conveyorState = ConveyorState.STOP;
                 climbState = ClimbState.STOP;
+                armState = ArmState.CLOSE;
                 break;
             case AMP:
                 shooterState = ShooterState.AMP_SHOOTING;
-                intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.LOADING;
-                conveyorState = Shooter.readyToShoot() ? ConveyorState.HIGH_SHOOTER : ConveyorState.STOP;
+                intakeState = Shooter.readyToShoot() && Arm.reached() ? IntakeState.COLLECT : IntakeState.LOADING;
+                conveyorState = Shooter.readyToShoot() && Arm.reached() ? ConveyorState.HIGH_SHOOTER : ConveyorState.STOP;
                 climbState = ClimbState.STOP;
+                armState = ArmState.OPEN;
                 break;
             case INTAKE:
                 shooterState = ShooterState.STOP;
                 intakeState = isGamePiece ? IntakeState.STOP : IntakeState.COLLECT;
                 conveyorState = ConveyorState.STOP;
                 climbState = ClimbState.STOP;
+                armState = ArmState.CLOSE;
                 break;
             case PODIUM:
                 shooterState = ShooterState.PODIUM_SHOOTING;
                 intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.LOADING;
                 conveyorState = Shooter.readyToShoot() ? ConveyorState.LOW_SHOOTER : ConveyorState.STOP;
                 climbState = ClimbState.STOP;
+                armState = ArmState.CLOSE;
                 break;
             case SUBWOOFER:
                 shooterState = ShooterState.SUBWOOFER_SHOOTING;
                 intakeState = Shooter.readyToShoot() ? IntakeState.COLLECT : IntakeState.LOADING;
                 conveyorState = Shooter.readyToShoot() ? ConveyorState.HIGH_SHOOTER : ConveyorState.STOP;
                 climbState = ClimbState.STOP;
+                armState = ArmState.CLOSE;
                 break;
             case CLIMB:
                 shooterState = ShooterState.STOP;
                 intakeState = IntakeState.STOP;
                 conveyorState = ConveyorState.STOP;
+                armState = ArmState.CLOSE;
                 if (joyPs4Controller.getPOV() == 0) {
                     climbState = ClimbState.UP;
                 } else if (joyPs4Controller.getPOV() == 180) {
@@ -88,6 +98,7 @@ public class SubSystemManager {
                 conveyorState = ConveyorState.STOP;
                 shooterState = ShooterState.STOP;
                 climbState = ClimbState.STOP;
+                armState = ArmState.CLOSE;
                 break;
         }
         if (Robot.robotState.equals(RobotState.INTAKE)) {
@@ -99,6 +110,7 @@ public class SubSystemManager {
         Shooter.operate(shooterState);
         Conveyor.operate(conveyorState);
         Climb.operate(climbState);
+        Arm.operate(armState);
         lastState = Robot.robotState;
     }
 }

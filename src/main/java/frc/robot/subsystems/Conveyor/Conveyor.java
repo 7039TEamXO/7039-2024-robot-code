@@ -30,10 +30,10 @@ public class Conveyor {
     public static void operate(ConveyorState state) {
         switch (state) {
             case HIGH_SHOOTER:
-                power = 0.4;
+                power = 0.8;
                 break;
             case LOW_SHOOTER:
-                power = -0.4;
+                power = -0.6;
                 break;
             case STOP:
                 power = 0;

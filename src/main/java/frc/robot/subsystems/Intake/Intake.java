@@ -47,7 +47,7 @@ public class Intake {
                     
                     power = -0.2;
                 } else {
-                    power = -0.1;
+                    power = -0.05;
                 }
                 break;
 

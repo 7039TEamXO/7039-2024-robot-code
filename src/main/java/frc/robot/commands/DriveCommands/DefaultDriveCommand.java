@@ -1,9 +1,11 @@
 package frc.robot.commands.DriveCommands;
 
+import frc.robot.Constants;
 import frc.robot.LimeLight;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.SubSystemManager;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -30,16 +32,17 @@ public class DefaultDriveCommand extends Command {
 
     @Override
     public void execute() {
+        boolean driverAssist = SubSystemManager.joyPs4Controller.getR2Button();
         double translationXPercent = translationXSupplier.getAsDouble();
         double translationYPercent = translationYSupplier.getAsDouble();
         double rotationPercent = (rotationSupplier.getAsDouble()
-                + (SubSystemManager.joyPs4Controller.getR2Button() ? (-LimeLight.getTx() * 0.01) : 0)) * -0.4;
+                + (driverAssist ? (-LimeLight.getTx() * 0.01) : 0)) * -0.4;
         drivetrain.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
                         translationXPercent * DriveConstants.MAX_VELOCITY_METERS_PER_SECOND,
                         translationYPercent * DriveConstants.MAX_VELOCITY_METERS_PER_SECOND,
                         rotationPercent * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
-                        drivetrain.getRotation()));
+                        drivetrain.getRotation()).plus(ChassisSpeeds.fromFieldRelativeSpeeds(driverAssist && LimeLight.getTy() != 0 ? (LimeLight.getTy() + Constants.wantedTY) * Constants.distanceKp : 0, 0, 0, Rotation2d.fromDegrees(0))));
     }
 
     @Override

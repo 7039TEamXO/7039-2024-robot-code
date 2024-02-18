@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.LED.LED;
 import frc.robot.auto.AutoPoint;
 import frc.robot.auto.Autos;
 import frc.robot.subsystems.RobotState;
 import frc.robot.subsystems.SubSystemManager;
+import frc.robot.subsystems.Arm.Arm;
 import frc.robot.subsystems.Climb.Climb;
 import frc.robot.subsystems.Conveyor.Conveyor;
 import frc.robot.subsystems.Intake.Intake;
@@ -70,6 +72,9 @@ public class Robot extends TimedRobot {
     Intake.init();
     Conveyor.init();
     Climb.init();
+    Arm.init();
+    LED.init();
+
   }
 
   /**
@@ -84,6 +89,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+        LED.setLedState();
 
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
@@ -93,19 +99,19 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-
+    
   }
-
+  
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
   }
-
+  
   @Override
   public void disabledPeriodic() {
     currentAuto = DashBoard.getSelected();
   }
-
+  
   /**
    * This autonomous runs the autonomous command selected by your
    * {@link RobotContainer} class.
@@ -125,11 +131,11 @@ public class Robot extends TimedRobot {
     // System.out.println(points[0].getWantedPose());
     robotState = RobotState.TRAVEL;
   }
-
+  
   private int currentPointIndex = 1;
   boolean shootDelay = true;
   double shootTime = 0;
-
+  
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
@@ -139,9 +145,9 @@ public class Robot extends TimedRobot {
       if (currentPointIndex < points.length) {
         // Get the reference chassis speeds from the Ramsete controller.
         var error = points[currentPointIndex].getWantedPose().getTranslation()
-            .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
+        .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
         double angleError = points[currentPointIndex].getWantedPose().getRotation().getRadians()
-            - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
+        - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
         var refChassisSpeeds = new ChassisSpeeds();
         refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
         refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
@@ -149,8 +155,8 @@ public class Robot extends TimedRobot {
         // Set the linear and angular speeds.
         m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
 
-          robotState = points[currentPointIndex].getAction();
-
+        robotState = points[currentPointIndex].getAction();
+        
         if (points[currentPointIndex].getAction().isScoring()) {
           shootTime = m_timer.get();
         }
@@ -158,9 +164,9 @@ public class Robot extends TimedRobot {
           SubSystemManager.operate();
           m_robotContainer.m_drivetrainSubsystem.stopModules();
         }
-
+        
         if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
-            && Math.abs(angleError) < Constants.AutonomousConstants.angleToletrance) {
+        && Math.abs(angleError) < Constants.AutonomousConstants.angleToletrance) {
           currentPointIndex++;
         }
       } else {
@@ -170,7 +176,7 @@ public class Robot extends TimedRobot {
     }
     SubSystemManager.operate();
   }
-
+  
   @Override
   public void teleopInit() {
     if (GlobalData.auto) {
@@ -187,7 +193,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
   }
-
+  
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
@@ -196,12 +202,10 @@ public class Robot extends TimedRobot {
     if (SubSystemManager.joyPs4Controller.getPSButtonPressed()) {
       m_robotContainer.m_drivetrainSubsystem.zeroGyroscope();
     }
-    // System.out.println(Intake.getIr_input());
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     SubSystemManager.operate();
     LimeLight.update();
-    System.out.println(Intake.getIrInput());
-  
+    // LED.setLedState();
   }
 
   @Override

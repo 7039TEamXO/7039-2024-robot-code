@@ -163,23 +163,27 @@ public final class Constants {
         public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 7;
         public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 11;
         public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(203.75518798828125);
+        //public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(0);
         // Front Right
         public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 62;
         public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 61;
         public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 9;
         public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(207.861328125);
+        //public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(0);
 
         // Back Left
         public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 55;
         public static final int BACK_LEFT_MODULE_STEER_MOTOR = 18;
         public static final int BACK_LEFT_MODULE_STEER_ENCODER = 29;
-        public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(216.2109375);
+        public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(216.47186279296875);
+        //public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(0);
 
         // Back Right
         public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 57;
         public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 1;
         public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 8;
         public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(241.52069091796875);
+        //public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(0);
 
         private static final double driveGearRatio = (6.75 / 1.0);
         private static final double wheelCircumference = 0.116 * Math.PI;
@@ -192,5 +196,6 @@ public final class Constants {
     }
 
     // lime constants:
-    public static final double wantedTY = -21;
+    public static final double wantedTY = 14;
+    public static final double distanceKp = 0.4;
 }

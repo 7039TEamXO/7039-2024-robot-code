@@ -12,6 +12,8 @@ import com.ctre.phoenix6.configs.SlotConfigs;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.DashBoard;
+import frc.robot.GlobalData;
+import frc.robot.subsystems.SubSystemManager;
 
 /** Add your docs here. */
 public class Shooter {
@@ -30,6 +32,8 @@ public class Shooter {
         shooterSlave.follow(shooterMaster);
         shooterMaster.config_kP(0, 0.15);
         shooterMaster.config_kF(0, 0.063);
+        shooterMaster.configClosedloopRamp(0.2);
+        shooterSlave.configClosedloopRamp(0.2);
 
     }
 
@@ -38,13 +42,13 @@ public class Shooter {
     public static void operate(ShooterState state) {
         switch (state) {
             case AMP_SHOOTING:
-                vel_w = -5600;
+                vel_w = -5100;
                 break;
             case DEPLETE:
                 vel_w = 0.4;
                 break;
             case PODIUM_SHOOTING:
-                vel_w = 10750;
+                vel_w = 13000;
                 break;
             case STOP:
                 vel_w = 0;
@@ -53,12 +57,16 @@ public class Shooter {
                 vel_w = -11500;
                 break;
         }
-        shooterMaster.set(ControlMode.Velocity, vel_w);
+        if(vel_w == 0){
+        shooterMaster.set(ControlMode.PercentOutput, 0);    
+        }else{
+            shooterMaster.set(ControlMode.Velocity, vel_w);
+        }
 
     }
 
     public static boolean readyToShoot() {
-        if (vel_w != 0 && Math.abs(Math.abs(vel_w) - Math.abs(shooterMaster.getSelectedSensorVelocity())) < 600) {
+        if (vel_w != 0 && Math.abs(Math.abs(vel_w) - Math.abs(shooterMaster.getSelectedSensorVelocity())) < 800) {
             counter++;
         } else {
             counter = 0;
@@ -66,7 +74,7 @@ public class Shooter {
         // System.out.println(" vel not 0: " + (vel_w != 0) + " error: " +
         // (Math.abs(Math.abs(vel_w) -
         // Math.abs(shooterMaster.getSelectedSensorVelocity())) < 300));
-        return counter > 10;
+        return counter > 10 && GlobalData.auto || SubSystemManager.joyPs4Controller.getL2Button(); //shooter spinning at wanted velocity and driver wants to shoot
     }
 
     public static double getShooterMasterVelocity() {

@@ -1,13 +1,25 @@
 package frc.robot.LED;
 
 public enum LedState {
-    ORANGE(0.65),LIME(0.73);
-    private double power;
-    LedState(double power){
-        this.power = power;
+    GREEN(1,1,0);
+    private double red;
+    private double green;
+    private double blue;
+    LedState(double red, double green, double blue){
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
     }
 
-    public double getPower() {
-        return power;
+    public double getRed() {
+        return red;
+    }
+    
+    public double getGreen() {
+        return green;
+    }
+    
+    public double getBlue() {
+        return blue;
     }
 }
