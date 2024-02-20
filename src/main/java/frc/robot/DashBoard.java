@@ -28,13 +28,13 @@ public class DashBoard {
         m_chooser.addOption("FEEDER_BLUE", "FEEDER_BLUE");
         driver.add("Auto choices", m_chooser).withPosition(0, 0).withSize(3, 2);
         driver.addBoolean("Is Game Piece In", () -> Intake.isGamePieceIn()).withPosition(3, 0).withSize(3, 2);
-        driver.addString("State", () -> Robot.robotState.name()).withPosition(6, 0).withSize(3, 2);
+        driver.addString("State", () -> Robot.robotState.name()).withPosition(12, 0).withSize(3, 2);
         driver.add("LimeLight Camera", limelightcamera).withPosition(0, 2).withSize(3, 2);
         data.addNumber("Shooter Vel (M)", () -> Shooter.getShooterMasterVelocity()).withPosition(0, 1).withSize(2, 1);
         data.addNumber("Shooter Curr (M)", () -> Shooter.getShooterMasterCurrent()).withPosition(2, 1).withSize(2, 1);
         data.addNumber("Shooter Vel (S)", () -> Shooter.getShooterSlaveVelocity()).withPosition(4, 1).withSize(2, 1);
         data.addNumber("Shooter Curr (S)", () -> Shooter.getShooterSlaveCurrent()).withPosition(6, 1).withSize(2, 1);
-
+        driver.addBoolean("Ready to shoot", () -> LimeLight.isReadyToShoot()).withPosition(6, 0).withSize(3, 2);
     }
 
     public static Autos getSelected() {

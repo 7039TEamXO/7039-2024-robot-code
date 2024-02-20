@@ -1,24 +1,50 @@
 package frc.robot.LED;
 
-import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.util.Color;
+import frc.robot.Constants;
+import frc.robot.LimeLight;
+import frc.robot.Robot;
+import frc.robot.subsystems.RobotState;
+import frc.robot.subsystems.Intake.Intake;
 
 public class LED {
-    private static LedState ledState = LedState.GREEN;
-    private static PWM channel = new PWM(7);
+    private static AddressableLEDBuffer buffer = new AddressableLEDBuffer(60);
+    private static Color color = Color.kOrangeRed;
+    private static AddressableLED channel = new AddressableLED(8);
 
     public static void init() {
-
+        channel.setLength(buffer.getLength());
+        channel.setData(buffer);
+        channel.start();
     }
 
     public static void setLedState() {
-        // if(false){
 
-        // }else{
-            ledState = LedState.GREEN;
-        // }
-        channel.setSpeed(-1);
+        if (Robot.robotState.equals(RobotState.INTAKE) && Intake.isGamePieceIn()) {
+            color = Color.kCyan;
+        } else if (Math.abs(LimeLight.getTy()) > Constants.tyTolerance + Constants.wantedTY
+                && Robot.robotState.equals(RobotState.PODIUM)) {
+            color = Color.kRed;
 
+        } else if (Math.abs(LimeLight.getTy()) < -Constants.tyTolerance + Constants.wantedTY
+                && Robot.robotState.equals(RobotState.PODIUM)) {
+            color = Color.kWhite;
+        } else if ((Math.abs(Math.abs(LimeLight.getTy()) - Constants.wantedTY) < Constants.tyTolerance
+                || LimeLight.getTy() == 0)
+                && Robot.robotState.equals(RobotState.PODIUM)) {
+            color = Color.kGreen;
+        } else {
+            color = Color.kOrangeRed;
+        }
+
+        for (int i = 0; i < buffer.getLength(); i++) {
+
+            buffer.setLED(i, color);
+        }
+        channel.setData(buffer);
     }
 
 }

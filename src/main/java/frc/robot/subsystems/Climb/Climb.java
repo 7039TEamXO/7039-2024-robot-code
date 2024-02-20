@@ -21,17 +21,17 @@ public class Climb {
     private static double servoPos = 0;
 
     public static void init() {
-        climbMotor.setInverted(true);
+        climbMotor.setInverted(false);
 
     }
 
     public static void operate(ClimbState state) {
         switch (state) {
             case DOWN:
-                wantedPower = -0.2;
+                wantedPower = -0.5;
                 break;
             case UP:
-                wantedPower = 0.2;
+                wantedPower = 0.5;
                 break;
             case STOP:
                 wantedPower = 0;

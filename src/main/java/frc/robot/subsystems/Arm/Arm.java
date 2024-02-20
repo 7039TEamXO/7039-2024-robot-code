@@ -21,15 +21,18 @@ public class Arm {
 
     public static void init() {
         armMotor.setInverted(false);
-        armMotor.config_kP(0, 0.03);
+        armMotor.config_kP(0, 0.1);
+        armMotor.config_kI(0, 0.0001);
         armMotor.setSelectedSensorPosition(0);
         armMotor.setNeutralMode(NeutralMode.Brake);
         armMotor.configReverseSoftLimitThreshold(0);
         armMotor.configReverseSoftLimitEnable(true);
         armMotor.configForwardSoftLimitThreshold(15000);
         armMotor.configForwardSoftLimitEnable(true);
-        armMotor.configPeakOutputForward(0.25);
-        armMotor.configPeakOutputReverse(-0.1);
+        armMotor.configPeakOutputForward(0.7);
+        armMotor.configPeakOutputReverse(-0.7);
+        armMotor.configAllowableClosedloopError(0, 50);
+        armMotor.configNominalOutputForward(0.085);
     }
 
     public static void operate(ArmState state) {
@@ -38,14 +41,14 @@ public class Arm {
             wantedPos = 0;
                 break;
             case OPEN:
-            wantedPos = 13500;
+            wantedPos = 11500;
                 break;
         }
-        // armMotor.set(ControlMode.Position, wantedPos);
-        System.out.println(armMotor.getSelectedSensorPosition());
+        armMotor.set(ControlMode.Position, wantedPos);
+        System.out.println("w: " + wantedPos + " a: " + armMotor.getSelectedSensorPosition());
     }
 
     public static boolean reached(){
-        return true;//Math.abs(wantedPos - armMotor.getSelectedSensorPosition()) < 1000;
+        return Math.abs(wantedPos - armMotor.getSelectedSensorPosition()) < 100;
     }
 }

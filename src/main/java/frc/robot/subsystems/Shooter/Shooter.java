@@ -42,7 +42,7 @@ public class Shooter {
     public static void operate(ShooterState state) {
         switch (state) {
             case AMP_SHOOTING:
-                vel_w = -5100;
+                vel_w = -6500;
                 break;
             case DEPLETE:
                 vel_w = 0.4;
