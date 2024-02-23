@@ -52,9 +52,10 @@ public class DashBoard {
                 return Autos.LEFT_ONE;
             case "FEEDER_RED":
                 return Autos.FEEDER_RED;
-            default:
-                return null;
+            case "FEEDER_BLUE":
+            return Autos.FEEDER_BLUE;
         }
+        return Autos.DONT_MOVE;
     }
 
     public static double getAutoTimeDelay() {

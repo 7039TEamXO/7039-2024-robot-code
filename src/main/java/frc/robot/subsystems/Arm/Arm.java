@@ -30,7 +30,7 @@ public class Arm {
         armMotor.configForwardSoftLimitThreshold(15000);
         armMotor.configForwardSoftLimitEnable(true);
         armMotor.configPeakOutputForward(0.7);
-        armMotor.configPeakOutputReverse(-0.7);
+        armMotor.configPeakOutputReverse(-0.2);
         armMotor.configAllowableClosedloopError(0, 50);
         armMotor.configNominalOutputForward(0.085);
     }
@@ -41,11 +41,10 @@ public class Arm {
             wantedPos = 0;
                 break;
             case OPEN:
-            wantedPos = 11500;
+            wantedPos = 11500;//was 11500
                 break;
         }
         armMotor.set(ControlMode.Position, wantedPos);
-        System.out.println("w: " + wantedPos + " a: " + armMotor.getSelectedSensorPosition());
     }
 
     public static boolean reached(){

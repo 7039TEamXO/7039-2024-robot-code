@@ -30,7 +30,7 @@ public class Intake {
     }
 
     public static void operate(IntakeState state) {
-       irValue =  irInput.getValue();
+        irValue = irInput.getValue();
         switch (state) {
             case DEPLETE:
                 power = -0.5;
@@ -42,13 +42,8 @@ public class Intake {
                 power = 0;
                 break;
             case LOADING:
-                if (Robot.robotState.equals(RobotState.AMP)) {
-                    //original power = -0.4;
-                    
-                    power = -0.2;
-                } else {
-                    power = -0.05;
-                }
+                power = -0.05;
+
                 break;
 
         }

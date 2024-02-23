@@ -11,7 +11,7 @@ import frc.robot.subsystems.RobotState;
 import frc.robot.subsystems.Intake.Intake;
 
 public class LED {
-    private static AddressableLEDBuffer buffer = new AddressableLEDBuffer(60);
+    private static AddressableLEDBuffer buffer = new AddressableLEDBuffer(2000);
     private static Color color = Color.kOrangeRed;
     private static AddressableLED channel = new AddressableLED(8);
 
@@ -22,10 +22,7 @@ public class LED {
     }
 
     public static void setLedState() {
-
-        if (Robot.robotState.equals(RobotState.INTAKE) && Intake.isGamePieceIn()) {
-            color = Color.kCyan;
-        } else if (Math.abs(LimeLight.getTy()) > Constants.tyTolerance + Constants.wantedTY
+        if (Math.abs(LimeLight.getTy()) > Constants.tyTolerance + Constants.wantedTY
                 && Robot.robotState.equals(RobotState.PODIUM)) {
             color = Color.kRed;
 
@@ -36,6 +33,9 @@ public class LED {
                 || LimeLight.getTy() == 0)
                 && Robot.robotState.equals(RobotState.PODIUM)) {
             color = Color.kGreen;
+        } else if (Intake.isGamePieceIn()) {
+
+            color = Color.kCyan;
         } else {
             color = Color.kOrangeRed;
         }

@@ -22,6 +22,8 @@ public class Climb {
 
     public static void init() {
         climbMotor.setInverted(false);
+        climbMotor.configReverseSoftLimitThreshold(-190000);
+        climbMotor.configReverseSoftLimitEnable(true);
 
     }
 
