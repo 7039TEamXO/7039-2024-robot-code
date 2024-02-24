@@ -9,6 +9,12 @@
     "Clients": {
       "open": true
     },
+    "Connections": {
+      "open": true
+    },
+    "Server": {
+      "open": true
+    },
     "visible": true
   }
 }

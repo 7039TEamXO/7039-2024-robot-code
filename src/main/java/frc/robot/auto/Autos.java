@@ -7,7 +7,10 @@ public enum Autos {
     MIDDLE_THREE(AutonomousConstants.middle_three),
     RIGHT_ONE(AutonomousConstants.right_one),
     LEFT_ONE(AutonomousConstants.left_one),
-    FEEDER_RED(AutonomousConstants.feeder_red), FEEDER_BLUE(AutonomousConstants.feeder_blue);
+    FEEDER_RED(AutonomousConstants.feeder_red),
+    FEEDER_BLUE(AutonomousConstants.feeder_blue),
+    SIDE_RED(AutonomousConstants.side_red),
+    SIDE_BLUE(AutonomousConstants.side_blue);
 
     private AutoPoint[] points;
 

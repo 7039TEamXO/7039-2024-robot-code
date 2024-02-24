@@ -7,9 +7,13 @@ package frc.robot;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.DriveCommands.DefaultDriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.MjpegServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.filter.SlewRateLimiter;
+import edu.wpi.first.util.PixelFormat;
 import edu.wpi.first.wpilibj.PS4Controller;
-
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -23,6 +27,9 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+  // private UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
+  // private MjpegServer mjpegServer = new MjpegServer("serve_USB Camera 0",
+  // 1181);
 
   private SendableChooser<Command> m_autonomous_chooser = new SendableChooser<>();
 
@@ -40,8 +47,8 @@ public class RobotContainer {
   private final PS4Controller m_driverController = new PS4Controller(0);
   // private final PS4Controller m_operatorController = new PS4Controller(1);
 
-  private SlewRateLimiter joystickRateLimiterY = new SlewRateLimiter(2.9); // 2.9
-  private SlewRateLimiter joystickRateLimiterX = new SlewRateLimiter(2.9); // 2.9
+  private SlewRateLimiter joystickRateLimiterY = new SlewRateLimiter(4.5); // 2.9
+  private SlewRateLimiter joystickRateLimiterX = new SlewRateLimiter(4.5); // 2.9
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -50,10 +57,10 @@ public class RobotContainer {
     // cameraSetup();
 
     // Configure the trigger bindings
-    configureBindings();
+    // configureBindings();
   }
 
-  private void configureBindings() {
+  public void configureBindings() {
 
     /// rated drive command ///
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
@@ -94,23 +101,23 @@ public class RobotContainer {
     return value * scaled_input;
   }
 
-  /*
-   * public void cameraSetup() {
-   * // USB CAMERA //
-   * try {
-   * mjpegServer.setSource(usbCamera);
-   * usbCamera = CameraServer.startAutomaticCapture();
-   * usbCamera.setPixelFormat(PixelFormat.kMJPEG);
-   * usbCamera.setResolution(320, 240);
-   * usbCamera.setFPS(30);
-   * usbCamera.setWhiteBalanceAuto();
-   * usbCamera.setExposureAuto();
-   * } catch (Exception e) {
-   * System.out.println("--------------- CameraSetup ERROR ---------------");
-   * }
-   * Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withSize(4,
-   * 4).withPosition(6, 0);
-   * }
-   */
+ 
+    // public void cameraSetup() {
+    // // USB CAMERA //
+    // try {
+    // mjpegServer.setSource(usbCamera);
+    // usbCamera = CameraServer.startAutomaticCapture();
+    // usbCamera.setPixelFormat(PixelFormat.kMJPEG);
+    // usbCamera.setResolution(320, 240);
+    // usbCamera.setFPS(30);
+    // usbCamera.setWhiteBalanceAuto();
+    // usbCamera.setExposureAuto();
+    // } catch (Exception e) {
+    // System.out.println("--------------- CameraSetup ERROR ---------------");
+    // }
+    // Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withSize(3,
+    // 3);
+    // }
+ 
 
 }

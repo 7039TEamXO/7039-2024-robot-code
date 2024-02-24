@@ -84,9 +84,9 @@ public final class Constants {
                                 new AutoPoint(new Pose2d(new Translation2d(2.2, yBetweenNotes - 0.2),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(1.1, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(1.1, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
                                 // 3RD
                                 new AutoPoint(new Pose2d(new Translation2d(1.6, -yBetweenNotes + 0.25),
@@ -95,9 +95,9 @@ public final class Constants {
                                 new AutoPoint(new Pose2d(new Translation2d(2.5, -yBetweenNotes + 0.25),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(1.1, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(1.1, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
 
                                 // TODO continue
@@ -188,6 +188,54 @@ public final class Constants {
                                                 RobotState.PODIUM),
 
                 };
+                public static AutoPoint[] side_red = {
+                                // 1 shooting stage
+                                createAutoPoint(2.90, 2.55, 0, RobotState.TRAVEL),
+                                createAutoPoint(2.90, 2.55, 0, RobotState.TRAVEL),
+                                createAutoPoint(3.3, 2.55, 0, RobotState.TRAVEL),
+                                createAutoPoint(3.3, 2.55, 63, RobotState.TRAVEL),
+                                createAutoPoint(3.3, 2.55, 63, RobotState.PODIUM),
+
+                                // Intake 2 Note
+                                createAutoPoint(3.3, 2.55, 0, RobotState.TRAVEL),
+                                createAutoPoint(3.3, 4.75, 0, RobotState.TRAVEL),
+                                createAutoPoint(10, 4.75, 0, RobotState.INTAKE),
+                                createAutoPoint(7, 4, 0, RobotState.INTAKE),
+                                createAutoPoint(3.5, 2.3, 0, RobotState.TRAVEL),
+
+                                // 2 shooting stage
+                                createAutoPoint(3.4, 2.2, 57, RobotState.TRAVEL),
+                                createAutoPoint(3.4, 2.2, 57, RobotState.PODIUM),
+                                createAutoPoint(3.4, 2.2, 0, RobotState.TRAVEL)
+
+                };
+                public static AutoPoint[] side_blue = {
+                                // 1 shooting stage
+                                createAutoPoint(2.90, -2.55, 0, RobotState.TRAVEL),
+                                createAutoPoint(2.90, -2.55, 0, RobotState.TRAVEL),
+                                createAutoPoint(3.3, -2.55, 0, RobotState.TRAVEL),
+                                createAutoPoint(3.3, -2.55, -63, RobotState.TRAVEL),
+                                createAutoPoint(3.3, -2.55, -63, RobotState.PODIUM),
+
+                                // Intake 2 Note
+                                createAutoPoint(3.3, -2.55, 0, RobotState.TRAVEL),
+                                createAutoPoint(3.3, -4.75, 0, RobotState.TRAVEL),
+                                createAutoPoint(10, -4.75, 0, RobotState.INTAKE),
+                                createAutoPoint(7, -4, 0, RobotState.INTAKE),
+
+                                // 2 shooting stage
+                                createAutoPoint(3.5, -2.3, 0, RobotState.TRAVEL),
+                                createAutoPoint(3.4, -2.2, -57, RobotState.TRAVEL),
+                                createAutoPoint(3.4, -2.2, -57, RobotState.PODIUM),
+                                createAutoPoint(3.4, -2.2, 0, RobotState.TRAVEL)
+
+                };
+
+                public static AutoPoint createAutoPoint(double x, double y, double degree, RobotState robotState) {
+                        return new AutoPoint(
+                                        new Pose2d(new Translation2d(x, y), new Rotation2d(Math.toRadians(degree))),
+                                        robotState);
+                }
         }
 
         public static final class DriveConstants {

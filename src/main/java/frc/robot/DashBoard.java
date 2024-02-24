@@ -26,6 +26,8 @@ public class DashBoard {
         m_chooser.addOption("LEFT_ONE", "LEFT_ONE");
         m_chooser.addOption("FEEDER_RED", "FEEDER_RED");
         m_chooser.addOption("FEEDER_BLUE", "FEEDER_BLUE");
+        m_chooser.addOption("SIDE_RED", "SIDE_RED");
+        m_chooser.addOption("SIDE_BLUE", "SIDE_BLUE");
         driver.add("Auto choices", m_chooser).withPosition(0, 0).withSize(3, 2);
         driver.addBoolean("Is Game Piece In", () -> Intake.isGamePieceIn()).withPosition(3, 0).withSize(3, 2);
         driver.addString("State", () -> Robot.robotState.name()).withPosition(12, 0).withSize(3, 2);
@@ -41,21 +43,7 @@ public class DashBoard {
         if (m_chooser.getSelected() != null) {
             m_autoSelected = m_chooser.getSelected();
         }
-        switch (m_autoSelected) {
-            case "DONT_MOVE":
-                return Autos.DONT_MOVE;
-            case "MIDDLE_THREE":
-                return Autos.MIDDLE_THREE;
-            case "RIGHT_ONE":
-                return Autos.RIGHT_ONE;
-            case "LEFT_ONE":
-                return Autos.LEFT_ONE;
-            case "FEEDER_RED":
-                return Autos.FEEDER_RED;
-            case "FEEDER_BLUE":
-            return Autos.FEEDER_BLUE;
-        }
-        return Autos.DONT_MOVE;
+        return Autos.valueOf(m_autoSelected);
     }
 
     public static double getAutoTimeDelay() {

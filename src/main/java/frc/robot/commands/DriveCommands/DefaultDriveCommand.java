@@ -42,7 +42,10 @@ public class DefaultDriveCommand extends Command {
                         translationXPercent * DriveConstants.MAX_VELOCITY_METERS_PER_SECOND,
                         translationYPercent * DriveConstants.MAX_VELOCITY_METERS_PER_SECOND,
                         rotationPercent * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
-                        drivetrain.getRotation()).plus(ChassisSpeeds.fromFieldRelativeSpeeds(driverAssist && LimeLight.getTy() != 0 ? (LimeLight.getTy() + Constants.wantedTY) * Constants.distanceKp : 0, 0, 0, Rotation2d.fromDegrees(0))));
+                        drivetrain.getRotation())
+                        .plus(ChassisSpeeds.fromFieldRelativeSpeeds(driverAssist && LimeLight.getTy() != 0
+                                ? (LimeLight.getTy() + Constants.wantedTY) * Constants.distanceKp
+                                : 0, 0, 0, Rotation2d.fromDegrees(0))));
     }
 
     @Override
