@@ -54,7 +54,7 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // cameraSetup();
+    //  cameraSetup();
 
     // Configure the trigger bindings
     // configureBindings();
@@ -103,7 +103,7 @@ public class RobotContainer {
 
  
     // public void cameraSetup() {
-    // // USB CAMERA //
+    // USB CAMERA //
     // try {
     // mjpegServer.setSource(usbCamera);
     // usbCamera = CameraServer.startAutomaticCapture();
@@ -112,11 +112,13 @@ public class RobotContainer {
     // usbCamera.setFPS(30);
     // usbCamera.setWhiteBalanceAuto();
     // usbCamera.setExposureAuto();
+    
     // } catch (Exception e) {
     // System.out.println("--------------- CameraSetup ERROR ---------------");
     // }
-    // Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withSize(3,
+    // Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withPosition(0,3).withSize(3,
     // 3);
+    // // was 5,3 and 3,3
     // }
  
 

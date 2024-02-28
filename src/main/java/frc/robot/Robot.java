@@ -89,7 +89,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-        LED.setLedState();
+    LED.setLedState();
 
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
@@ -99,19 +99,19 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    
+
   }
-  
+
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
   }
-  
+
   @Override
   public void disabledPeriodic() {
     currentAuto = DashBoard.getSelected();
   }
-  
+
   /**
    * This autonomous runs the autonomous command selected by your
    * {@link RobotContainer} class.
@@ -131,11 +131,12 @@ public class Robot extends TimedRobot {
     // System.out.println(points[0].getWantedPose());
     robotState = RobotState.TRAVEL;
   }
-  
+
   private int currentPointIndex = 1;
   boolean shootDelay = true;
   double shootTime = 0;
-  
+  boolean stopSwerve = false;
+
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
@@ -145,9 +146,9 @@ public class Robot extends TimedRobot {
       if (currentPointIndex < points.length) {
         // Get the reference chassis speeds from the Ramsete controller.
         var error = points[currentPointIndex].getWantedPose().getTranslation()
-        .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
+            .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
         double angleError = points[currentPointIndex].getWantedPose().getRotation().getRadians()
-        - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
+            - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
         var refChassisSpeeds = new ChassisSpeeds();
         refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
         refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
@@ -156,7 +157,7 @@ public class Robot extends TimedRobot {
         m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
 
         robotState = points[currentPointIndex].getAction();
-        
+
         if (points[currentPointIndex].getAction().isScoring()) {
           shootTime = m_timer.get();
         }
@@ -164,19 +165,22 @@ public class Robot extends TimedRobot {
           SubSystemManager.operate();
           m_robotContainer.m_drivetrainSubsystem.stopModules();
         }
-        
+
         if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
-        && Math.abs(angleError) < Constants.AutonomousConstants.angleToletrance) {
+            && Math.abs(angleError) < Constants.AutonomousConstants.angleToletrance) {
           currentPointIndex++;
         }
       } else {
         // when finished path stop
-        m_robotContainer.m_drivetrainSubsystem.stopModules();
+        stopSwerve = true;
       }
+    }
+    if(stopSwerve){
+      m_robotContainer.m_drivetrainSubsystem.stopModules();
     }
     SubSystemManager.operate();
   }
-  
+
   @Override
   public void teleopInit() {
     m_robotContainer.configureBindings();
@@ -194,7 +198,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
   }
-  
+
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {

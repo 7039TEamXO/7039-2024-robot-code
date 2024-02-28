@@ -41,13 +41,13 @@ public class Arm {
             wantedPos = 0;
                 break;
             case OPEN:
-            wantedPos = 13500;//was 11500
+            wantedPos = 12500;
                 break;
         }
         armMotor.set(ControlMode.Position, wantedPos);
     }
 
     public static boolean reached(){
-        return Math.abs(wantedPos - armMotor.getSelectedSensorPosition()) < 100;
+        return Math.abs(wantedPos - armMotor.getSelectedSensorPosition()) < 400;
     }
 }

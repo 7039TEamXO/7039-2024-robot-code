@@ -49,6 +49,7 @@ public class Intake {
         }
 
         intake.set(ControlMode.PercentOutput, power);
+        // System.out.println(irValue);
     }
 
     public static double getCurrent() {

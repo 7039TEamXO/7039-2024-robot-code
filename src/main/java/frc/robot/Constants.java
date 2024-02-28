@@ -71,6 +71,8 @@ public final class Constants {
                                                 RobotState.TRAVEL),
                                 new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
+                                new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
+                                                RobotState.SUBWOOFER),
                                 new AutoPoint(new Pose2d(new Translation2d(2.5, 0), new Rotation2d(0)),
                                                 RobotState.INTAKE),
                                 new AutoPoint(new Pose2d(new Translation2d(2.5, 0), new Rotation2d(0)),
@@ -89,10 +91,10 @@ public final class Constants {
                                 new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
                                 // 3RD
-                                new AutoPoint(new Pose2d(new Translation2d(1.6, -yBetweenNotes + 0.25),
+                                new AutoPoint(new Pose2d(new Translation2d(1.6, -yBetweenNotes),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(2.5, -yBetweenNotes + 0.25),
+                                new AutoPoint(new Pose2d(new Translation2d(2.5, -yBetweenNotes),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
                                 new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
@@ -104,29 +106,49 @@ public final class Constants {
                 };
 
                 public static AutoPoint[] right_one = {
-                                new AutoPoint(new Pose2d(new Translation2d(0.92, -1), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(0, -1), new Rotation2d(0)),
                                                 RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(0.92, -1),
+                                new AutoPoint(new Pose2d(new Translation2d(0, -1), new Rotation2d(0)),
+                                                RobotState.TRAVEL),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, -0.7),
+                                                new Rotation2d(Math.toRadians(0))),
+                                                RobotState.TRAVEL),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, -0.7),
                                                 new Rotation2d(Math.toRadians(-45))),
                                                 RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(0.92, -1),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, -0.7),
                                                 new Rotation2d(Math.toRadians(-45))),
                                                 RobotState.SUBWOOFER),
-                                new AutoPoint(new Pose2d(new Translation2d(3, -1.75), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, -0.7),
+                                                new Rotation2d(Math.toRadians(-45))),
+                                                RobotState.SUBWOOFER),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, -0.7), new Rotation2d(0)),
                                                 RobotState.TRAVEL),
+                                new AutoPoint(new Pose2d(new Translation2d(2, -0.7), new Rotation2d(0)),
+                                                RobotState.INTAKE),
 
                 };
                 public static AutoPoint[] left_one = {
-                                new AutoPoint(new Pose2d(new Translation2d(0.92, 1), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(0, 1), new Rotation2d(0)),
                                                 RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(0.92, 1),
+                                new AutoPoint(new Pose2d(new Translation2d(0, 1), new Rotation2d(0)),
+                                                RobotState.TRAVEL),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, 0.7),
+                                                new Rotation2d(Math.toRadians(0))),
+                                                RobotState.TRAVEL),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, 0.7),
                                                 new Rotation2d(Math.toRadians(45))),
                                                 RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(0.92, 1),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, 0.7),
                                                 new Rotation2d(Math.toRadians(45))),
                                                 RobotState.SUBWOOFER),
-                                new AutoPoint(new Pose2d(new Translation2d(3, 1.75), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, 0.7),
+                                                new Rotation2d(Math.toRadians(45))),
+                                                RobotState.SUBWOOFER),
+                                new AutoPoint(new Pose2d(new Translation2d(0.75, 0.7), new Rotation2d(0)),
                                                 RobotState.TRAVEL),
+                                new AutoPoint(new Pose2d(new Translation2d(2, 0.7), new Rotation2d(0)),
+                                                RobotState.INTAKE),
 
                 };
 
@@ -302,6 +324,6 @@ public final class Constants {
 
         // lime constants:
         public static final double tyTolerance = 0.5;
-        public static final double wantedTY = 20;
+        public static final double wantedTY = 18.5;
         public static final double distanceKp = 0.22;
 }

@@ -16,7 +16,9 @@ public class DashBoard {
     public static ShuffleboardTab data = Shuffleboard.getTab("Data");
     private static String m_autoSelected = "";
     private final static SendableChooser<String> m_chooser = new SendableChooser<>();
-    private static GenericEntry auto_time_delay_input = driver.add("Auto delay", 0).withPosition(9, 0).withSize(3, 2)
+    private static GenericEntry auto_time_delay_input = driver.add("Auto delay", 0).withPosition(11, 0).withSize(3, 3)
+            .getEntry();
+    private static GenericEntry ampOffset = driver.add("amp offset", 0).withPosition(0, 3).withSize(3, 3)
             .getEntry();
 
     public static void init() {
@@ -24,19 +26,18 @@ public class DashBoard {
         m_chooser.addOption("MIDDLE_THREE", "MIDDLE_THREE");
         m_chooser.addOption("RIGHT_ONE", "RIGHT_ONE");
         m_chooser.addOption("LEFT_ONE", "LEFT_ONE");
-        m_chooser.addOption("FEEDER_RED", "FEEDER_RED");
-        m_chooser.addOption("FEEDER_BLUE", "FEEDER_BLUE");
         m_chooser.addOption("SIDE_RED", "SIDE_RED");
         m_chooser.addOption("SIDE_BLUE", "SIDE_BLUE");
-        driver.add("Auto choices", m_chooser).withPosition(0, 0).withSize(3, 2);
-        driver.addBoolean("Is Game Piece In", () -> Intake.isGamePieceIn()).withPosition(3, 0).withSize(3, 2);
-        driver.addString("State", () -> Robot.robotState.name()).withPosition(12, 0).withSize(3, 2);
-        driver.add("LimeLight Camera", limelightcamera).withPosition(0, 2).withSize(3, 2);
-        data.addNumber("Shooter Vel (M)", () -> Shooter.getShooterMasterVelocity()).withPosition(0, 1).withSize(2, 1);
-        data.addNumber("Shooter Curr (M)", () -> Shooter.getShooterMasterCurrent()).withPosition(2, 1).withSize(2, 1);
-        data.addNumber("Shooter Vel (S)", () -> Shooter.getShooterSlaveVelocity()).withPosition(4, 1).withSize(2, 1);
-        data.addNumber("Shooter Curr (S)", () -> Shooter.getShooterSlaveCurrent()).withPosition(6, 1).withSize(2, 1);
-        driver.addBoolean("Ready to shoot", () -> LimeLight.isReadyToShoot()).withPosition(6, 0).withSize(3, 2);
+        driver.add("Auto choices", m_chooser).withPosition(0, 0).withSize(5, 3);
+        driver.addBoolean("Is Game Piece In", () -> Intake.isGamePieceIn()).withPosition(5, 0).withSize(3, 3);
+        driver.addString("State", () -> Robot.robotState.name()).withPosition(14, 0).withSize(3, 3);
+        driver.add("LimeLight Camera", limelightcamera).withPosition(17, 0).withSize(3, 3);
+        data.addNumber("Shooter Vel (M)", () -> Shooter.getShooterMasterVelocity()).withPosition(0, 4).withSize(4, 3);
+        data.addNumber("Shooter Curr (M)", () -> Shooter.getShooterMasterCurrent()).withPosition(4, 4).withSize(4, 3);
+        data.addNumber("Shooter Vel (S)", () -> Shooter.getShooterSlaveVelocity()).withPosition(8, 4).withSize(4, 3);
+        data.addNumber("Shooter Curr (S)", () -> Shooter.getShooterSlaveCurrent()).withPosition(12, 4).withSize(4, 3);
+        driver.addBoolean("Ready to shoot", () -> LimeLight.isReadyToShoot()).withPosition(8, 0).withSize(3, 3);
+
     }
 
     public static Autos getSelected() {
@@ -48,5 +49,9 @@ public class DashBoard {
 
     public static double getAutoTimeDelay() {
         return auto_time_delay_input.getDouble(0);
+    }
+
+    public static double getAmpOffset() {
+        return -ampOffset.getDouble(0);
     }
 }

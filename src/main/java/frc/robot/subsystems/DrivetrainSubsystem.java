@@ -52,7 +52,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
                 ShuffleboardTab gyroShuffleboardTab = Shuffleboard.getTab("Data");
                 frontLeftModule = new MkSwerveModuleBuilder()
                                 .withLayout(shuffleboardTab.getLayout("Front Left Module", BuiltInLayouts.kList)
-                                                .withSize(2, 4)
+                                                .withSize(6, 11)
                                                 .withPosition(0, 0))
                                 .withGearRatio(SdsModuleConfigurations.MK4_L2)
                                 .withDriveMotor(MotorType.FALCON,
@@ -65,8 +65,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
                 frontRightModule = new MkSwerveModuleBuilder()
                                 .withLayout(shuffleboardTab.getLayout("Front Right Module", BuiltInLayouts.kList)
-                                                .withSize(2, 4)
-                                                .withPosition(2, 0))
+                                                .withSize(6, 11)
+                                                .withPosition(6, 0))
                                 .withGearRatio(SdsModuleConfigurations.MK4_L2)
                                 .withDriveMotor(MotorType.FALCON,
                                                 Constants.DriveConstants.FRONT_RIGHT_MODULE_DRIVE_MOTOR)
@@ -78,8 +78,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
                 backLeftModule = new MkSwerveModuleBuilder()
                                 .withLayout(shuffleboardTab.getLayout("Back Left Module", BuiltInLayouts.kList)
-                                                .withSize(2, 4)
-                                                .withPosition(4, 0))
+                                                .withSize(6, 11)
+                                                .withPosition(12, 0))
                                 .withGearRatio(SdsModuleConfigurations.MK4_L2)
                                 .withDriveMotor(MotorType.FALCON, Constants.DriveConstants.BACK_LEFT_MODULE_DRIVE_MOTOR)
                                 .withSteerMotor(MotorType.FALCON, Constants.DriveConstants.BACK_LEFT_MODULE_STEER_MOTOR)
@@ -89,8 +89,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
                 backRightModule = new MkSwerveModuleBuilder()
                                 .withLayout(shuffleboardTab.getLayout("Back Right Module", BuiltInLayouts.kList)
-                                                .withSize(2, 4)
-                                                .withPosition(6, 0))
+                                                .withSize(6, 11)
+                                                .withPosition(18, 0))
                                 .withGearRatio(SdsModuleConfigurations.MK4_L2)
                                 .withDriveMotor(MotorType.FALCON,
                                                 Constants.DriveConstants.BACK_RIGHT_MODULE_DRIVE_MOTOR)
@@ -106,10 +106,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
                                 new SwerveModulePosition[] { frontLeftModule.getPosition(),
                                                 frontRightModule.getPosition(), backLeftModule.getPosition(),
                                                 backRightModule.getPosition() });
-                gyroShuffleboardTab.addNumber("Gyroscope Yaw", () -> gyroscope.getYaw());
-                gyroShuffleboardTab.addNumber("Gyroscope Angle", () -> getRotation().getDegrees());
-                gyroShuffleboardTab.addNumber("Pose X", () -> odometry.getPoseMeters().getX());
-                gyroShuffleboardTab.addNumber("Pose Y", () -> odometry.getPoseMeters().getY());
+                gyroShuffleboardTab.addNumber("Gyroscope Yaw", () -> gyroscope.getYaw()).withSize(4, 4).withPosition(0, 0);
+                gyroShuffleboardTab.addNumber("Gyroscope Angle", () -> getRotation().getDegrees()).withSize(4, 4).withPosition(4, 0);
+                gyroShuffleboardTab.addNumber("Pose X", () -> odometry.getPoseMeters().getX()).withSize(4, 4).withPosition(8, 0);
+                gyroShuffleboardTab.addNumber("Pose Y", () -> odometry.getPoseMeters().getY()).withSize(4, 4).withPosition(12, 0);
         }
 
         public void zeroGyroscope() {
