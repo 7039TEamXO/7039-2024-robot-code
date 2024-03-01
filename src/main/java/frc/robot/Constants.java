@@ -70,6 +70,8 @@ public final class Constants {
                                 new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.TRAVEL),
                                 new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
+                                                RobotState.TRAVEL),
+                                new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
                                 new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
@@ -91,18 +93,16 @@ public final class Constants {
                                 new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
                                 // 3RD
-                                new AutoPoint(new Pose2d(new Translation2d(1.6, -yBetweenNotes),
+                                new AutoPoint(new Pose2d(new Translation2d(1.6, -yBetweenNotes + 0.25),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(2.5, -yBetweenNotes),
+                                new AutoPoint(new Pose2d(new Translation2d(2.5, -yBetweenNotes + 0.25),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
                                 new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
                                                 RobotState.INTAKE),
                                 new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
-
-                                // TODO continue
                 };
 
                 public static AutoPoint[] right_one = {
@@ -221,7 +221,7 @@ public final class Constants {
                                 // Intake 2 Note
                                 createAutoPoint(3.3, 2.55, 0, RobotState.TRAVEL),
                                 createAutoPoint(3.3, 4.75, 0, RobotState.TRAVEL),
-                                createAutoPoint(10, 4.75, 0, RobotState.INTAKE),
+                                createAutoPoint(9.5, 4.75, 0, RobotState.INTAKE),
                                 createAutoPoint(7, 4, 0, RobotState.INTAKE),
                                 createAutoPoint(3.5, 2.3, 0, RobotState.TRAVEL),
 
@@ -324,6 +324,6 @@ public final class Constants {
 
         // lime constants:
         public static final double tyTolerance = 0.5;
-        public static final double wantedTY = 18.5;
+        public static final double wantedTY = 19.3;
         public static final double distanceKp = 0.22;
 }

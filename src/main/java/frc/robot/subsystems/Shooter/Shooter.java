@@ -42,7 +42,7 @@ public class Shooter {
     public static void operate(ShooterState state) {
         switch (state) {
             case AMP_SHOOTING:
-                vel_w = -4900 + DashBoard.getAmpOffset();
+                vel_w = -5100 + DashBoard.getAmpOffset();
                 break;
             case DEPLETE:
                 vel_w = 0.4;
@@ -54,7 +54,7 @@ public class Shooter {
                 vel_w = 0;
                 break;
             case SUBWOOFER_SHOOTING:
-                vel_w = -11500;
+                vel_w = -12000;
                 break;
         }
         if(vel_w == 0){
