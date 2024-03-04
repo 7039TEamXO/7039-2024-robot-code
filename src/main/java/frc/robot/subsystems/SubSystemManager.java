@@ -1,12 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.PS4Controller;
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.GlobalData;
 import frc.robot.Robot;
-import frc.robot.subsystems.RobotState;
 import frc.robot.subsystems.SubSystemManager;
 import frc.robot.subsystems.Arm.Arm;
 import frc.robot.subsystems.Arm.ArmState;

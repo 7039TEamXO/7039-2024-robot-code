@@ -107,8 +107,8 @@ public class RobotContainer {
     // try {
     // mjpegServer.setSource(usbCamera);
     // usbCamera = CameraServer.startAutomaticCapture();
-    // usbCamera.setPixelFormat(PixelFormat.kMJPEG);
-    // usbCamera.setResolution(320, 240);
+    // usbCamera.setPixelFormat(PixelFormat.);
+    //  usbCamera.setResolution(640, 320);
     // usbCamera.setFPS(30);
     // usbCamera.setWhiteBalanceAuto();
     // usbCamera.setExposureAuto();
@@ -116,9 +116,9 @@ public class RobotContainer {
     // } catch (Exception e) {
     // System.out.println("--------------- CameraSetup ERROR ---------------");
     // }
-    // Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withPosition(0,3).withSize(3,
+    // Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withPosition(7,3).withSize(3,
     // 3);
-    // // was 5,3 and 3,3
+    // was 5,3 and 3,3
     // }
  
 

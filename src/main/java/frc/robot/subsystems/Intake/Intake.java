@@ -6,11 +6,8 @@ package frc.robot.subsystems.Intake;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import frc.robot.subsystems.RobotState;
 
 import edu.wpi.first.wpilibj.AnalogInput;
-import frc.robot.DashBoard;
-import frc.robot.Robot;
 
 /** Add your docs here. */
 public class Intake {

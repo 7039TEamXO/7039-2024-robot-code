@@ -7,11 +7,6 @@ package frc.robot.subsystems.Arm;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-// import frc.robot.subsystems.Shooter.ShooterState;
-
-import edu.wpi.first.wpilibj.Servo;
-import frc.robot.Robot;
-import frc.robot.subsystems.RobotState;
 
 /** Add your docs here. */
 public class Arm {

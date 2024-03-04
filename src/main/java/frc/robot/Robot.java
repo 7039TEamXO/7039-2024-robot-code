@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -20,6 +20,7 @@ import frc.robot.subsystems.Climb.Climb;
 import frc.robot.subsystems.Conveyor.Conveyor;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.util.Vector;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -54,6 +55,7 @@ public class Robot extends TimedRobot {
 
   // The timer to use during the autonomous period.
   public static Timer m_timer;
+  public static double autoTimeDelay;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -110,6 +112,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     currentAuto = DashBoard.getSelected();
+    autoTimeDelay = DashBoard.getAutoTimeDelay();
   }
 
   /**
@@ -123,9 +126,7 @@ public class Robot extends TimedRobot {
     Autos selected_autos = DashBoard.getSelected();
     points = selected_autos.getPoints();
     GlobalData.auto = true;
-    // Initialize the timer.
     m_timer.start();
-    // * points = realAutoPoints
     // Reset the drivetrain's odometry to the starting pose of the trajectory.
     m_robotContainer.m_drivetrainSubsystem.resetOdometry(points[0].getWantedPose());
     // System.out.println(points[0].getWantedPose());
@@ -142,18 +143,25 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     // Update odometry.
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
-    if (m_timer.get() >= DashBoard.getAutoTimeDelay()) {
+    if (m_timer.get() >= autoTimeDelay) {
       if (currentPointIndex < points.length) {
         // Get the reference chassis speeds from the Ramsete controller.
-        var error = points[currentPointIndex].getWantedPose().getTranslation()
+        Translation2d error = points[currentPointIndex].getWantedPose().getTranslation()
             .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
         double angleError = points[currentPointIndex].getWantedPose().getRotation().getRadians()
             - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
-        var refChassisSpeeds = new ChassisSpeeds();
-        refChassisSpeeds.vxMetersPerSecond = Math.min(error.getX() * driveKp, 1.5);
-        refChassisSpeeds.vyMetersPerSecond = Math.min(error.getY() * driveKp, 1.5);
+        ChassisSpeeds refChassisSpeeds = new ChassisSpeeds();
+
+        float vel_x_w = (float) error.getX() * driveKp;
+        float vel_y_w = (float) error.getY() * driveKp;
+        Vector vel_w = new Vector(vel_x_w, vel_y_w);
+        if (vel_w.norm() > Constants.maxVelAuto) {
+          vel_w = vel_w.scale(Constants.maxVelAuto / vel_w.norm());
+        }
+        refChassisSpeeds.vxMetersPerSecond = vel_w.x;
+        refChassisSpeeds.vyMetersPerSecond = vel_w.y;
+
         refChassisSpeeds.omegaRadiansPerSecond = (angleError * headingKp);
-        // Set the linear and angular speeds.
         m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
 
         robotState = points[currentPointIndex].getAction();
@@ -175,7 +183,7 @@ public class Robot extends TimedRobot {
         stopSwerve = true;
       }
     }
-    if(stopSwerve){
+    if (stopSwerve) {
       m_robotContainer.m_drivetrainSubsystem.stopModules();
     }
     SubSystemManager.operate();

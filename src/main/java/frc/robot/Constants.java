@@ -36,7 +36,7 @@ public final class Constants {
                 public static final double AUTO_EJECT_CUBE_FLOOR_MOTOR_OUTPUT = -0.80;
                 public static final double AUTO_INTAKE_CUBE_FLOOR_MOTOR_OUTPUT = 0.5;
 
-                public static final double distanceToletrance = 0.25f;
+                public static final double distanceToletrance = 0.1f;
                 public static final double angleToletrance = 0.3f;
 
                 // Auto field constants
@@ -82,26 +82,26 @@ public final class Constants {
                                 // 2ND
                                 new AutoPoint(new Pose2d(new Translation2d(2, 0), new Rotation2d(0)),
                                                 RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(1.6, yBetweenNotes - 0.2),
+                                new AutoPoint(new Pose2d(new Translation2d(1.6, yBetweenNotes),
                                                 new Rotation2d(0)),
                                                 RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(2.2, yBetweenNotes - 0.2),
+                                new AutoPoint(new Pose2d(new Translation2d(2.2, yBetweenNotes),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
                                 // 3RD
-                                new AutoPoint(new Pose2d(new Translation2d(1.6, -yBetweenNotes + 0.25),
+                                new AutoPoint(new Pose2d(new Translation2d(1.6, -yBetweenNotes),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(2.5, -yBetweenNotes + 0.25),
+                                new AutoPoint(new Pose2d(new Translation2d(2.5, -yBetweenNotes),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(1, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
                 };
 
@@ -152,64 +152,6 @@ public final class Constants {
 
                 };
 
-                public static AutoPoint[] feeder_red = {
-                                new AutoPoint(new Pose2d(new Translation2d(1.44, 2), new Rotation2d(0)),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(3.3, 2.1), new Rotation2d(0)),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(3.3, 2.1),
-                                                new Rotation2d(Math.toRadians(45))),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(3.3, 2.1),
-                                                new Rotation2d(Math.toRadians(45))),
-                                                RobotState.PODIUM),
-                                new AutoPoint(new Pose2d(new Translation2d(9, yBetweenNotes),
-                                                new Rotation2d(Math.toRadians(0))),
-                                                RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(6, 2.1), new Rotation2d(Math.toRadians(0))),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(3.3, 2.1),
-                                                new Rotation2d(Math.toRadians(0))),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(3.3, 2.1),
-                                                new Rotation2d(Math.toRadians(45))),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(3.3, 2.1),
-                                                new Rotation2d(Math.toRadians(45))),
-                                                RobotState.PODIUM),
-
-                };
-                public static AutoPoint[] feeder_blue = {
-                                new AutoPoint(new Pose2d(new Translation2d(1.44, -2), new Rotation2d(0)),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(2.3, -2.1), new Rotation2d(0)),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(2.3, -2.1),
-                                                new Rotation2d(Math.toRadians(-50))),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(2.3, -2.1),
-                                                new Rotation2d(Math.toRadians(-50))),
-                                                RobotState.PODIUM),
-                                new AutoPoint(new Pose2d(new Translation2d(5, -yBetweenNotes - 0.5),
-                                                new Rotation2d(Math.toRadians(0))),
-                                                RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(8, -yBetweenNotes),
-                                                new Rotation2d(Math.toRadians(0))),
-                                                RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(6, -2.13),
-                                                new Rotation2d(Math.toRadians(0))),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(2.3, -2.1),
-                                                new Rotation2d(Math.toRadians(0))),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(2.3, -2.1),
-                                                new Rotation2d(Math.toRadians(-50))),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(2.3, -2.1),
-                                                new Rotation2d(Math.toRadians(-50))),
-                                                RobotState.PODIUM),
-
-                };
                 public static AutoPoint[] side_red = {
                                 // 1 shooting stage
                                 createAutoPoint(2.90, 2.55, 0, RobotState.TRAVEL),
@@ -326,4 +268,8 @@ public final class Constants {
         public static final double tyTolerance = 0.5;
         public static final double wantedTY = 19.3;
         public static final double distanceKp = 0.22;
+
+        public static final float INF = 100000;
+
+        public static final float maxVelAuto = 3; // m/s
 }

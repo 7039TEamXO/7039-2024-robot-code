@@ -5,9 +5,7 @@
 package frc.robot.subsystems.Shooter;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix6.configs.SlotConfigs;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -42,7 +40,7 @@ public class Shooter {
     public static void operate(ShooterState state) {
         switch (state) {
             case AMP_SHOOTING:
-                vel_w = -5100 + DashBoard.getAmpOffset();
+                vel_w = -6500 + DashBoard.getAmpOffset();
                 break;
             case DEPLETE:
                 vel_w = 0.4;
