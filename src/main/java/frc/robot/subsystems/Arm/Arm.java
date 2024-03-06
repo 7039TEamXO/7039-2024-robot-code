@@ -25,7 +25,7 @@ public class Arm {
         armMotor.configForwardSoftLimitThreshold(15000);
         armMotor.configForwardSoftLimitEnable(true);
         armMotor.configPeakOutputForward(0.7);
-        armMotor.configPeakOutputReverse(-0.2);
+        armMotor.configPeakOutputReverse(-0.4);
         armMotor.configAllowableClosedloopError(0, 50);
         armMotor.configNominalOutputForward(0.085);
     }

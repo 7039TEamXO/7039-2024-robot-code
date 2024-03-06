@@ -234,7 +234,7 @@ public final class Constants {
                 public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 62;
                 public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 61;
                 public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 9;
-                public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(207.861328125);
+                public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(208.3831787109375);// was 207.861328125
                 // public static final double FRONT_RIGHT_MODULE_STEER_OFFSET =
                 // -Math.toRadians(0);
 
@@ -266,7 +266,7 @@ public final class Constants {
 
         // lime constants:
         public static final double tyTolerance = 0.5;
-        public static final double wantedTY = 19.3;
+        public static final double wantedTY = 16.4;
         public static final double distanceKp = 0.22;
 
         public static final float INF = 100000;
