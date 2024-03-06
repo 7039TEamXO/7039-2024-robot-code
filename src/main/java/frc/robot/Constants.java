@@ -36,7 +36,7 @@ public final class Constants {
                 public static final double AUTO_EJECT_CUBE_FLOOR_MOTOR_OUTPUT = -0.80;
                 public static final double AUTO_INTAKE_CUBE_FLOOR_MOTOR_OUTPUT = 0.5;
 
-                public static final double distanceToletrance = 0.1f;
+                public static final double distanceToletrance = 0.15f;
                 public static final double angleToletrance = 0.3f;
 
                 // Auto field constants
@@ -73,11 +73,9 @@ public final class Constants {
                                                 RobotState.TRAVEL),
                                 new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
-                                new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
-                                                RobotState.SUBWOOFER),
-                                new AutoPoint(new Pose2d(new Translation2d(2.5, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(2.6, 0), new Rotation2d(0)),
                                                 RobotState.INTAKE),
-                                new AutoPoint(new Pose2d(new Translation2d(2.5, 0), new Rotation2d(0)),
+                                new AutoPoint(new Pose2d(new Translation2d(2.6, 0), new Rotation2d(0)),
                                                 RobotState.PODIUM),
                                 // 2ND
                                 new AutoPoint(new Pose2d(new Translation2d(2, 0), new Rotation2d(0)),
@@ -85,7 +83,7 @@ public final class Constants {
                                 new AutoPoint(new Pose2d(new Translation2d(1.6, yBetweenNotes),
                                                 new Rotation2d(0)),
                                                 RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(2.2, yBetweenNotes),
+                                new AutoPoint(new Pose2d(new Translation2d(2.2, yBetweenNotes - 0.15),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
                                 new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
@@ -266,7 +264,7 @@ public final class Constants {
 
         // lime constants:
         public static final double tyTolerance = 0.5;
-        public static final double wantedTY = 16.4;
+        public static final double wantedTY = 16.2;
         public static final double distanceKp = 0.22;
 
         public static final float INF = 100000;

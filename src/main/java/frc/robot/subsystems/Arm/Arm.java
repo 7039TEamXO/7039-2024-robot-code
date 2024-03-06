@@ -36,7 +36,7 @@ public class Arm {
             wantedPos = 0;
                 break;
             case OPEN:
-            wantedPos = 12500;
+            wantedPos = 13500;
                 break;
         }
         armMotor.set(ControlMode.Position, wantedPos);

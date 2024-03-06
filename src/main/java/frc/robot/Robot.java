@@ -92,7 +92,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     LED.setLedState();
-
+    
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
     // commands, running already-scheduled commands, removing finished or
@@ -137,6 +137,7 @@ public class Robot extends TimedRobot {
   boolean shootDelay = true;
   double shootTime = 0;
   boolean stopSwerve = false;
+ public static boolean autoFirst = true;
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -169,7 +170,10 @@ public class Robot extends TimedRobot {
         if (points[currentPointIndex].getAction().isScoring()) {
           shootTime = m_timer.get();
         }
-        while (m_timer.get() - shootTime < 1.2) {
+        while (m_timer.get() - shootTime < 1.5) {
+          if(autoFirst){
+            autoFirst = false;
+          }
           SubSystemManager.operate();
           m_robotContainer.m_drivetrainSubsystem.stopModules();
         }
@@ -191,6 +195,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    autoFirst = false;
     m_robotContainer.configureBindings();
     if (GlobalData.auto) {
       m_timer.reset();
