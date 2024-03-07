@@ -150,6 +150,7 @@ public final class Constants {
 
                 };
 
+                public static double farNoteY = 3.75;
                 public static AutoPoint[] side_red = {
                                 // 1 shooting stage
                                 createAutoPoint(2.90, 2.55, 0, RobotState.TRAVEL),
@@ -160,8 +161,11 @@ public final class Constants {
 
                                 // Intake 2 Note
                                 createAutoPoint(3.3, 2.55, 0, RobotState.TRAVEL),
-                                createAutoPoint(3.3, 4.75, 0, RobotState.TRAVEL),
-                                createAutoPoint(9.5, 4.75, 0, RobotState.INTAKE),
+                                createAutoPoint(3.3, farNoteY, 0, RobotState.TRAVEL),
+                                createAutoPoint(7, farNoteY, 0, RobotState.INTAKE),
+                                createAutoPoint(9.5, farNoteY, 0, RobotState.INTAKE),
+                                createAutoPoint(9.5, 4.5, 0, RobotState.INTAKE),
+
                                 createAutoPoint(7, 4, 0, RobotState.INTAKE),
                                 createAutoPoint(3.5, 2.3, 0, RobotState.TRAVEL),
 
@@ -181,8 +185,11 @@ public final class Constants {
 
                                 // Intake 2 Note
                                 createAutoPoint(3.3, -2.55, 0, RobotState.TRAVEL),
-                                createAutoPoint(3.3, -4.75, 0, RobotState.TRAVEL),
-                                createAutoPoint(10, -4.75, 0, RobotState.INTAKE),
+                                createAutoPoint(3.3, -farNoteY, 0, RobotState.TRAVEL),
+                                createAutoPoint(7, -farNoteY, 0, RobotState.INTAKE),
+                                createAutoPoint(9.5, -farNoteY, 0, RobotState.INTAKE),
+                                createAutoPoint(9, -4.5, 0, RobotState.INTAKE),
+
                                 createAutoPoint(7, -4, 0, RobotState.INTAKE),
 
                                 // 2 shooting stage
@@ -232,7 +239,8 @@ public final class Constants {
                 public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 62;
                 public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 61;
                 public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 9;
-                public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(208.3831787109375);// was 207.861328125
+                public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(208.3831787109375);// was
+                                                                                                                // 207.861328125
                 // public static final double FRONT_RIGHT_MODULE_STEER_OFFSET =
                 // -Math.toRadians(0);
 
