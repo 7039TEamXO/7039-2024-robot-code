@@ -1,22 +1,23 @@
 package frc.robot.auto;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import frc.robot.Constants;
 import frc.robot.subsystems.RobotState;
 
 public class AutoPoint {
     private final Pose2d pose;
     private final RobotState action;
-    private float distanceToExecuteAction = 0;
+    private float maxVel = Constants.maxVelAuto;
 
     public AutoPoint(Pose2d pose, RobotState action) {
         this.pose = pose;
         this.action = action;
     }
 
-    public AutoPoint(Pose2d pose, RobotState action, float distanceToExecuteAction) {
+    public AutoPoint(Pose2d pose, RobotState action, float maxVel) {
         this.pose = pose;
         this.action = action;
-        this.distanceToExecuteAction = distanceToExecuteAction;
+        this.maxVel = maxVel;
     }
 
     public Pose2d getWantedPose(){
@@ -27,7 +28,7 @@ public class AutoPoint {
         return action;
     }
 
-    public float getDistanceToExecuteAction(){
-        return distanceToExecuteAction;
+    public float getMaxVel(){
+        return maxVel;
     }
 }

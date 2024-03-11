@@ -39,15 +39,15 @@ import frc.robot.util.Vector;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-  private float driveKp = 2.2f;
+  private float driveKp = 1.85f;
   private float headingKp = -3f;
   public static RobotState robotState = RobotState.TRAVEL;
 
   public static Autos currentAuto = Autos.MIDDLE_THREE;
   // private UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
   // private MjpegServer mjpegServer = new MjpegServer("serve_USB Camera 0",
-  //     1181);
-      
+  // 1181);
+
   // This will load the file "Example Path.path" and generate it with a max
   // velocity of 4 m/s and a max acceleration of 3 m/s^2
 
@@ -137,7 +137,7 @@ public class Robot extends TimedRobot {
     GlobalData.auto = true;
     m_timer.start();
     // Reset the drivetrain's odometry to the starting pose of the trajectory.
-    m_robotContainer.m_drivetrainSubsystem.resetOdometry(points[0].getWantedPose());
+    m_robotContainer.m_drivetrainSubsystem.resetOdometry(points[0].getWantedPose().div(1 / Constants.DriveConstants.ticksPerMeterFactor));
     // System.out.println(points[0].getWantedPose());
     robotState = RobotState.TRAVEL;
   }
@@ -153,6 +153,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     // Update odometry.
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
+    System.out.println(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
     if (m_timer.get() >= autoTimeDelay) {
       if (currentPointIndex < points.length) {
         // Get the reference chassis speeds from the Ramsete controller.
@@ -165,8 +166,8 @@ public class Robot extends TimedRobot {
         float vel_x_w = (float) error.getX() * driveKp;
         float vel_y_w = (float) error.getY() * driveKp;
         Vector vel_w = new Vector(vel_x_w, vel_y_w);
-        if (vel_w.norm() > Constants.maxVelAuto) {
-          vel_w = vel_w.scale(Constants.maxVelAuto / vel_w.norm());
+        if (vel_w.norm() > points[currentPointIndex].getMaxVel()) {
+          vel_w = vel_w.scale(points[currentPointIndex].getMaxVel() / vel_w.norm());
         }
         refChassisSpeeds.vxMetersPerSecond = vel_w.x;
         refChassisSpeeds.vyMetersPerSecond = vel_w.y;
@@ -179,7 +180,7 @@ public class Robot extends TimedRobot {
         if (points[currentPointIndex].getAction().isScoring()) {
           shootTime = m_timer.get();
         }
-        while (m_timer.get() - shootTime < 1.5) {
+        while (m_timer.get() - shootTime < 1.5 && points[currentPointIndex].getAction().isScoring()) {
           if (autoFirst) {
             autoFirst = false;
           }
@@ -257,21 +258,22 @@ public class Robot extends TimedRobot {
   }
 
   // public void cameraSetup() {
-  //   // USB CAMERA //
-  //   try {
-  //     mjpegServer.setSource(usbCamera);
-  //     usbCamera.setPixelFormat(PixelFormat.kMJPEG);
-  //     // usbCamera.setResolution(640, 320);
-  //     // usbCamera.setFPS(30);
-  //     // usbCamera.setWhiteBalanceAuto();
-  //     // usbCamera.setExposureAuto();
-  //     usbCamera = CameraServer.startAutomaticCapture();
+  // // USB CAMERA //
+  // try {
+  // mjpegServer.setSource(usbCamera);
+  // usbCamera.setPixelFormat(PixelFormat.kMJPEG);
+  // // usbCamera.setResolution(640, 320);
+  // // usbCamera.setFPS(30);
+  // // usbCamera.setWhiteBalanceAuto();
+  // // usbCamera.setExposureAuto();
+  // usbCamera = CameraServer.startAutomaticCapture();
 
-  //   } catch (Exception e) {
-  //     System.out.println("--------------- CameraSetup ERROR ---------------");
-  //   }
-  //   Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withPosition(7, 3).withSize(3,
-  //       3);
-  //   // was 5,3 and 3,3
+  // } catch (Exception e) {
+  // System.out.println("--------------- CameraSetup ERROR ---------------");
+  // }
+  // Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withPosition(7,
+  // 3).withSize(3,
+  // 3);
+  // // was 5,3 and 3,3
   // }
 }

@@ -171,6 +171,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
         }
 
         public Pose2d getPose() {
-                return odometry.getPoseMeters();
+                return odometry.getPoseMeters().div(Constants.DriveConstants.ticksPerMeterFactor);
         }
 }

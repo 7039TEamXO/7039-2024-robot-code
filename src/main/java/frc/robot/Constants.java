@@ -79,11 +79,11 @@ public final class Constants {
                                                 RobotState.PODIUM),
                                 // 2ND
                                 new AutoPoint(new Pose2d(new Translation2d(2, 0), new Rotation2d(0)),
-                                                RobotState.TRAVEL),
+                                                RobotState.TRAVEL, 2.5f),
                                 new AutoPoint(new Pose2d(new Translation2d(1.6, yBetweenNotes),
                                                 new Rotation2d(0)),
-                                                RobotState.TRAVEL),
-                                new AutoPoint(new Pose2d(new Translation2d(2.2, yBetweenNotes - 0.15),
+                                                RobotState.TRAVEL, 2.5f),
+                                new AutoPoint(new Pose2d(new Translation2d(2.2, yBetweenNotes),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
                                 new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
@@ -93,7 +93,7 @@ public final class Constants {
                                 // 3RD
                                 new AutoPoint(new Pose2d(new Translation2d(1.6, -yBetweenNotes),
                                                 new Rotation2d(0)),
-                                                RobotState.INTAKE),
+                                                RobotState.INTAKE, 2.5f),
                                 new AutoPoint(new Pose2d(new Translation2d(2.5, -yBetweenNotes),
                                                 new Rotation2d(0)),
                                                 RobotState.INTAKE),
@@ -239,7 +239,8 @@ public final class Constants {
                 public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 62;
                 public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 61;
                 public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 9;
-                public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(28.736114501953125 + 180);// was 207.861328125
+                public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(28.736114501953125 + 180);// was
+                                                                                                                       // 207.861328125
                 // public static final double FRONT_RIGHT_MODULE_STEER_OFFSET =
                 // -Math.toRadians(0);
 
@@ -266,7 +267,7 @@ public final class Constants {
                 public static final double RotationPID_Kp = 0.1;
                 public static final double RotationPID_Ki = 0.0002;
                 public static final double RotationPID_Kd = 0.0001;
-
+                public static final double ticksPerMeterFactor = 5 / 6.2;
         }
 
         // lime constants:
@@ -276,5 +277,5 @@ public final class Constants {
 
         public static final float INF = 100000;
 
-        public static final float maxVelAuto = 3; // m/s
+        public static final float maxVelAuto = 2.7f; // m/s
 }

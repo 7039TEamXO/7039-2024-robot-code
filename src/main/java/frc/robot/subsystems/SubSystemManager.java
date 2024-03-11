@@ -50,7 +50,8 @@ public class SubSystemManager {
             case AMP:
                 shooterState = ShooterState.AMP_SHOOTING;
                 intakeState = Shooter.readyToShoot() && Arm.reached() ? IntakeState.COLLECT : IntakeState.LOADING;
-                conveyorState = Shooter.readyToShoot() && Arm.reached() ? ConveyorState.HIGH_SHOOTER : ConveyorState.STOP;
+                conveyorState = Shooter.readyToShoot() && Arm.reached() ? ConveyorState.HIGH_SHOOTER
+                        : ConveyorState.STOP;
                 climbState = ClimbState.STOP;
                 armState = ArmState.OPEN;
                 break;
@@ -95,6 +96,14 @@ public class SubSystemManager {
                 climbState = ClimbState.STOP;
                 armState = ArmState.CLOSE;
                 break;
+            case DEFLECT:
+                shooterState = ShooterState.DEFLECT;
+                intakeState =  IntakeState.COLLECT;
+                conveyorState =  ConveyorState.LOW_SHOOTER;
+                climbState = ClimbState.STOP;
+                armState = ArmState.CLOSE;
+                break;
+
         }
         if (Robot.robotState.equals(RobotState.INTAKE)) {
             isGamePiece |= Intake.isGamePieceIn();

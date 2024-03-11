@@ -57,6 +57,9 @@ public class Shooter {
             case SUBWOOFER_SHOOTING:
                 vel_w = -12000;
                 break;
+            case DEFLECT:
+                vel_w = 6000;
+                break;
         }
         if (vel_w == 0) {
             shooterMaster.set(ControlMode.PercentOutput, 0);
@@ -78,11 +81,11 @@ public class Shooter {
         if (Robot.autoFirst) {
             return counter > 3 && GlobalData.auto;
         }
-        final boolean inVel = counter > 10;
+        final boolean inVel = counter > 3;
         return inVel && GlobalData.auto || SubSystemManager.joyPs4Controller.getR2Button()
                 && (Math.abs(Math.abs(LimeLight.getTy()) - Constants.wantedTY) < Constants.tyTolerance
                         || LimeLight.getTy() == 0) && inVel
-                || SubSystemManager.joyPs4Controller.getL2Button(); // shooter spinning at wanted velocity and driver
+                || SubSystemManager.joyPs4Controller.getL2Button() && inVel; // shooter spinning at wanted velocity and driver
                                                                     // wants to shoot
     }
 

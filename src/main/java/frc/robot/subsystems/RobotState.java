@@ -7,7 +7,8 @@ public enum RobotState {
     SUBWOOFER(true),
     PODIUM(true),
     CLIMB(false),
-    DEPLETE(false);
+    DEPLETE(false),
+    DEFLECT(false);
 
     private boolean score;
 

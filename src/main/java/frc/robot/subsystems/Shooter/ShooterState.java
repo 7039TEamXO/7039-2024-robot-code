@@ -7,5 +7,5 @@ package frc.robot.subsystems.Shooter;
 /** Add your docs here. */
 public enum ShooterState {
 
-STOP , AMP_SHOOTING , DEPLETE, SUBWOOFER_SHOOTING, PODIUM_SHOOTING
+STOP , AMP_SHOOTING , DEPLETE, SUBWOOFER_SHOOTING, PODIUM_SHOOTING, DEFLECT
 }
