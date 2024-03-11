@@ -28,6 +28,7 @@ public class DashBoard {
         m_chooser.addOption("LEFT_ONE", "LEFT_ONE");
         m_chooser.addOption("SIDE_RED", "SIDE_RED");
         m_chooser.addOption("SIDE_BLUE", "SIDE_BLUE");
+        m_chooser.addOption("STEAL_RED", "STEAL_RED");
         driver.add("Auto choices", m_chooser).withPosition(0, 0).withSize(5, 3);
         driver.addBoolean("Is Game Piece In", () -> Intake.isGamePieceIn()).withPosition(5, 0).withSize(3, 3);
         driver.addString("State", () -> Robot.robotState.name()).withPosition(14, 0).withSize(3, 3);

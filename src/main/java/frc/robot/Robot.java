@@ -173,7 +173,7 @@ public class Robot extends TimedRobot {
         refChassisSpeeds.vyMetersPerSecond = vel_w.y;
 
         refChassisSpeeds.omegaRadiansPerSecond = (angleError * headingKp);
-        m_robotContainer.m_drivetrainSubsystem.drive(refChassisSpeeds);
+        m_robotContainer.m_drivetrainSubsystem.drive(ChassisSpeeds.fromFieldRelativeSpeeds(refChassisSpeeds, m_robotContainer.m_drivetrainSubsystem.getRotation()));
 
         robotState = points[currentPointIndex].getAction();
 

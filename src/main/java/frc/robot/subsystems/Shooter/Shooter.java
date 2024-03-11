@@ -58,7 +58,7 @@ public class Shooter {
                 vel_w = -12000;
                 break;
             case DEFLECT:
-                vel_w = 6000;
+                vel_w = 2500;
                 break;
         }
         if (vel_w == 0) {

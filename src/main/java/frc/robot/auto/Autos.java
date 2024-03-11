@@ -8,7 +8,9 @@ public enum Autos {
     RIGHT_ONE(AutonomousConstants.right_one),
     LEFT_ONE(AutonomousConstants.left_one),
     SIDE_RED(AutonomousConstants.side_red),
-    SIDE_BLUE(AutonomousConstants.side_blue);
+    SIDE_BLUE(AutonomousConstants.side_blue),
+    STEAL_RED(AutonomousConstants.steal_side_red),
+    STEAL_BLUE(AutonomousConstants.steal_side_blue);
 
     private AutoPoint[] points;
 

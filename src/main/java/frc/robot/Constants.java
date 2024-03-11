@@ -199,11 +199,44 @@ public final class Constants {
                                 createAutoPoint(3.4, -2.2, 0, RobotState.TRAVEL)
 
                 };
+                public static AutoPoint[] steal_side_red = {
+                                createAutoPoint(2.9, 4.8, 0, RobotState.DEFLECT),
+                                createAutoPoint(9.3, 5.2, 0, RobotState.DEFLECT),
+                                createAutoPoint(9.3, 2.5, -65, RobotState.DEFLECT, 1),
+                                createAutoPoint(9.3, 1.5, -65, RobotState.INTAKE, 1),
+                                createAutoPoint(4.7, 0.6, 10, RobotState.INTAKE, 1.4f),
+                                createAutoPoint(4.7, 0.6, 10, RobotState.PODIUM),
+                                createAutoPoint(3, 0.6, 0, RobotState.INTAKE),
+
+                                createAutoPoint(2.9, 3, 0, RobotState.INTAKE),
+
+                };
+
+                public static AutoPoint[] steal_side_blue = {
+                        createAutoPoint(2.9, -4.8, 0, RobotState.DEFLECT),
+                        createAutoPoint(9.3, -5.2, 0, RobotState.DEFLECT),
+                        createAutoPoint(9.3, -2.5, 65, RobotState.DEFLECT, 1),
+                        createAutoPoint(9.3, -1.5, 65, RobotState.INTAKE, 1),
+                        createAutoPoint(4.7, -0.6, -10, RobotState.INTAKE, 1.4f),
+                        createAutoPoint(4.7, -0.6, -10, RobotState.PODIUM),
+                        createAutoPoint(3, -0.6, 0, RobotState.INTAKE),
+
+                        createAutoPoint(2.9, 3, 0, RobotState.INTAKE),
+
+        };
+
 
                 public static AutoPoint createAutoPoint(double x, double y, double degree, RobotState robotState) {
                         return new AutoPoint(
                                         new Pose2d(new Translation2d(x, y), new Rotation2d(Math.toRadians(degree))),
                                         robotState);
+                }
+
+                public static AutoPoint createAutoPoint(double x, double y, double degree, RobotState robotState,
+                                float maxVel) {
+                        return new AutoPoint(
+                                        new Pose2d(new Translation2d(x, y), new Rotation2d(Math.toRadians(degree))),
+                                        robotState, maxVel);
                 }
         }
 
