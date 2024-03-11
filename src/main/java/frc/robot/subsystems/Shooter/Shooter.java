@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.DashBoard;
 import frc.robot.GlobalData;
+import frc.robot.Robot;
 import frc.robot.subsystems.SubSystemManager;
 
 /** Add your docs here. */
@@ -40,7 +41,7 @@ public class Shooter {
     public static void operate(ShooterState state) {
         switch (state) {
             case AMP_SHOOTING:
-                vel_w = -5750 + DashBoard.getAmpOffset();
+                vel_w = -6250 + DashBoard.getAmpOffset();
                 break;
             case DEPLETE:
                 vel_w = 0.4;
@@ -55,9 +56,9 @@ public class Shooter {
                 vel_w = -12000;
                 break;
         }
-        if(vel_w == 0){
-        shooterMaster.set(ControlMode.PercentOutput, 0);    
-        }else{
+        if (vel_w == 0) {
+            shooterMaster.set(ControlMode.PercentOutput, 0);
+        } else {
             shooterMaster.set(ControlMode.Velocity, vel_w);
         }
 
@@ -72,6 +73,9 @@ public class Shooter {
         // System.out.println(" vel not 0: " + (vel_w != 0) + " error: " +
         // (Math.abs(Math.abs(vel_w) -
         // Math.abs(shooterMaster.getSelectedSensorVelocity())) < 300));
+        if(Robot.autoFirst){
+            return counter > 3 && GlobalData.auto;
+        }
         return counter > 10 && GlobalData.auto || SubSystemManager.joyPs4Controller.getL2Button(); //shooter spinning at wanted velocity and driver wants to shoot
     }
 
