@@ -27,9 +27,6 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  // private UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
-  // private MjpegServer mjpegServer = new MjpegServer("serve_USB Camera 0",
-  // 1181);
 
   private SendableChooser<Command> m_autonomous_chooser = new SendableChooser<>();
 
@@ -54,7 +51,6 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    //  cameraSetup();
 
     // Configure the trigger bindings
     // configureBindings();
@@ -100,26 +96,6 @@ public class RobotContainer {
     double scaled_input = 1 - (1 - Math.abs(value)) * (1 - DriveConstants.DRIVE_MODIFT_AXIS_K);
     return value * scaled_input;
   }
-
- 
-    // public void cameraSetup() {
-    // USB CAMERA //
-    // try {
-    // mjpegServer.setSource(usbCamera);
-    // usbCamera = CameraServer.startAutomaticCapture();
-    // usbCamera.setPixelFormat(PixelFormat.);
-    //  usbCamera.setResolution(640, 320);
-    // usbCamera.setFPS(30);
-    // usbCamera.setWhiteBalanceAuto();
-    // usbCamera.setExposureAuto();
-    
-    // } catch (Exception e) {
-    // System.out.println("--------------- CameraSetup ERROR ---------------");
-    // }
-    // Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withPosition(7,3).withSize(3,
-    // 3);
-    // was 5,3 and 3,3
-    // }
  
 
 }

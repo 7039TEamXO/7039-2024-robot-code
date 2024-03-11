@@ -4,10 +4,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.MjpegServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.util.PixelFormat;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.LED.LED;
@@ -39,6 +44,10 @@ public class Robot extends TimedRobot {
   public static RobotState robotState = RobotState.TRAVEL;
 
   public static Autos currentAuto = Autos.MIDDLE_THREE;
+  // private UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
+  // private MjpegServer mjpegServer = new MjpegServer("serve_USB Camera 0",
+  //     1181);
+      
   // This will load the file "Example Path.path" and generate it with a max
   // velocity of 4 m/s and a max acceleration of 3 m/s^2
 
@@ -76,7 +85,7 @@ public class Robot extends TimedRobot {
     Climb.init();
     Arm.init();
     LED.init();
-
+    // cameraSetup();
   }
 
   /**
@@ -92,7 +101,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     LED.setLedState();
-    
+
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
     // commands, running already-scheduled commands, removing finished or
@@ -137,7 +146,7 @@ public class Robot extends TimedRobot {
   boolean shootDelay = true;
   double shootTime = 0;
   boolean stopSwerve = false;
- public static boolean autoFirst = true;
+  public static boolean autoFirst = true;
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -152,7 +161,7 @@ public class Robot extends TimedRobot {
         double angleError = points[currentPointIndex].getWantedPose().getRotation().getRadians()
             - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
         ChassisSpeeds refChassisSpeeds = new ChassisSpeeds();
-        
+
         float vel_x_w = (float) error.getX() * driveKp;
         float vel_y_w = (float) error.getY() * driveKp;
         Vector vel_w = new Vector(vel_x_w, vel_y_w);
@@ -171,7 +180,7 @@ public class Robot extends TimedRobot {
           shootTime = m_timer.get();
         }
         while (m_timer.get() - shootTime < 1.5) {
-          if(autoFirst){
+          if (autoFirst) {
             autoFirst = false;
           }
           SubSystemManager.operate();
@@ -246,4 +255,23 @@ public class Robot extends TimedRobot {
   @Override
   public void simulationPeriodic() {
   }
+
+  // public void cameraSetup() {
+  //   // USB CAMERA //
+  //   try {
+  //     mjpegServer.setSource(usbCamera);
+  //     usbCamera.setPixelFormat(PixelFormat.kMJPEG);
+  //     // usbCamera.setResolution(640, 320);
+  //     // usbCamera.setFPS(30);
+  //     // usbCamera.setWhiteBalanceAuto();
+  //     // usbCamera.setExposureAuto();
+  //     usbCamera = CameraServer.startAutomaticCapture();
+
+  //   } catch (Exception e) {
+  //     System.out.println("--------------- CameraSetup ERROR ---------------");
+  //   }
+  //   Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withPosition(7, 3).withSize(3,
+  //       3);
+  //   // was 5,3 and 3,3
+  // }
 }

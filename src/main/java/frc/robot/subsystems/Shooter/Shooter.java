@@ -9,8 +9,10 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.Constants;
 import frc.robot.DashBoard;
 import frc.robot.GlobalData;
+import frc.robot.LimeLight;
 import frc.robot.Robot;
 import frc.robot.subsystems.SubSystemManager;
 
@@ -73,10 +75,15 @@ public class Shooter {
         // System.out.println(" vel not 0: " + (vel_w != 0) + " error: " +
         // (Math.abs(Math.abs(vel_w) -
         // Math.abs(shooterMaster.getSelectedSensorVelocity())) < 300));
-        if(Robot.autoFirst){
+        if (Robot.autoFirst) {
             return counter > 3 && GlobalData.auto;
         }
-        return counter > 10 && GlobalData.auto || SubSystemManager.joyPs4Controller.getL2Button(); //shooter spinning at wanted velocity and driver wants to shoot
+        final boolean inVel = counter > 10;
+        return inVel && GlobalData.auto || SubSystemManager.joyPs4Controller.getR2Button()
+                && (Math.abs(Math.abs(LimeLight.getTy()) - Constants.wantedTY) < Constants.tyTolerance
+                        || LimeLight.getTy() == 0) && inVel
+                || SubSystemManager.joyPs4Controller.getL2Button(); // shooter spinning at wanted velocity and driver
+                                                                    // wants to shoot
     }
 
     public static double getShooterMasterVelocity() {
