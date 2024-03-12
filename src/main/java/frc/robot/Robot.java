@@ -137,7 +137,8 @@ public class Robot extends TimedRobot {
     GlobalData.auto = true;
     m_timer.start();
     // Reset the drivetrain's odometry to the starting pose of the trajectory.
-    m_robotContainer.m_drivetrainSubsystem.resetOdometry(points[0].getWantedPose().div(1 / Constants.DriveConstants.ticksPerMeterFactor));
+    m_robotContainer.m_drivetrainSubsystem
+        .resetOdometry(points[0].getWantedPose().div(1 / Constants.DriveConstants.ticksPerMeterFactor));
     // System.out.println(points[0].getWantedPose());
     robotState = RobotState.TRAVEL;
   }
@@ -153,33 +154,40 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     // Update odometry.
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
-    System.out.println(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
     if (m_timer.get() >= autoTimeDelay) {
       if (currentPointIndex < points.length) {
-        // Get the reference chassis speeds from the Ramsete controller.
+        // Get the error.
+        // error = wanted - actual
         Translation2d error = points[currentPointIndex].getWantedPose().getTranslation()
             .minus(m_robotContainer.m_drivetrainSubsystem.getPose().getTranslation());
         double angleError = points[currentPointIndex].getWantedPose().getRotation().getRadians()
             - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
         ChassisSpeeds refChassisSpeeds = new ChassisSpeeds();
 
+        // calc correction with propotional control
         float vel_x_w = (float) error.getX() * driveKp;
         float vel_y_w = (float) error.getY() * driveKp;
         Vector vel_w = new Vector(vel_x_w, vel_y_w);
+
+        // limit the wanted velocity to the current max vel.
         if (vel_w.norm() > points[currentPointIndex].getMaxVel()) {
           vel_w = vel_w.scale(points[currentPointIndex].getMaxVel() / vel_w.norm());
         }
         refChassisSpeeds.vxMetersPerSecond = vel_w.x;
         refChassisSpeeds.vyMetersPerSecond = vel_w.y;
 
-        refChassisSpeeds.omegaRadiansPerSecond = (angleError * headingKp);
-        m_robotContainer.m_drivetrainSubsystem.drive(ChassisSpeeds.fromFieldRelativeSpeeds(refChassisSpeeds, m_robotContainer.m_drivetrainSubsystem.getRotation()));
+        // limit omega to max omega
+        refChassisSpeeds.omegaRadiansPerSecond = Math.min((angleError * headingKp), Constants.maxOmegaAuto);
+        m_robotContainer.m_drivetrainSubsystem.drive(ChassisSpeeds.fromFieldRelativeSpeeds(refChassisSpeeds,
+            m_robotContainer.m_drivetrainSubsystem.getRotation()));
 
         robotState = points[currentPointIndex].getAction();
 
         if (points[currentPointIndex].getAction().isScoring()) {
           shootTime = m_timer.get();
         }
+
+        // shooting delay - stop for x time when shooting
         while (m_timer.get() - shootTime < 1.5 && points[currentPointIndex].getAction().isScoring()) {
           if (autoFirst) {
             autoFirst = false;
@@ -188,6 +196,7 @@ public class Robot extends TimedRobot {
           m_robotContainer.m_drivetrainSubsystem.stopModules();
         }
 
+        // if in place, proceed to next point
         if (error.getNorm() < Constants.AutonomousConstants.distanceToletrance
             && Math.abs(angleError) < Constants.AutonomousConstants.angleToletrance) {
           currentPointIndex++;

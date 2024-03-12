@@ -83,8 +83,7 @@ public class Shooter {
         }
         final boolean inVel = counter > 3;
         return inVel && GlobalData.auto || SubSystemManager.joyPs4Controller.getR2Button()
-                && (Math.abs(Math.abs(LimeLight.getTy()) - Constants.wantedTY) < Constants.tyTolerance
-                        || LimeLight.getTy() == 0) && inVel
+                && (Math.abs(Math.abs(LimeLight.getTy()) - Constants.wantedTY) < Constants.tyTolerance) && (Math.abs(LimeLight.getTx()) < 5) && inVel
                 || SubSystemManager.joyPs4Controller.getL2Button() && inVel; // shooter spinning at wanted velocity and driver
                                                                     // wants to shoot
     }

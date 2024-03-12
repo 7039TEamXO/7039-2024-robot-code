@@ -202,29 +202,27 @@ public final class Constants {
                 public static AutoPoint[] steal_side_red = {
                                 createAutoPoint(2.9, 4.8, 0, RobotState.DEFLECT),
                                 createAutoPoint(9.3, 5.2, 0, RobotState.DEFLECT),
-                                createAutoPoint(9.3, 2.5, -65, RobotState.DEFLECT, 1),
-                                createAutoPoint(9.3, 1.5, -65, RobotState.INTAKE, 1),
-                                createAutoPoint(4.7, 0.6, 10, RobotState.INTAKE, 1.4f),
+                                createAutoPoint(9.3, 4, -65, RobotState.DEFLECT, 1),
+                                createAutoPoint(9.3, 3, -90, RobotState.INTAKE, 1),
+                                createAutoPoint(4.7, 0.6, 10, RobotState.INTAKE, 1.8f),
                                 createAutoPoint(4.7, 0.6, 10, RobotState.PODIUM),
-                                createAutoPoint(3, 0.6, 0, RobotState.INTAKE),
-
-                                createAutoPoint(2.9, 3, 0, RobotState.INTAKE),
-
+                                createAutoPoint(9.5, 1.8, 10, RobotState.INTAKE, 2),
+                                createAutoPoint(4.7, 0.6, 10, RobotState.INTAKE, 1.8f),
+                                createAutoPoint(4.7, 0.6, 10, RobotState.PODIUM),
                 };
 
                 public static AutoPoint[] steal_side_blue = {
-                        createAutoPoint(2.9, -4.8, 0, RobotState.DEFLECT),
-                        createAutoPoint(9.3, -5.2, 0, RobotState.DEFLECT),
-                        createAutoPoint(9.3, -2.5, 65, RobotState.DEFLECT, 1),
-                        createAutoPoint(9.3, -1.5, 65, RobotState.INTAKE, 1),
-                        createAutoPoint(4.7, -0.6, -10, RobotState.INTAKE, 1.4f),
-                        createAutoPoint(4.7, -0.6, -10, RobotState.PODIUM),
-                        createAutoPoint(3, -0.6, 0, RobotState.INTAKE),
+                                createAutoPoint(2.9, -4.8, 0, RobotState.DEFLECT),
+                                createAutoPoint(9.3, -5.2, 0, RobotState.DEFLECT),
+                                createAutoPoint(9.3, -4, 65, RobotState.DEFLECT, 1),
+                                createAutoPoint(9.3, -3, 90, RobotState.INTAKE, 1),
+                                createAutoPoint(4.7, -0.6, -10, RobotState.INTAKE, 1.8f),
+                                createAutoPoint(4.7, -0.6, -10, RobotState.PODIUM),
+                                createAutoPoint(9.5, -1.8, -10, RobotState.INTAKE, 2),
+                                createAutoPoint(4.7, -0.6, -10, RobotState.INTAKE, 1.8f),
+                                createAutoPoint(4.7, -0.6, -10, RobotState.PODIUM),
 
-                        createAutoPoint(2.9, 3, 0, RobotState.INTAKE),
-
-        };
-
+                };
 
                 public static AutoPoint createAutoPoint(double x, double y, double degree, RobotState robotState) {
                         return new AutoPoint(
@@ -311,4 +309,5 @@ public final class Constants {
         public static final float INF = 100000;
 
         public static final float maxVelAuto = 2.7f; // m/s
+        public static final float maxOmegaAuto = 1.3f;
 }
