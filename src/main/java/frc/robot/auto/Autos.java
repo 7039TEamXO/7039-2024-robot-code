@@ -4,9 +4,8 @@ import frc.robot.Constants.AutonomousConstants;
 
 public enum Autos {
     DONT_MOVE(AutonomousConstants.dontMove),
-    MIDDLE_THREE(AutonomousConstants.middle_three),
-    RIGHT_ONE(AutonomousConstants.right_one),
-    LEFT_ONE(AutonomousConstants.left_one),
+    MIDDLE_RED(AutonomousConstants.middle_red),
+    MIDDLE_BLUE(AutonomousConstants.middle_blue),
     SIDE_RED(AutonomousConstants.side_red),
     SIDE_BLUE(AutonomousConstants.side_blue),
     STEAL_RED(AutonomousConstants.steal_side_red),

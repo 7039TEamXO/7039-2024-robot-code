@@ -43,10 +43,7 @@ public class Robot extends TimedRobot {
   private float headingKp = -3f;
   public static RobotState robotState = RobotState.TRAVEL;
 
-  public static Autos currentAuto = Autos.MIDDLE_THREE;
-  // private UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
-  // private MjpegServer mjpegServer = new MjpegServer("serve_USB Camera 0",
-  // 1181);
+  public static Autos currentAuto = Autos.MIDDLE_RED;
 
   // This will load the file "Example Path.path" and generate it with a max
   // velocity of 4 m/s and a max acceleration of 3 m/s^2
@@ -266,23 +263,12 @@ public class Robot extends TimedRobot {
   public void simulationPeriodic() {
   }
 
-  // public void cameraSetup() {
-  // // USB CAMERA //
-  // try {
-  // mjpegServer.setSource(usbCamera);
-  // usbCamera.setPixelFormat(PixelFormat.kMJPEG);
-  // // usbCamera.setResolution(640, 320);
-  // // usbCamera.setFPS(30);
-  // // usbCamera.setWhiteBalanceAuto();
-  // // usbCamera.setExposureAuto();
-  // usbCamera = CameraServer.startAutomaticCapture();
-
-  // } catch (Exception e) {
-  // System.out.println("--------------- CameraSetup ERROR ---------------");
-  // }
-  // Shuffleboard.getTab("Driver").add("Driver Camera", usbCamera).withPosition(7,
-  // 3).withSize(3,
-  // 3);
-  // // was 5,3 and 3,3
-  // }
+  public void cameraSetup() {
+    // USB CAMERA //
+    try {
+      CameraServer.startAutomaticCapture();
+    } catch (Exception e) {
+      System.out.println("--------------- CameraSetup ERROR ---------------");
+    }
+  }
 }

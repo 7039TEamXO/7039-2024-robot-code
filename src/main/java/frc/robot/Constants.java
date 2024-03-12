@@ -10,6 +10,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.auto.AutoPoint;
 import frc.robot.subsystems.RobotState;
+import frc.robot.subsystems.Intake.IntakeState;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -102,6 +103,35 @@ public final class Constants {
                                 new AutoPoint(new Pose2d(new Translation2d(0.92, 0), new Rotation2d(0)),
                                                 RobotState.SUBWOOFER),
                 };
+
+                public static AutoPoint[] middle_red = {
+                                createAutoPoint(0.92, 0, 0, RobotState.TRAVEL),
+                                createAutoPoint(0.92, 0, 0, RobotState.TRAVEL),
+                                createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
+                                createAutoPoint(2.6, 0, 0, RobotState.INTAKE, 1.2f),
+                                createAutoPoint(2.6, 0, 0, RobotState.PODIUM),
+                                createAutoPoint(2.6, 0, -90, RobotState.TRAVEL),
+                                createAutoPoint(2.4, -yBetweenNotes, -90, RobotState.INTAKE, 1.3f),
+                                createAutoPoint(0.92, 0, 0, RobotState.TRAVEL, 1),
+                                createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
+                                createAutoPoint(2.4, yBetweenNotes, 35, RobotState.INTAKE, 1.3f),
+                                createAutoPoint(0.92, 0, 0, RobotState.INTAKE, 1),
+                                createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER)
+                };
+                public static AutoPoint[] middle_blue = {
+                        createAutoPoint(0.92, 0, 0, RobotState.TRAVEL),
+                        createAutoPoint(0.92, 0, 0, RobotState.TRAVEL),
+                        createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
+                        createAutoPoint(2.6, 0, 0, RobotState.INTAKE, 1.2f),
+                        createAutoPoint(2.6, 0, 0, RobotState.PODIUM),
+                        createAutoPoint(2.6, 0, 90, RobotState.TRAVEL),
+                        createAutoPoint(2.4, yBetweenNotes, 90, RobotState.INTAKE, 1.3f),
+                        createAutoPoint(0.92, 0, 0, RobotState.TRAVEL, 1),
+                        createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
+                        createAutoPoint(2.4, -yBetweenNotes, -35, RobotState.INTAKE, 1.3f),
+                        createAutoPoint(0.92, 0, 0, RobotState.INTAKE, 1),
+                        createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER)
+        };
 
                 public static AutoPoint[] right_one = {
                                 new AutoPoint(new Pose2d(new Translation2d(0, -1), new Rotation2d(0)),
