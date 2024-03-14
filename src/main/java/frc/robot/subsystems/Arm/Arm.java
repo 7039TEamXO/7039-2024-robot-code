@@ -16,7 +16,7 @@ public class Arm {
 
     public static void init() {
         armMotor.setInverted(false);
-        armMotor.config_kP(0, 0.1);
+        armMotor.config_kP(0, 0.15);
         armMotor.config_kI(0, 0.0001);
         armMotor.setSelectedSensorPosition(0);
         armMotor.setNeutralMode(NeutralMode.Brake);
@@ -33,16 +33,17 @@ public class Arm {
     public static void operate(ArmState state) {
         switch (state) {
             case CLOSE:
-            wantedPos = 0;
+                wantedPos = 0;
                 break;
             case OPEN:
-            wantedPos = 13750;
+                wantedPos = 12650;
                 break;
         }
         armMotor.set(ControlMode.Position, wantedPos);
+
     }
 
-    public static boolean reached(){
-        return Math.abs(wantedPos - armMotor.getSelectedSensorPosition()) < 400;
+    public static boolean reached() {
+        return Math.abs(wantedPos - armMotor.getSelectedSensorPosition()) < 700;
     }
 }

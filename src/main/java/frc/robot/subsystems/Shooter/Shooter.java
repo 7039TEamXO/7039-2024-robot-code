@@ -15,6 +15,7 @@ import frc.robot.GlobalData;
 import frc.robot.LimeLight;
 import frc.robot.Robot;
 import frc.robot.subsystems.SubSystemManager;
+import frc.robot.subsystems.Arm.Arm;
 
 /** Add your docs here. */
 public class Shooter {
@@ -43,7 +44,7 @@ public class Shooter {
     public static void operate(ShooterState state) {
         switch (state) {
             case AMP_SHOOTING:
-                vel_w = -6250 + DashBoard.getAmpOffset();
+                vel_w = -7000 + DashBoard.getAmpOffset();
                 break;
             case DEPLETE:
                 vel_w = 0.4;

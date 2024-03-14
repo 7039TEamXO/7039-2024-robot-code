@@ -117,6 +117,8 @@ public final class Constants {
                                 createAutoPoint(2.4, yBetweenNotes, 35, RobotState.INTAKE, 1.3f),
                                 createAutoPoint(0.92, 0, 0, RobotState.INTAKE, 1),
                                 createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER)
+                                
+
                 };
                 public static AutoPoint[] middle_blue = {
                         createAutoPoint(0.92, 0, 0, RobotState.TRAVEL),
