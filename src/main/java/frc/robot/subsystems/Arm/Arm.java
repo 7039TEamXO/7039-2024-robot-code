@@ -31,12 +31,13 @@ public class Arm {
     }
 
     public static void operate(ArmState state) {
+        //System.out.println(armMotor.getSelectedSensorPosition());
         switch (state) {
             case CLOSE:
                 wantedPos = 0;
                 break;
             case OPEN:
-                wantedPos = 12650;
+                wantedPos = 12000;//12650;//14000
                 break;
         }
         armMotor.set(ControlMode.Position, wantedPos);
