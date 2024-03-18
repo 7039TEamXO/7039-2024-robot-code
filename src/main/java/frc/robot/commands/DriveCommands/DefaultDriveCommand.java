@@ -41,7 +41,7 @@ public class DefaultDriveCommand extends Command {
                 ChassisSpeeds.fromFieldRelativeSpeeds(
                         translationXPercent * DriveConstants.MAX_VELOCITY_METERS_PER_SECOND,
                         translationYPercent * DriveConstants.MAX_VELOCITY_METERS_PER_SECOND,
-                        rotationPercent * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
+                        rotationPercent * DriveConstants.MAX_OMEGA_RADIANS,
                         drivetrain.getRotation())
                         .plus(ChassisSpeeds.fromFieldRelativeSpeeds(driverAssist && LimeLight.getTy() != 0
                                 ? (LimeLight.getTy() + Constants.wantedTY) * Constants.distanceKp

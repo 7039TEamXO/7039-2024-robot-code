@@ -71,7 +71,7 @@ public class Shooter {
     }
 
     public static boolean readyToShoot() {
-        if (vel_w != 0 && Math.abs(Math.abs(vel_w) - Math.abs(shooterMaster.getSelectedSensorVelocity())) < 800) {
+        if (vel_w != 0 && Math.abs(Math.abs(vel_w) - Math.abs(shooterMaster.getSelectedSensorVelocity())) < 1000) {
             counter++;
         } else {
             counter = 0;
@@ -80,7 +80,7 @@ public class Shooter {
         // (Math.abs(Math.abs(vel_w) -
         // Math.abs(shooterMaster.getSelectedSensorVelocity())) < 300));
         if (Robot.autoFirst) {
-            return counter > 3 && GlobalData.auto;
+            return counter > 2 && GlobalData.auto;
         }
         final boolean inVel = counter > 3;
         return inVel && GlobalData.auto || SubSystemManager.joyPs4Controller.getR2Button()

@@ -45,7 +45,7 @@ public class Arm {
                 wantedPos = 0;
                 break;
             case OPEN:
-                wantedPos = 12000;// 12650;//14000
+                wantedPos = 12250;// 12650;//14000
                 break;
         }
         armMotor.set(ControlMode.MotionMagic, wantedPos);

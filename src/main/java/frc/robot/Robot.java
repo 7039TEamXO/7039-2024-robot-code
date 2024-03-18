@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
   private float driveKp = 1.85f;
-  private float headingKp = -3f;
+  private float headingKp = -2.7f;
   public static RobotState robotState = RobotState.TRAVEL;
 
   public static Autos currentAuto = Autos.MIDDLE_RED;
