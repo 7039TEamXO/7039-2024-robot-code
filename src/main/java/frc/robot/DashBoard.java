@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.auto.Autos;
+import frc.robot.subsystems.Arm.Arm;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.Shooter.Shooter;
 
@@ -40,6 +41,7 @@ public class DashBoard {
         data.addNumber("Shooter Vel (S)", () -> Shooter.getShooterSlaveVelocity()).withPosition(8, 4).withSize(4, 3);
         data.addNumber("Shooter Curr (S)", () -> Shooter.getShooterSlaveCurrent()).withPosition(12, 4).withSize(4, 3);
         driver.addBoolean("Ready to shoot", () -> LimeLight.isReadyToShoot()).withPosition(8, 0).withSize(3, 3);
+        driver.addBoolean("arm reached", () -> Arm.reached()).withPosition(9, 3).withSize(3, 3);
 
     }
 
