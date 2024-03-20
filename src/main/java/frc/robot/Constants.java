@@ -266,7 +266,7 @@ public final class Constants {
 
         // lime constants:
         public static final double tyTolerance = 0.5;
-        public static final double wantedTY = 16.2;
+        public static final double wantedTY = 16.4;
         public static final double distanceKp = 0.22;
 
         public static final float INF = 100000;
