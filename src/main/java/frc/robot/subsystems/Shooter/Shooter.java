@@ -44,7 +44,7 @@ public class Shooter {
     public static void operate(ShooterState state) {
         switch (state) {
             case AMP_SHOOTING:
-                vel_w = -7000 + DashBoard.getAmpOffset(); //8500
+                vel_w = -7500 + DashBoard.getAmpOffset(); // 8500
                 break;
             case DEPLETE:
                 vel_w = 0.4;
@@ -83,10 +83,11 @@ public class Shooter {
             return counter > 2 && GlobalData.auto;
         }
         final boolean inVel = counter > 3;
-        return inVel && GlobalData.auto || SubSystemManager.joyPs4Controller.getR2Button()
-                && (Math.abs(Math.abs(LimeLight.getTy()) - Constants.wantedTY) < Constants.tyTolerance) && (Math.abs(LimeLight.getTx()) < 5) && inVel
-                || SubSystemManager.joyPs4Controller.getL2Button() && inVel; // shooter spinning at wanted velocity and driver
-                                                                    // wants to shoot
+        return inVel && GlobalData.auto || SubSystemManager.joyPs4Controller.getL2Button() && inVel; // shooter spinning
+                                                                                                     // at wanted
+                                                                                                     // velocity and
+        // driver
+        // wants to shoot
     }
 
     public static double getShooterMasterVelocity() {

@@ -1,10 +1,12 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.networktables.BooleanEntry;
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.SuppliedValueWidget;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.auto.Autos;
 import frc.robot.subsystems.Arm.Arm;
@@ -21,6 +23,7 @@ public class DashBoard {
             .getEntry();
     private static GenericEntry ampOffset = driver.add("amp offset", 0).withPosition(0, 3).withSize(3, 3)
             .getEntry();
+    public static  GenericEntry disable_ir_input = driver.add("Disable IR", false).withPosition(12, 3).withSize(3, 3).getEntry();
 
     public static void init() {
         Autos[] states = Autos.values();
@@ -40,7 +43,7 @@ public class DashBoard {
         data.addNumber("Shooter Curr (M)", () -> Shooter.getShooterMasterCurrent()).withPosition(4, 4).withSize(4, 3);
         data.addNumber("Shooter Vel (S)", () -> Shooter.getShooterSlaveVelocity()).withPosition(8, 4).withSize(4, 3);
         data.addNumber("Shooter Curr (S)", () -> Shooter.getShooterSlaveCurrent()).withPosition(12, 4).withSize(4, 3);
-        driver.addBoolean("Ready to shoot", () -> LimeLight.isReadyToShoot()).withPosition(8, 0).withSize(3, 3);
+        driver.addBoolean("Ready to shoot", () -> Shooter.readyToShoot()).withPosition(8, 0).withSize(3, 3);
         driver.addBoolean("arm reached", () -> Arm.reached()).withPosition(9, 3).withSize(3, 3);
 
     }

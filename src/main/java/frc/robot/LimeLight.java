@@ -26,6 +26,8 @@ public class LimeLight {
     }
 
     public static boolean isReadyToShoot() {
-        return (Math.abs(Math.abs(LimeLight.getTy()) - Constants.wantedTY) < Constants.tyTolerance);
-    }
+    return ((Math.abs(Math.abs(LimeLight.getTy()) - Constants.wantedTY) < Constants.tyTolerance)
+                && (Math.abs(Math.abs(LimeLight.getTx()) - 0) < 0.5));
+    };
+
 }

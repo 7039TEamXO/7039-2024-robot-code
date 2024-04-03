@@ -35,8 +35,7 @@ public class DefaultDriveCommand extends Command {
         boolean driverAssist = SubSystemManager.joyPs4Controller.getR2Button();
         double translationXPercent = translationXSupplier.getAsDouble();
         double translationYPercent = translationYSupplier.getAsDouble();
-        double rotationPercent = (rotationSupplier.getAsDouble()
-                + (driverAssist ? (-LimeLight.getTx() * 0.01) : 0)) * -0.4;
+        double rotationPercent = (rotationSupplier.getAsDouble()) * -0.4;
         drivetrain.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
                         translationXPercent * DriveConstants.MAX_VELOCITY_METERS_PER_SECOND,
@@ -45,7 +44,7 @@ public class DefaultDriveCommand extends Command {
                         drivetrain.getRotation())
                         .plus(ChassisSpeeds.fromFieldRelativeSpeeds(driverAssist && LimeLight.getTy() != 0
                                 ? (LimeLight.getTy() + Constants.wantedTY) * Constants.distanceKp
-                                : 0, 0, 0, Rotation2d.fromDegrees(0))));
+                                : 0, 0, (driverAssist ? (LimeLight.getTx() * 0.04) : 0), Rotation2d.fromDegrees(0))));
     }
 
     @Override

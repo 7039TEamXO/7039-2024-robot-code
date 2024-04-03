@@ -111,7 +111,7 @@ public final class Constants {
                                 createAutoPoint(2.6, 0, 0, RobotState.INTAKE, 1.2f),
                                 createAutoPoint(2.6, 0, 0, RobotState.PODIUM),
                                 createAutoPoint(2.6, 0, -90, RobotState.TRAVEL),
-                                createAutoPoint(2.4, -yBetweenNotes, -90, RobotState.INTAKE, 1.3f),
+                                createAutoPoint(2.2, -yBetweenNotes, -90, RobotState.INTAKE, 1.3f),
                                 createAutoPoint(0.92, 0, 0, RobotState.TRAVEL, 1),
                                 createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
                                 createAutoPoint(2.4, yBetweenNotes, 35, RobotState.INTAKE, 1.3f),
@@ -266,7 +266,7 @@ public final class Constants {
 
         // lime constants:
         public static final double tyTolerance = 0.5;
-        public static final double wantedTY = 16.4;
+        public static final double wantedTY = 16.2;
         public static final double distanceKp = 0.22;
 
         public static final float INF = 100000;

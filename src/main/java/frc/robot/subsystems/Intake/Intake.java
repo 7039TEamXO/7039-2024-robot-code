@@ -8,12 +8,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import frc.robot.DashBoard;
 
 /** Add your docs here. */
 public class Intake {
     private static TalonFX intake = new TalonFX(4);
     private static AnalogInput irInput = new AnalogInput(0);
     private static int irValue = irInput.getValue();
+    private static boolean disableIR = false;
 
     private static double power = 0;
 
@@ -28,6 +30,7 @@ public class Intake {
 
     public static void operate(IntakeState state) {
         irValue = irInput.getValue();
+        disableIR =  DashBoard.disable_ir_input.getBoolean(false);
         switch (state) {
             case DEPLETE:
                 power = -0.5;
@@ -54,6 +57,9 @@ public class Intake {
     }
 
     public static boolean isGamePieceIn() {
+        if (disableIR) {
+            return false;
+        }
         return irValue >= 1700;
     }
 
