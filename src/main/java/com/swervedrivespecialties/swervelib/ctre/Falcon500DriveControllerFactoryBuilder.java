@@ -68,7 +68,7 @@ public final class Falcon500DriveControllerFactoryBuilder {
             //     // Enable voltage compensation
             //     motor.enableVoltageCompensation(true);
             // }
-
+            
             motor.setNeutralMode(NeutralModeValue.Brake);
             // motor.setSensorPhase(true); // moved above to SensorToMechanismRatio
 

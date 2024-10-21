@@ -16,6 +16,7 @@ import frc.robot.subsystems.Shooter.Shooter;
 public class DashBoard {
     private static HttpCamera limelightcamera = new HttpCamera("limelight", "http://10.70.39.11:5800");
     private static ShuffleboardTab driver = Shuffleboard.getTab("Driver");
+    private static ShuffleboardTab temperature = Shuffleboard.getTab("Temperature");
     public static ShuffleboardTab data = Shuffleboard.getTab("Data");
     private static String m_autoSelected = "";
     private final static SendableChooser<String> m_chooser = new SendableChooser<>();
@@ -37,6 +38,7 @@ public class DashBoard {
         }
         driver.add("Auto choices", m_chooser).withPosition(0, 0).withSize(5, 3);
         driver.addBoolean("Is Game Piece In", () -> Intake.isGamePieceIn()).withPosition(5, 0).withSize(3, 3);
+        temperature.addNumber("temperature", () -> Intake.getTemperature()).withPosition(5, 0).withSize(3, 3);
         driver.addString("State", () -> Robot.robotState.name()).withPosition(14, 0).withSize(3, 3);
         driver.add("LimeLight Camera", limelightcamera).withPosition(17, 0).withSize(3, 3);
         data.addNumber("Shooter Vel (M)", () -> Shooter.getShooterMasterVelocity()).withPosition(0, 4).withSize(4, 3);

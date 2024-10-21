@@ -55,7 +55,9 @@ public class Intake {
     public static double getCurrent() {
         return intake.getStatorCurrent();
     }
-
+    public static double getTemperature(){
+        return intake.getTemperature();
+    }
     public static boolean isGamePieceIn() {
         if (disableIR) {
             return false;

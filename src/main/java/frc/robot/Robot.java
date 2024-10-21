@@ -93,12 +93,14 @@ public class Robot extends TimedRobot {
    * <p>
    * This runs after the mode specific periodic functions, but before LiveWindow
    * and
-   * SmartDashboard integrated updating.
+   * SmartDashboard integrated updating.%
    */
   @Override
   public void robotPeriodic() {
-    LED.setLedState();
+    //System.out.println("robotPer"+ m_robotContainer.m_drivetrainSubsystem.getPose());
 
+    LED.setLedState();
+    //System.out.println(Intake.getTemperature());
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
     // commands, running already-scheduled commands, removing finished or
@@ -129,6 +131,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    
+
     Autos selected_autos = DashBoard.getSelected();
     points = selected_autos.getPoints();
     GlobalData.auto = true;
@@ -150,6 +154,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     // Update odometry.
+    
+    System.out.println("autoPer"+ m_robotContainer.m_drivetrainSubsystem.getPose());
     m_robotContainer.m_drivetrainSubsystem.updateOdometry();
     if (m_timer.get() >= autoTimeDelay) {
       if (currentPointIndex < points.length) {
@@ -160,7 +166,7 @@ public class Robot extends TimedRobot {
         double angleError = points[currentPointIndex].getWantedPose().getRotation().getRadians()
             - m_robotContainer.m_drivetrainSubsystem.getPose().getRotation().getRadians();
         ChassisSpeeds refChassisSpeeds = new ChassisSpeeds();
-
+        System.out.println("auto"+ m_robotContainer.m_drivetrainSubsystem.getPose());
         // calc correction with propotional control
         float vel_x_w = (float) error.getX() * driveKp;
         float vel_y_w = (float) error.getY() * driveKp;

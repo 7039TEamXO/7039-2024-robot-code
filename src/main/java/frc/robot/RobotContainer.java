@@ -7,13 +7,8 @@ package frc.robot;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.DriveCommands.DefaultDriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.MjpegServer;
-import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.filter.SlewRateLimiter;
-import edu.wpi.first.util.PixelFormat;
 import edu.wpi.first.wpilibj.PS4Controller;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 

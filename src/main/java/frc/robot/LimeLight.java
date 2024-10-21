@@ -17,12 +17,12 @@ public class LimeLight {
     }
 
     public static double getTx() {
-        return x;
+        return -x;
 
     }
 
     public static double getTy() {
-        return y;
+        return -y;
     }
 
     public static boolean isReadyToShoot() {
