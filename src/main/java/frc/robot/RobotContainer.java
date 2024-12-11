@@ -39,8 +39,8 @@ public class RobotContainer {
   private final PS4Controller m_driverController = new PS4Controller(0);
   // private final PS4Controller m_operatorController = new PS4Controller(1);
 
-  private SlewRateLimiter joystickRateLimiterY = new SlewRateLimiter(5.5); // 2.9
-  private SlewRateLimiter joystickRateLimiterX = new SlewRateLimiter(5.5); // 2.9
+  private SlewRateLimiter joystickRateLimiterY = new SlewRateLimiter(3); // 2.9, 5.5
+  private SlewRateLimiter joystickRateLimiterX = new SlewRateLimiter(3); // 2.9, 5.5 
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

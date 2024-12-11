@@ -36,7 +36,7 @@ public class Intake {
                 power = -0.5;
                 break;
             case COLLECT:
-                power = 0.5;
+                power = 0.65;
                 break;
             case STOP:
                 power = 0;

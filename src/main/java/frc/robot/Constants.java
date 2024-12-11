@@ -113,8 +113,12 @@ public final class Constants {
                                 createAutoPoint(0.92, 0, 0, RobotState.TRAVEL),
                                 createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
                                 createAutoPoint(2.6, 0, 0, RobotState.INTAKE, 1.2f),
-                                createAutoPoint(2.6, 0, 0, RobotState.PODIUM),
-                                createAutoPoint(2.6, 0, -90, RobotState.TRAVEL),
+                                createAutoPoint(0.92, 0, 0, RobotState.TRAVEL),
+                                createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
+                                createAutoPoint(2.5, 0, 0, RobotState.TRAVEL),
+                                // createAutoPoint(2.6, 0, 0, RobotState.PODIUM),
+                                // createAutoPoint(2.6, 0, 0, RobotState.PODIUM),//2
+                                createAutoPoint(2.4, 0, -90, RobotState.TRAVEL),
                                 createAutoPoint(2.2, -yBetweenNotes, -90, RobotState.INTAKE, 1.3f),
                                 createAutoPoint(0.92, 0, 0, RobotState.TRAVEL, 1),
                                 createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
@@ -129,8 +133,12 @@ public final class Constants {
                                 createAutoPoint(0.92, 0, 0, RobotState.TRAVEL),
                                 createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
                                 createAutoPoint(2.6, 0, 0, RobotState.INTAKE, 1.2f),
-                                createAutoPoint(2.6, 0, 0, RobotState.PODIUM),
-                                createAutoPoint(2.6, 0, 90, RobotState.TRAVEL),
+                                createAutoPoint(0.92, 0, 0, RobotState.TRAVEL),
+                                createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),//was added
+                                createAutoPoint(2.5, 0, 0, RobotState.TRAVEL),//was added
+                                // createAutoPoint(2.6, 0, 0, RobotState.PODIUM),
+                                // createAutoPoint(2.6, 0, 0, RobotState.PODIUM),//2
+                                createAutoPoint(2.4, 0, 90, RobotState.TRAVEL),//2.6
                                 createAutoPoint(2.4, yBetweenNotes, 90, RobotState.INTAKE, 1.3f),
                                 createAutoPoint(0.92, 0, 0, RobotState.TRAVEL, 1),
                                 createAutoPoint(0.92, 0, 0, RobotState.SUBWOOFER),
@@ -187,13 +195,30 @@ public final class Constants {
                 public static AutoPoint[] side_blue = {
                                 createAutoPoint(0.5, -0.5, -60, RobotState.TRAVEL),
                                 createAutoPoint(0.5, -0.5, -60, RobotState.SUBWOOFER),
+                                //second
                                 createAutoPoint(4.5, -2.6, 0, RobotState.INTAKE, 2.2f),
-                                createAutoPoint(8.5, -1.2, 10, RobotState.INTAKE, 1.7f),
-                                createAutoPoint(2.8, 1, 10, RobotState.INTAKE, 2.2f),
-                                createAutoPoint(2.8, 1, 10, RobotState.PODIUM),
-                                createAutoPoint(8.5, 0.2, -10, RobotState.INTAKE, 2.4f),
-                                createAutoPoint(2.8, 0.75, 10, RobotState.INTAKE, 2.2f),
-                                createAutoPoint(2.8, 0.75, 10, RobotState.PODIUM),
+                                createAutoPoint(8.3, -0.55, 10, RobotState.INTAKE, 1.7f),//1.2
+                                createAutoPoint(7.3, -0.3, 10, RobotState.INTAKE, 1.7f),
+
+                                createAutoPoint(4.8, -0.2, 10, RobotState.TRAVEL, 2.2f),
+                                createAutoPoint(2.5, 1, 15, RobotState.TRAVEL, 2.2f),// y = -1
+                                
+                                createAutoPoint(2.5, 1, 15, RobotState.PODIUM),//d-10 x2.8
+                                //last
+                                createAutoPoint(2.5, 0.4, 10, RobotState.TRAVEL),
+                                createAutoPoint(8.3, 0.4, -5, RobotState.INTAKE, 2.4f),// y-0.2 d10
+                                createAutoPoint(4.5, 0.2, 10, RobotState.INTAKE, 2.2f),
+                                createAutoPoint(2.1, 0.8, 15, RobotState.TRAVEL, 2.2f),//y-0.75 d10
+                                createAutoPoint(2.1, 0.8, 15, RobotState.PODIUM)
+                                // createAutoPoint(0.5, -0.5, -60, RobotState.TRAVEL),
+                                // createAutoPoint(0.5, -0.5, -60, RobotState.SUBWOOFER),
+                                // createAutoPoint(4.5, -2.6, 0, RobotState.INTAKE, 2.2f),
+                                // createAutoPoint(8.5, -1.2, 10, RobotState.INTAKE, 1.7f),
+                                // createAutoPoint(2.8, 1, 10, RobotState.INTAKE, 2.2f),
+                                // createAutoPoint(2.8, 1, 10, RobotState.PODIUM),
+                                // createAutoPoint(8.5, 0.2, -10, RobotState.INTAKE, 2.4f),
+                                // createAutoPoint(2.8, 0.75, 10, RobotState.INTAKE, 2.2f),
+                                // createAutoPoint(2.8, 0.75, 10, RobotState.PODIUM),
 
                 };
                 public static AutoPoint[] steal_side_red = {
@@ -224,14 +249,17 @@ public final class Constants {
                 public static AutoPoint[] side_red_one = {
                         createAutoPoint(0.5, 0.5, -60, RobotState.TRAVEL),
                         createAutoPoint(0.5, 0.5, -60, RobotState.SUBWOOFER),
-                        createAutoPoint(0.5, -0.3, 0, RobotState.TRAVEL),
-                        createAutoPoint(8.5, -0.3, 0, RobotState.INTAKE),
+                        createAutoPoint(0.5, 0.5, -60, RobotState.SUBWOOFER),
+                        createAutoPoint(0.5, 0.5, -60, RobotState.TRAVEL),
+                        
 
                 };
 
                 public static AutoPoint[] side_blue_one = {
                         createAutoPoint(0.5, -0.5, 60, RobotState.TRAVEL),
                         createAutoPoint(0.5, -0.5, 60, RobotState.SUBWOOFER),
+                        createAutoPoint(0.5, -0.5, 60, RobotState.SUBWOOFER),
+                        createAutoPoint(0.5, -0.5, 60, RobotState.TRAVEL),
 
                 };
 
@@ -251,8 +279,8 @@ public final class Constants {
 
         public static final class DriveConstants {
 
-                public static final double MAX_VELOCITY_METERS_PER_SECOND = 2;//2
-                public static final double MAX_OMEGA_RADIANS = 1.5;//1.5
+                public static final double MAX_VELOCITY_METERS_PER_SECOND = 1.7;//2
+                public static final double MAX_OMEGA_RADIANS = 1.2;//1.5
                 public static final double DRIVE_STICK_DEADBAND = 0.05;
                 public static final double DRIVE_MODIFT_AXIS_K = 0.3;
 
@@ -275,14 +303,14 @@ public final class Constants {
                 public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 6;
                 public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 7;
                 public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 11;
-                public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(206.27929687499997);//204.25781249999991
+                public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(204.78515625);//206.27929687499997
                 // public static final double FRONT_LEFT_MODULE_STEER_OFFSET =
                 // -Math.toRadians(0);%
                 // Front Right
                 public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 17;
                 public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 61;
                 public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 9;
-                public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(207.42187500000003);// was 206.80664062500003
+                public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(205.7464599609375);// was 207.42187500000003
                                                                                                                  // 207.861328125
                 // public static final double FRONT_RIGHT_MODULE_STEER_OFFSET =
                 // -Math.toRadians(0);
@@ -291,7 +319,7 @@ public final class Constants {
                 public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 57;
                 public static final int BACK_LEFT_MODULE_STEER_MOTOR = 2;
                 public static final int BACK_LEFT_MODULE_STEER_ENCODER = 0;
-                public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(330.908203125);//332.3982238769531
+                public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(331.787109375);//330.908203125
                 // public static final double BACK_LEFT_MODULE_STEER_OFFSET =
                 // -Math.toRadians(0);
 
@@ -299,7 +327,7 @@ public final class Constants {
                 public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 33;//55
                 public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 18;
                 public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 29;
-                public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(129.46289062499997);//132.5390625000003
+                public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(127.08435058593749);//129.46289062499997
                 // public static final double BACK_RIGHT_MODULE_STEER_OFFSET =
                 // -Math.toRadians(0);
 
@@ -315,7 +343,7 @@ public final class Constants {
 
         // lime constants:
         public static final double tyTolerance = 0.5;//0.5
-        public static final double wantedTY=19.0;//16,2
+        public static final double wantedTY=19.0;//16,2 //19
         public static final double distanceKp = 0.22;
 
         public static final float INF = 100000;

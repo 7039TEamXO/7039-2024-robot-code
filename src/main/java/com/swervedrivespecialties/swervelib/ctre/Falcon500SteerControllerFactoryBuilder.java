@@ -34,7 +34,7 @@ public final class Falcon500SteerControllerFactoryBuilder {
     private double staticConstant = Double.NaN;
 
     private double nominalVoltage = Double.NaN;
-    private double currentLimit = Double.NaN;
+    private double currentLimit = 60;
 
     public Falcon500SteerControllerFactoryBuilder withPidConstants(double proportional, double integral,
             double derivative) {

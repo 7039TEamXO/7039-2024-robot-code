@@ -17,7 +17,7 @@ public final class Falcon500DriveControllerFactoryBuilder {
     private static final int STATUS_FRAME_GENERAL_PERIOD_MS = 250;
 
     private double nominalVoltage = Double.NaN;
-    private double currentLimit = Double.NaN;
+    private double currentLimit = 45;
 
     public Falcon500DriveControllerFactoryBuilder withVoltageCompensation(double nominalVoltage) {
         this.nominalVoltage = nominalVoltage;
@@ -38,6 +38,7 @@ public final class Falcon500DriveControllerFactoryBuilder {
     }
 
     public boolean hasCurrentLimit() {
+        
         return Double.isFinite(currentLimit);
     }
 
